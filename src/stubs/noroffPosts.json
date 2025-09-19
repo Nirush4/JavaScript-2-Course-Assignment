@@ -1,0 +1,2886 @@
+[
+  {
+    "title": "radio check",
+    "body": "loud and clear",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 5,
+        "postId": 8659
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-10T10:25:49.987Z",
+    "updated": "2023-11-10T10:25:49.987Z",
+    "id": 8659,
+    "author": {
+      "name": "kinderbueno",
+      "email": "kinder@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "testing",
+    "body": "Testing",
+    "tags": ["test"],
+    "media": "https://images.unsplash.com/photo-1682688759157-57988e10ffa8?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-10T09:48:35.656Z",
+    "updated": "2023-11-10T09:48:35.656Z",
+    "id": 8658,
+    "author": {
+      "name": "rebekkatest",
+      "email": "rebekkatest@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1695977318848-fd0f317ea79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "helo test",
+    "body": "testing vite",
+    "tags": [],
+    "media": "https://source.unsplash.com/random/9",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-10T08:54:34.077Z",
+    "updated": "2023-11-10T08:54:34.077Z",
+    "id": 8656,
+    "author": {
+      "name": "klay",
+      "email": "klay@noroff.no",
+      "avatar": "https://source.unsplash.com/random/23",
+      "banner": "https://source.unsplash.com/random/100"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Friday test 1",
+    "body": "Just testing on a Friday",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-10T07:18:50.763Z",
+    "updated": "2023-11-10T07:18:50.763Z",
+    "id": 8654,
+    "author": {
+      "name": "Test_User142",
+      "email": "Test.User142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556782.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Hello",
+    "body": "How are you?",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-09T22:52:19.007Z",
+    "updated": "2023-11-09T22:52:19.007Z",
+    "id": 8624,
+    "author": {
+      "name": "Joey",
+      "email": "joey@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "dsds",
+    "body": "sddsds",
+    "tags": [],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8623
+      }
+    ],
+    "comments": [
+      {
+        "body": "Hello",
+        "replyToId": null,
+        "id": 2278,
+        "postId": 8623,
+        "owner": "Joey",
+        "created": "2023-11-09T21:39:29.844Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      }
+    ],
+    "created": "2023-11-09T21:26:30.641Z",
+    "updated": "2023-11-09T21:26:30.641Z",
+    "id": 8623,
+    "author": {
+      "name": "Joey",
+      "email": "joey@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Testing yet again",
+    "body": "Test Test",
+    "tags": [],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8622
+      },
+      {
+        "symbol": "😀",
+        "count": 2,
+        "postId": 8622
+      }
+    ],
+    "comments": [
+      {
+        "body": "Hey, Joey!",
+        "replyToId": null,
+        "id": 2276,
+        "postId": 8622,
+        "owner": "Joey",
+        "created": "2023-11-09T20:43:56.413Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      }
+    ],
+    "created": "2023-11-09T20:37:15.950Z",
+    "updated": "2023-11-09T20:37:15.950Z",
+    "id": 8622,
+    "author": {
+      "name": "Joey",
+      "email": "joey@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "Your a towel",
+    "body": "Im not a towel!!",
+    "tags": [""],
+    "media": "http://1.bp.blogspot.com/_gqlIbbWaXgg/SdMOj5h8TwI/AAAAAAAAAuA/JQP9eGpHjhA/s1600/towelie_oprah.jpg",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 10,
+        "postId": 8621
+      },
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8621
+      }
+    ],
+    "comments": [
+      {
+        "body": "Opera is out of order. Mc Towlie is clearly a man!!",
+        "replyToId": null,
+        "id": 2277,
+        "postId": 8621,
+        "owner": "Towlietest",
+        "created": "2023-11-09T21:29:33.740Z",
+        "author": {
+          "name": "Towlietest",
+          "email": "towlietest3@noroff.no",
+          "avatar": "https://www.lenspure.com/images/articles/contact-lens-on-fingertip.jpg",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-09T20:17:46.828Z",
+    "updated": "2023-11-09T20:17:46.828Z",
+    "id": 8621,
+    "author": {
+      "name": "Towlietest",
+      "email": "towlietest3@noroff.no",
+      "avatar": "https://www.lenspure.com/images/articles/contact-lens-on-fingertip.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "testing testing",
+    "body": "trying out everything in the ca",
+    "tags": ["#thursday"],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😂",
+        "count": 1,
+        "postId": 8620
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-09T16:29:32.419Z",
+    "updated": "2023-11-09T16:29:32.419Z",
+    "id": 8620,
+    "author": {
+      "name": "ekaterina_nattrass2",
+      "email": "EkaNat42664@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Chickens are the best",
+    "body": "Title",
+    "tags": [],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 2,
+        "postId": 8618
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-09T13:06:40.392Z",
+    "updated": "2023-11-09T13:06:40.392Z",
+    "id": 8618,
+    "author": {
+      "name": "sandersol",
+      "email": "sansol92975@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Test",
+    "body": "Yo",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-09T11:38:49.011Z",
+    "updated": "2023-11-09T11:38:49.011Z",
+    "id": 8616,
+    "author": {
+      "name": "nille",
+      "email": "nraanes@noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "My Name issdd",
+    "body": "I love books! I ddoo",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-09T11:14:19.059Z",
+    "updated": "2023-11-09T11:14:19.059Z",
+    "id": 8615,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [],
+    "media": null,
+    "reactions": [
+      {
+        "symbol": "🤪",
+        "count": 1,
+        "postId": 8614
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-09T11:13:28.086Z",
+    "updated": "2023-11-09T11:13:28.086Z",
+    "id": 8614,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "My Name issdd",
+    "body": "I love books! I ddooz",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-09T11:10:40.284Z",
+    "updated": "2023-11-10T10:39:53.647Z",
+    "id": 8613,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "My Name is",
+    "body": "I love books!",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-09T11:10:15.423Z",
+    "updated": "2023-11-09T11:10:15.423Z",
+    "id": 8612,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "tester",
+    "body": "tester om det her funker nå",
+    "tags": ["tester"],
+    "media": "",
+    "reactions": [],
+    "comments": [
+      {
+        "body": "funker",
+        "replyToId": null,
+        "id": 2274,
+        "postId": 8611,
+        "owner": "rebekkatest",
+        "created": "2023-11-09T12:44:00.317Z",
+        "author": {
+          "name": "rebekkatest",
+          "email": "rebekkatest@noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1695977318848-fd0f317ea79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-09T10:46:29.356Z",
+    "updated": "2023-11-09T10:46:29.356Z",
+    "id": 8611,
+    "author": {
+      "name": "rebekkatest",
+      "email": "rebekkatest@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1695977318848-fd0f317ea79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Updated title v2",
+    "body": "Updated text v2",
+    "tags": [],
+    "media": "https://picsum.photos/200",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8609
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-09T07:48:21.835Z",
+    "updated": "2023-11-09T08:10:05.906Z",
+    "id": 8609,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "test by abi",
+    "body": "test post content",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T21:21:35.101Z",
+    "updated": "2023-11-08T21:21:35.101Z",
+    "id": 8608,
+    "author": {
+      "name": "abi",
+      "email": "abiodun.abudu@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "dsadsads33332",
+    "body": "adsadsadsaddsd",
+    "tags": ["aa"],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T21:01:24.942Z",
+    "updated": "2023-11-09T18:08:01.039Z",
+    "id": 8605,
+    "author": {
+      "name": "bjornh",
+      "email": "yup@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "my lovely post",
+    "body": "blah",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 4,
+        "postId": 8600
+      },
+      {
+        "symbol": "😂",
+        "count": 1,
+        "postId": 8600
+      }
+    ],
+    "comments": [
+      {
+        "body": "Comment",
+        "replyToId": null,
+        "id": 2270,
+        "postId": 8600,
+        "owner": "Joey",
+        "created": "2023-11-08T19:50:53.745Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      },
+      {
+        "body": "Hello",
+        "replyToId": null,
+        "id": 2271,
+        "postId": 8600,
+        "owner": "John",
+        "created": "2023-11-08T20:08:23.145Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      }
+    ],
+    "created": "2023-11-08T18:50:35.786Z",
+    "updated": "2023-11-08T18:50:35.786Z",
+    "id": 8600,
+    "author": {
+      "name": "blobby",
+      "email": "blobby@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 2,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "Work, work work..",
+    "body": "Finishing up soon.",
+    "tags": [],
+    "media": "https://picsum.photos/id/20/3670/2462",
+    "reactions": [
+      {
+        "symbol": "😃",
+        "count": 2,
+        "postId": 8590
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-08T17:40:37.388Z",
+    "updated": "2023-11-08T18:52:17.360Z",
+    "id": 8590,
+    "author": {
+      "name": "Erica",
+      "email": "erica@stud.noroff.no",
+      "avatar": "https://picsum.photos/id/65/4912/3264",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "testhj",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 2,
+        "postId": 8589
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-08T17:28:57.903Z",
+    "updated": "2023-11-08T17:28:57.903Z",
+    "id": 8589,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:28:43.671Z",
+    "updated": "2023-11-08T17:28:43.671Z",
+    "id": 8588,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:28:43.348Z",
+    "updated": "2023-11-08T17:28:43.348Z",
+    "id": 8587,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Your a towl!",
+    "body": "",
+    "tags": [""],
+    "media": "https://giphy.com/gifs/southparkgifs-26ufbtYEM63gERmFy",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8586
+      }
+    ],
+    "comments": [
+      {
+        "body": "",
+        "replyToId": null,
+        "id": 2269,
+        "postId": 8586,
+        "owner": "Towlie",
+        "created": "2023-11-08T18:22:21.650Z",
+        "author": {
+          "name": "Towlie",
+          "email": "knirkeli123@noroff.no",
+          "avatar": "https://ilarge.lisimg.com/image/9613673/740full-towelie.jpg",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T17:27:17.243Z",
+    "updated": "2023-11-08T17:27:17.243Z",
+    "id": 8586,
+    "author": {
+      "name": "Towlie",
+      "email": "knirkeli123@noroff.no",
+      "avatar": "https://ilarge.lisimg.com/image/9613673/740full-towelie.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:25:56.134Z",
+    "updated": "2023-11-08T17:25:56.134Z",
+    "id": 8585,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:25:55.726Z",
+    "updated": "2023-11-08T17:25:55.726Z",
+    "id": 8584,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "test",
+    "body": "test",
+    "tags": ["test", "test", "test"],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:25:49.576Z",
+    "updated": "2023-11-08T17:25:49.576Z",
+    "id": 8583,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:25:30.821Z",
+    "updated": "2023-11-08T17:25:30.821Z",
+    "id": 8582,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "test",
+    "body": "test",
+    "tags": ["test"],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8581
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-08T17:25:27.585Z",
+    "updated": "2023-11-08T17:25:27.585Z",
+    "id": 8581,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "test post",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T17:21:04.091Z",
+    "updated": "2023-11-08T17:22:48.425Z",
+    "id": 8579,
+    "author": {
+      "name": "tsttteretttsdtttttt",
+      "email": "yavusdszdergutn@noroff.no",
+      "avatar": "https://banner2.cleanpng.com/20180625/req/kisspng-computer-icons-avatar-business-computer-software-user-avatar-5b3097fcae25c3.3909949015299112927133.jpg",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Post Adding",
+    "body": "This is Post is coming from frontend form for so space",
+    "tags": ["#testing", "#checking", "#problem"],
+    "media": "https://firebasestorage.googleapis.com/v0/b/socialmedia-sospace.appspot.com/o/users%2Ftesting1%2F%231.Scratch%20web%20photo.jpeg?alt=media&token=b0447562-5ede-4a40-b0d4-1117e9e9ded1",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T14:17:18.186Z",
+    "updated": "2023-11-08T14:17:18.186Z",
+    "id": 8573,
+    "author": {
+      "name": "testing1",
+      "email": "sospacetesting@stud.noroff.no",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/socialmedia-sospace.appspot.com/o/usersprofile%2Ftesting1%2F%231.Scratch%20web%20photo.jpeg?alt=media&token=459dd21b-b8b9-4088-a612-7b564214b21c",
+      "banner": "https://firebasestorage.googleapis.com/v0/b/socialmedia-sospace.appspot.com/o/usersprofile%2Ftesting1%2Ftest.jpg?alt=media&token=89bf874e-77a2-49dc-82b8-b43c220e01f7"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Haha",
+    "body": "So fun",
+    "tags": ["test"],
+    "media": "https://picsum.photos/200",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T13:38:39.644Z",
+    "updated": "2023-11-08T13:38:39.644Z",
+    "id": 8571,
+    "author": {
+      "name": "Eskk",
+      "email": "eskil.test@noroff.no",
+      "avatar": "https://picsum.photos/200",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Listen",
+    "body": "Let it play playplayz",
+    "tags": ["music"],
+    "media": "https://img.freepik.com/free-photo/levitating-music-headphones-display_23-2149817602.jpg",
+    "reactions": [
+      {
+        "symbol": "😁",
+        "count": 1,
+        "postId": 8570
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-08T13:16:32.205Z",
+    "updated": "2023-11-09T13:16:15.152Z",
+    "id": 8570,
+    "author": {
+      "name": "Test_User142",
+      "email": "Test.User142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556782.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Hello",
+    "body": "Everything",
+    "tags": [],
+    "media": "https://unsplash.com/photos/a-bald-eagle-with-a-white-head-and-yellow-beak-4qLHUf4DSAI",
+    "reactions": [],
+    "comments": [
+      {
+        "body": "Hello!",
+        "replyToId": null,
+        "id": 2272,
+        "postId": 8568,
+        "owner": "Robin",
+        "created": "2023-11-08T20:49:54.595Z",
+        "author": {
+          "name": "Robin",
+          "email": "robin@noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1606567595334-d39972c85dbe?auto=format&fit=crop&q=80&w=2403&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T12:13:49.108Z",
+    "updated": "2023-11-08T12:13:49.108Z",
+    "id": 8568,
+    "author": {
+      "name": "krake",
+      "email": "krakrakk@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "hello",
+    "body": "ssdwwds",
+    "tags": [],
+    "media": "https://unsplash.com/photos/a-bald-eagle-with-a-white-head-and-yellow-beak-4qLHUf4DSAI",
+    "reactions": [],
+    "comments": [
+      {
+        "body": "Hello",
+        "replyToId": null,
+        "id": 2265,
+        "postId": 8567,
+        "owner": "krake",
+        "created": "2023-11-08T12:11:47.605Z",
+        "author": {
+          "name": "krake",
+          "email": "krakrakk@noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T12:11:41.465Z",
+    "updated": "2023-11-08T12:11:52.902Z",
+    "id": 8567,
+    "author": {
+      "name": "krake",
+      "email": "krakrakk@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Updated title v2",
+    "body": "Updated text v2",
+    "tags": [],
+    "media": "https://picsum.photos/200",
+    "reactions": [
+      {
+        "symbol": "❤️",
+        "count": 1,
+        "postId": 8566
+      },
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8566
+      }
+    ],
+    "comments": [
+      {
+        "body": "Comment1",
+        "replyToId": null,
+        "id": 2264,
+        "postId": 8566,
+        "owner": "TestUser142",
+        "created": "2023-11-08T11:48:18.285Z",
+        "author": {
+          "name": "TestUser142",
+          "email": "testuser_142@stud.noroff.no",
+          "avatar": "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611710.jpg",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T10:55:51.575Z",
+    "updated": "2023-11-09T07:45:18.913Z",
+    "id": 8566,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "MY first post",
+    "body": "This is my first post",
+    "tags": [""],
+    "media": "https://images.unsplash.com/photo-1531604250646-2f0e818c4f06?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwyNTM4MjA0fHxlbnwwfHx8fHw%3D",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8565
+      }
+    ],
+    "comments": [
+      {
+        "body": "Commenting",
+        "replyToId": null,
+        "id": 2262,
+        "postId": 8565,
+        "owner": "TestUser141",
+        "created": "2023-11-08T10:56:16.163Z",
+        "author": {
+          "name": "TestUser141",
+          "email": "testuser_141@stud.noroff.no",
+          "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T10:38:10.636Z",
+    "updated": "2023-11-08T10:38:10.636Z",
+    "id": 8565,
+    "author": {
+      "name": "elihop123",
+      "email": "elisabeth.hope123@stud.noroff.no",
+      "avatar": "https://avatars.githubusercontent.com/u/114486930?v=4",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Testing out comments and updating",
+    "body": "Please give me a comment 😅",
+    "tags": [""],
+    "media": "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=826&t=st=1699439725~exp=1699440325~hmac=d15b948c04221373e420dd2e00ba1643f3f956b166b2b30c046e264fca38b4f3.jpg",
+    "reactions": [
+      {
+        "symbol": "❤️",
+        "count": 2,
+        "postId": 8564
+      },
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8564
+      },
+      {
+        "symbol": "👍",
+        "count": 2,
+        "postId": 8564
+      }
+    ],
+    "comments": [
+      {
+        "body": "Sweet comment",
+        "replyToId": null,
+        "id": 2263,
+        "postId": 8564,
+        "owner": "runeunhjem",
+        "created": "2023-11-08T11:00:44.142Z",
+        "author": {
+          "name": "runeunhjem",
+          "email": "rununh17678@stud.noroff.no",
+          "avatar": "https://portfolio1-ca.netlify.app/images/rune-profile-pic-medium.png",
+          "banner": "https://runeunhjem.no/images/banner.jpg"
+        }
+      },
+      {
+        "body": "even better comment",
+        "replyToId": null,
+        "id": 2268,
+        "postId": 8564,
+        "owner": "testnamexyrzpo4nk43",
+        "created": "2023-11-08T13:58:28.292Z",
+        "author": {
+          "name": "testnamexyrzpo4nk43",
+          "email": "testnamexyrzpo4nk43@stud.noroff.no",
+          "avatar": "https://gravatar.com/avatar/28bda5601d26ac9231fd87136ceddab1?s=400&d=robohash&r=x",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-08T10:35:52.817Z",
+    "updated": "2023-11-09T14:06:29.513Z",
+    "id": 8564,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 2,
+      "reactions": 3
+    }
+  },
+  {
+    "title": ";)",
+    "body": "",
+    "tags": [""],
+    "media": "https://i.ebayimg.com/images/g/0fMAAOSw9o1gpSIP/s-l1200.webp",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-08T10:03:31.246Z",
+    "updated": "2023-11-08T10:04:59.731Z",
+    "id": 8562,
+    "author": {
+      "name": "bananas",
+      "email": "bananas@stud.noroff.no",
+      "avatar": "data:image/png;base64,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",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "testtt",
+    "body": "test",
+    "tags": ["testttt"],
+    "media": "https://unsplash.com/photos/a-vase-with-some-flowers-in-it-on-a-table-uZi04gkASuo",
+    "reactions": [
+      {
+        "symbol": "🧡",
+        "count": 1,
+        "postId": 8559
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-07T19:05:15.846Z",
+    "updated": "2023-11-07T19:05:15.846Z",
+    "id": 8559,
+    "author": {
+      "name": "sayed12345",
+      "email": "sayed12345@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "sddfsdf",
+    "body": "This is it it it",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-07T14:30:33.949Z",
+    "updated": "2023-11-09T14:58:30.648Z",
+    "id": 8557,
+    "author": {
+      "name": "Test_User142",
+      "email": "Test.User142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556782.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "testeeest",
+    "body": "Kist testomg",
+    "tags": ["CAT"],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-07T13:14:08.824Z",
+    "updated": "2023-11-07T13:14:08.824Z",
+    "id": 8556,
+    "author": {
+      "name": "TestUser150",
+      "email": "testuser_150@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "MememMEme",
+    "body": "Let's get this checked",
+    "tags": ["check"],
+    "media": "https://img.freepik.com/free-vector/vintage-original-dices-concept_225004-1354.jpg",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8555
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-07T12:48:44.106Z",
+    "updated": "2023-11-07T12:48:44.106Z",
+    "id": 8555,
+    "author": {
+      "name": "Test149",
+      "email": "testuser_149@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+      "banner": "https://img.freepik.com/free-vector/abstract-background-with-modern-design_1048-7726.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "chekking",
+    "body": "",
+    "tags": ["UX"],
+    "media": "https://gravatar.com/avatar/864296d17a14f2df9ae30f7b9fa5e4b6?s=400&d=robohash&r=x",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 4,
+        "postId": 8554
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-07T11:51:25.064Z",
+    "updated": "2023-11-07T11:51:25.064Z",
+    "id": 8554,
+    "author": {
+      "name": "marius999",
+      "email": "marius999@noroff.no",
+      "avatar": "https://gravatar.com/avatar/864296d17a14f2df9ae30f7b9fa5e4b6?s=400&d=robohash&r=x",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "",
+    "body": "Test",
+    "tags": [],
+    "media": null,
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8553
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-07T11:40:55.551Z",
+    "updated": "2023-11-07T11:40:55.551Z",
+    "id": 8553,
+    "author": {
+      "name": "TestUser141",
+      "email": "testuser_141@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "new post",
+    "body": "hello world",
+    "tags": ["tags"],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8551
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-07T10:42:20.569Z",
+    "updated": "2023-11-07T10:42:20.569Z",
+    "id": 8551,
+    "author": {
+      "name": "hellouser",
+      "email": "hellouser@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "hello world",
+    "body": "testing if it works",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 3,
+        "postId": 8550
+      }
+    ],
+    "comments": [
+      {
+        "body": "hello",
+        "replyToId": null,
+        "id": 2254,
+        "postId": 8550,
+        "owner": "Mirmir",
+        "created": "2023-11-07T10:59:40.251Z",
+        "author": {
+          "name": "Mirmir",
+          "email": "Mirmir2023@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1598079253422-638fa9b2d160?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBpdGJ1bGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+          "banner": "https://images.unsplash.com/photo-1696921881903-e87e5662d9b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        }
+      },
+      {
+        "body": "Hello world",
+        "replyToId": null,
+        "id": 2258,
+        "postId": 8550,
+        "owner": "Test149",
+        "created": "2023-11-07T12:49:20.573Z",
+        "author": {
+          "name": "Test149",
+          "email": "testuser_149@stud.noroff.no",
+          "avatar": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+          "banner": "https://img.freepik.com/free-vector/abstract-background-with-modern-design_1048-7726.jpg"
+        }
+      },
+      {
+        "body": "This is the comments added to post ID 8550",
+        "replyToId": null,
+        "id": 2259,
+        "postId": 8550,
+        "owner": "Test149",
+        "created": "2023-11-07T12:49:37.868Z",
+        "author": {
+          "name": "Test149",
+          "email": "testuser_149@stud.noroff.no",
+          "avatar": "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
+          "banner": "https://img.freepik.com/free-vector/abstract-background-with-modern-design_1048-7726.jpg"
+        }
+      }
+    ],
+    "created": "2023-11-07T10:24:57.804Z",
+    "updated": "2023-11-07T10:24:57.804Z",
+    "id": 8550,
+    "author": {
+      "name": "hellouser",
+      "email": "hellouser@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 3,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "waht the f",
+    "body": "....",
+    "tags": ["fomo"],
+    "media": "https://avatars.githubusercontent.com/u/33604162?s=400&u=006a2fa94303f75fddba0279639f0b4bf0458e13&v=4",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 2,
+        "postId": 8548
+      }
+    ],
+    "comments": [
+      {
+        "body": "nice",
+        "replyToId": null,
+        "id": 2255,
+        "postId": 8548,
+        "owner": "Mirmir",
+        "created": "2023-11-07T10:59:55.079Z",
+        "author": {
+          "name": "Mirmir",
+          "email": "Mirmir2023@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1598079253422-638fa9b2d160?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBpdGJ1bGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+          "banner": "https://images.unsplash.com/photo-1696921881903-e87e5662d9b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        }
+      },
+      {
+        "body": "what",
+        "replyToId": null,
+        "id": 2256,
+        "postId": 8548,
+        "owner": "Mirmir",
+        "created": "2023-11-07T11:00:15.059Z",
+        "author": {
+          "name": "Mirmir",
+          "email": "Mirmir2023@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1598079253422-638fa9b2d160?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBpdGJ1bGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+          "banner": "https://images.unsplash.com/photo-1696921881903-e87e5662d9b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        }
+      },
+      {
+        "body": "Comment",
+        "replyToId": null,
+        "id": 2257,
+        "postId": 8548,
+        "owner": "TestUser141",
+        "created": "2023-11-07T11:31:17.924Z",
+        "author": {
+          "name": "TestUser141",
+          "email": "testuser_141@stud.noroff.no",
+          "avatar": "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-850.jpg",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-07T05:22:11.573Z",
+    "updated": "2023-11-07T05:22:11.573Z",
+    "id": 8548,
+    "author": {
+      "name": "use6",
+      "email": "ki6s@stud.noroff.no",
+      "avatar": "https://avatars.githubusercontent.com/u/33604162?s=400&u=006a2fa94303f75fddba0279639f0b4bf0458e13&v=4",
+      "banner": null
+    },
+    "_count": {
+      "comments": 3,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Yaaaawn",
+    "body": "Good night everyone ~",
+    "tags": [],
+    "media": null,
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8546
+      },
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8546
+      }
+    ],
+    "comments": [
+      {
+        "body": "goodnight",
+        "replyToId": null,
+        "id": 2250,
+        "postId": 8546,
+        "owner": "ntkyen",
+        "created": "2023-11-06T22:15:10.105Z",
+        "author": {
+          "name": "ntkyen",
+          "email": "ntkyen@stud.noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-06T21:45:32.347Z",
+    "updated": "2023-11-06T21:45:32.347Z",
+    "id": 8546,
+    "author": {
+      "name": "poofy",
+      "email": "poofy@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "123",
+    "body": "123",
+    "tags": ["123"],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 4,
+        "postId": 8544
+      },
+      {
+        "symbol": "😂",
+        "count": 2,
+        "postId": 8544
+      }
+    ],
+    "comments": [
+      {
+        "body": "hei",
+        "replyToId": null,
+        "id": 2240,
+        "postId": 8544,
+        "owner": "ustest_432",
+        "created": "2023-11-06T19:47:30.735Z",
+        "author": {
+          "name": "ustest_432",
+          "email": "ustest_432@stud.noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      },
+      {
+        "body": "hallo",
+        "replyToId": null,
+        "id": 2241,
+        "postId": 8544,
+        "owner": "ustest_432",
+        "created": "2023-11-06T19:48:36.561Z",
+        "author": {
+          "name": "ustest_432",
+          "email": "ustest_432@stud.noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      },
+      {
+        "body": "sdadssda",
+        "replyToId": null,
+        "id": 2244,
+        "postId": 8544,
+        "owner": "Joey",
+        "created": "2023-11-06T20:17:28.641Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      }
+    ],
+    "created": "2023-11-06T19:47:26.665Z",
+    "updated": "2023-11-06T19:47:26.665Z",
+    "id": 8544,
+    "author": {
+      "name": "ustest_432",
+      "email": "ustest_432@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 3,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "Hello",
+    "body": "Test",
+    "tags": [],
+    "media": "https://media.istockphoto.com/id/1482806682/photo/establishing-shot-of-empty-football-socer-stadium-international-tournament-concept-a-crowd-of.jpg?s=2048x2048&w=is&k=20&c=EmSUw2HUbRm4VDHBAo_Kbj1xgYEAAM0x-9dmQRF5C0g=",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8542
+      },
+      {
+        "symbol": "😄",
+        "count": 1,
+        "postId": 8542
+      }
+    ],
+    "comments": [
+      {
+        "body": "Hello",
+        "replyToId": null,
+        "id": 2275,
+        "postId": 8542,
+        "owner": "Steven",
+        "created": "2023-11-09T19:21:43.312Z",
+        "author": {
+          "name": "Steven",
+          "email": "steven123@stud.noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      },
+      {
+        "body": "dasdasdasda",
+        "replyToId": null,
+        "id": 2242,
+        "postId": 8542,
+        "owner": "John",
+        "created": "2023-11-06T19:56:39.721Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      },
+      {
+        "body": "Hello there",
+        "replyToId": null,
+        "id": 2243,
+        "postId": 8542,
+        "owner": "Joey",
+        "created": "2023-11-06T20:12:34.530Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      },
+      {
+        "body": "Hello from Snusky",
+        "replyToId": null,
+        "id": 2245,
+        "postId": 8542,
+        "owner": "John",
+        "created": "2023-11-06T20:26:56.554Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      },
+      {
+        "body": "Hi",
+        "replyToId": null,
+        "id": 2246,
+        "postId": 8542,
+        "owner": "John",
+        "created": "2023-11-06T21:12:34.189Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      },
+      {
+        "body": "Hello",
+        "replyToId": null,
+        "id": 2247,
+        "postId": 8542,
+        "owner": "John",
+        "created": "2023-11-06T21:14:29.133Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      },
+      {
+        "body": "ssss",
+        "replyToId": null,
+        "id": 2248,
+        "postId": 8542,
+        "owner": "John",
+        "created": "2023-11-06T21:32:40.833Z",
+        "author": {
+          "name": "John",
+          "email": "johnmayer@stud.noroff.no",
+          "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "banner": "https://media.istockphoto.com/id/1435522393/photo/american-flag-banner.jpg?s=1024x1024&w=is&k=20&c=6tp-VgNNBXfkPtr_AomJLHzDlLonQnCpuQOGWAQyJxw="
+        }
+      },
+      {
+        "body": "Test",
+        "replyToId": null,
+        "id": 2251,
+        "postId": 8542,
+        "owner": "Joey",
+        "created": "2023-11-06T22:35:03.896Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      },
+      {
+        "body": "Good Night",
+        "replyToId": null,
+        "id": 2252,
+        "postId": 8542,
+        "owner": "Joey",
+        "created": "2023-11-06T22:47:34.982Z",
+        "author": {
+          "name": "Joey",
+          "email": "joey@stud.noroff.no",
+          "avatar": "",
+          "banner": ""
+        }
+      }
+    ],
+    "created": "2023-11-06T18:56:46.052Z",
+    "updated": "2023-11-06T18:56:46.052Z",
+    "id": 8542,
+    "author": {
+      "name": "Zaniolo",
+      "email": "zaniolo@stud.noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww",
+      "banner": "https://images.unsplash.com/photo-1506765515384-028b60a970df?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "_count": {
+      "comments": 9,
+      "reactions": 2
+    }
+  },
+  {
+    "title": "Hey ho",
+    "body": "let's go!",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T16:35:37.719Z",
+    "updated": "2023-11-06T16:35:37.719Z",
+    "id": 8541,
+    "author": {
+      "name": "thistestuser",
+      "email": "thistestuser@stud.noroff.no",
+      "avatar": "https://3.bp.blogspot.com/-jEBvHvt4UXc/Vh09tEWFoRI/AAAAAAAAAiE/yWj75pVkzkc/s400/Ha-Nui-Lee%20MBW.jpg",
+      "banner": "https://cutewallpaper.org/23/universo-wallpaper-hd/104131400.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "title",
+    "body": "chu~",
+    "tags": [],
+    "media": "https://64.media.tumblr.com/7eda8d03e065aeb5abb48221f87c7ec4/1674df6209fd966a-65/s1280x1920/434825644e8a7679acf3dfe3044ba7eb2ae81998.png",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 1,
+        "postId": 8540
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-06T14:54:33.417Z",
+    "updated": "2023-11-06T14:54:33.417Z",
+    "id": 8540,
+    "author": {
+      "name": "thistestuser",
+      "email": "thistestuser@stud.noroff.no",
+      "avatar": "https://3.bp.blogspot.com/-jEBvHvt4UXc/Vh09tEWFoRI/AAAAAAAAAiE/yWj75pVkzkc/s400/Ha-Nui-Lee%20MBW.jpg",
+      "banner": "https://cutewallpaper.org/23/universo-wallpaper-hd/104131400.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Just testubg",
+    "body": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumbettytro",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T14:29:00.920Z",
+    "updated": "2023-11-08T12:30:35.809Z",
+    "id": 8539,
+    "author": {
+      "name": "TestUser142",
+      "email": "testuser_142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611710.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Just testubg",
+    "body": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T14:28:38.445Z",
+    "updated": "2023-11-06T14:28:38.445Z",
+    "id": 8537,
+    "author": {
+      "name": "TestUser142",
+      "email": "testuser_142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611710.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "hei",
+    "body": "på deg",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T12:49:29.694Z",
+    "updated": "2023-11-06T12:49:29.694Z",
+    "id": 8536,
+    "author": {
+      "name": "haralddddd",
+      "email": "haralddddd@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "hei",
+    "body": "på deg",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T12:49:28.871Z",
+    "updated": "2023-11-06T12:49:28.871Z",
+    "id": 8535,
+    "author": {
+      "name": "haralddddd",
+      "email": "haralddddd@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "zzzzzzzzzzTwisterApp",
+    "body": "Run Run Run! Scream then faint - just do it",
+    "tags": ["wolves", "adventure"],
+    "media": "https://img.freepik.com/free-photo/wolf-pack-natural-environment_23-2150526652.jpg",
+    "reactions": [
+      {
+        "symbol": "😂",
+        "count": 1,
+        "postId": 8532
+      },
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8532
+      },
+      {
+        "symbol": "😁",
+        "count": 1,
+        "postId": 8532
+      },
+      {
+        "symbol": "😃",
+        "count": 1,
+        "postId": 8532
+      },
+      {
+        "symbol": "🤣",
+        "count": 18,
+        "postId": 8532
+      }
+    ],
+    "comments": [
+      {
+        "body": "Nice post",
+        "replyToId": null,
+        "id": 2237,
+        "postId": 8532,
+        "owner": "anders123",
+        "created": "2023-11-06T10:43:30.129Z",
+        "author": {
+          "name": "anders123",
+          "email": "anders@stud.noroff.no",
+          "avatar": null,
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-06T10:29:44.172Z",
+    "updated": "2023-11-09T10:34:53.369Z",
+    "id": 8532,
+    "author": {
+      "name": "TestUser142",
+      "email": "testuser_142@stud.noroff.no",
+      "avatar": "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611710.jpg",
+      "banner": null
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 5
+    }
+  },
+  {
+    "title": "testing post for karen",
+    "body": "The body of the post",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T10:27:22.296Z",
+    "updated": "2023-11-06T10:27:22.296Z",
+    "id": 8531,
+    "author": {
+      "name": "abi",
+      "email": "abiodun.abudu@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "TESTTTTT",
+    "body": "It is working",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T09:11:55.292Z",
+    "updated": "2023-11-06T09:12:50.696Z",
+    "id": 8528,
+    "author": {
+      "name": "Test143",
+      "email": "testuser_143@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "create post 2",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T08:40:46.698Z",
+    "updated": "2023-11-06T08:40:46.698Z",
+    "id": 8525,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "create post 1",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T08:40:04.396Z",
+    "updated": "2023-11-06T08:40:04.396Z",
+    "id": 8524,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "create post",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T08:39:37.240Z",
+    "updated": "2023-11-06T08:39:37.240Z",
+    "id": 8523,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "fgsj",
+    "body": "hfsd",
+    "tags": [],
+    "media": "https://res.cloudinary.com/momentum-media-group-pty-ltd/image/upload/v1686795211/Space%20Connect/space-exploration-sc_fm1ysf.jpg",
+    "reactions": [
+      {
+        "symbol": "👍",
+        "count": 6,
+        "postId": 8522
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-06T08:16:22.525Z",
+    "updated": "2023-11-06T08:16:22.525Z",
+    "id": 8522,
+    "author": {
+      "name": "AlexaCharm",
+      "email": "Alexa333@noroff.no",
+      "avatar": "https://plus.unsplash.com/premium_photo-1674086619163-54bd6379f538?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "banner": "https://plus.unsplash.com/premium_photo-1674086619163-54bd6379f538?auto=format&fit=crop&q=80&w=1975&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:32:31.775Z",
+    "updated": "2023-11-06T06:32:31.775Z",
+    "id": 8519,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:26:33.444Z",
+    "updated": "2023-11-06T06:26:33.444Z",
+    "id": 8518,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:26:13.632Z",
+    "updated": "2023-11-06T06:26:13.632Z",
+    "id": 8517,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:26:09.773Z",
+    "updated": "2023-11-06T06:26:09.773Z",
+    "id": 8516,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:25:55.770Z",
+    "updated": "2023-11-06T06:25:55.770Z",
+    "id": 8515,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:24:32.988Z",
+    "updated": "2023-11-06T06:24:32.988Z",
+    "id": 8514,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:20:54.723Z",
+    "updated": "2023-11-06T06:20:54.723Z",
+    "id": 8513,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:20:00.245Z",
+    "updated": "2023-11-06T06:20:00.245Z",
+    "id": 8512,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:18:30.384Z",
+    "updated": "2023-11-06T06:18:30.384Z",
+    "id": 8511,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-06T06:17:15.651Z",
+    "updated": "2023-11-06T06:17:15.651Z",
+    "id": 8510,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "ryrty",
+    "body": "test",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:57:33.972Z",
+    "updated": "2023-11-05T22:57:33.972Z",
+    "id": 8507,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "serugfhjf",
+    "body": "lllllllllllllll",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:54:36.033Z",
+    "updated": "2023-11-05T22:54:36.033Z",
+    "id": 8505,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "gjtyhty",
+    "body": "tytytyj",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:54:26.766Z",
+    "updated": "2023-11-05T22:54:26.766Z",
+    "id": 8504,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "jtututy",
+    "body": "tyutyutyu",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:50:38.036Z",
+    "updated": "2023-11-05T22:50:38.036Z",
+    "id": 8503,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "fhjfghj",
+    "body": "fgjfujfgh",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:50:07.256Z",
+    "updated": "2023-11-05T22:50:07.256Z",
+    "id": 8502,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "sdajhflksadjhflk",
+    "body": "løosjdhfgløodsahjfg",
+    "tags": [],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T22:48:18.662Z",
+    "updated": "2023-11-05T22:48:18.662Z",
+    "id": 8501,
+    "author": {
+      "name": "norlife",
+      "email": "kristian.nilsen@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "",
+    "body": "",
+    "tags": ["", ""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T20:53:16.871Z",
+    "updated": "2023-11-05T20:53:16.871Z",
+    "id": 8496,
+    "author": {
+      "name": "Sven_manneng",
+      "email": "bjarteeoliversenloken@noroff.no",
+      "avatar": "",
+      "banner": "https://images-ext-1.discordapp.net/external/zyoL94Psv61LFYQmZDSk9_9TIYWcLka1KqOJ_v4X5rE/%3Fixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D%26auto%3Dformat%26fit%3Dcrop%26w%3D2574%26q%3D80/https/images.unsplash.com/photo-1696781365046-39779e1f0461?width=1419&height=1064"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Hello testing",
+    "body": "Hello testing 123",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T20:38:24.001Z",
+    "updated": "2023-11-05T20:38:24.001Z",
+    "id": 8495,
+    "author": {
+      "name": "abi",
+      "email": "abiodun.abudu@noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "xccxzcz",
+    "body": "zzz",
+    "tags": ["zxczczx"],
+    "media": "https://picsum.photos/id/1/200/300",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8491
+      }
+    ],
+    "comments": [
+      {
+        "body": "cdvsssff",
+        "replyToId": null,
+        "id": 2236,
+        "postId": 8491,
+        "owner": "guest",
+        "created": "2023-11-05T20:14:33.113Z",
+        "author": {
+          "name": "guest",
+          "email": "guest@noroff.no",
+          "avatar": "https://picsum.photos/id/77/200/300",
+          "banner": "https://picsum.photos/id/331/200/300"
+        }
+      }
+    ],
+    "created": "2023-11-05T20:14:22.830Z",
+    "updated": "2023-11-05T20:14:22.830Z",
+    "id": 8491,
+    "author": {
+      "name": "guest",
+      "email": "guest@noroff.no",
+      "avatar": "https://picsum.photos/id/77/200/300",
+      "banner": "https://picsum.photos/id/331/200/300"
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "dsbsbdbs",
+    "body": "sdbsdbsdbsdbs",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T19:12:03.732Z",
+    "updated": "2023-11-05T19:12:03.732Z",
+    "id": 8489,
+    "author": {
+      "name": "frodlo",
+      "email": "first.last@stud.noroff.no",
+      "avatar": null,
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "dffff",
+    "body": "ffffggg",
+    "tags": ["ddff"],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😂",
+        "count": 1,
+        "postId": 8484
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-05T17:33:06.093Z",
+    "updated": "2023-11-05T17:33:06.093Z",
+    "id": 8484,
+    "author": {
+      "name": "guest",
+      "email": "guest@noroff.no",
+      "avatar": "https://picsum.photos/id/77/200/300",
+      "banner": "https://picsum.photos/id/331/200/300"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "New post",
+    "body": "This is some post body",
+    "tags": ["green"],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:58:43.645Z",
+    "updated": "2023-11-05T16:58:43.645Z",
+    "id": 8480,
+    "author": {
+      "name": "guest",
+      "email": "guest@noroff.no",
+      "avatar": "https://picsum.photos/id/77/200/300",
+      "banner": "https://picsum.photos/id/331/200/300"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "New post",
+    "body": "This is some post body",
+    "tags": ["green"],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:58:19.085Z",
+    "updated": "2023-11-05T16:58:19.085Z",
+    "id": 8479,
+    "author": {
+      "name": "guest",
+      "email": "guest@noroff.no",
+      "avatar": "https://picsum.photos/id/77/200/300",
+      "banner": "https://picsum.photos/id/331/200/300"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "test '''''''''''''''''''''''''''''''''''''",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:54:15.826Z",
+    "updated": "2023-11-05T16:54:15.826Z",
+    "id": 8478,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "create",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:47:44.990Z",
+    "updated": "2023-11-05T16:47:44.990Z",
+    "id": 8475,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "sunday",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 1,
+        "postId": 8474
+      }
+    ],
+    "comments": [
+      {
+        "body": "This i a test comment",
+        "replyToId": null,
+        "id": 2234,
+        "postId": 8474,
+        "owner": "me",
+        "created": "2023-11-05T16:46:53.573Z",
+        "author": {
+          "name": "me",
+          "email": "me@noroff.no",
+          "avatar": "https://imgur.com/a/6VkqHax",
+          "banner": null
+        }
+      }
+    ],
+    "created": "2023-11-05T16:44:39.765Z",
+    "updated": "2023-11-05T16:44:39.765Z",
+    "id": 8474,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 1,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "hello",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:24:22.688Z",
+    "updated": "2023-11-05T16:24:22.688Z",
+    "id": 8473,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "hello",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T16:23:59.549Z",
+    "updated": "2023-11-05T16:23:59.549Z",
+    "id": 8472,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "fds",
+    "body": "ffdsfds",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "😀",
+        "count": 2,
+        "postId": 8469
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-05T13:23:41.552Z",
+    "updated": "2023-11-05T13:23:41.552Z",
+    "id": 8469,
+    "author": {
+      "name": "bjornh",
+      "email": "yup@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "fdsaf",
+    "body": "fdsfds",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T13:23:12.383Z",
+    "updated": "2023-11-05T13:23:12.383Z",
+    "id": 8468,
+    "author": {
+      "name": "bjornh",
+      "email": "yup@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "title",
+    "body": "some text",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-05T13:22:07.201Z",
+    "updated": "2023-11-05T13:22:07.201Z",
+    "id": 8467,
+    "author": {
+      "name": "bjornh",
+      "email": "yup@stud.noroff.no",
+      "avatar": "",
+      "banner": ""
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "test4sho2......................",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [
+      {
+        "symbol": "🤢",
+        "count": 3,
+        "postId": 8463
+      }
+    ],
+    "comments": [],
+    "created": "2023-11-04T15:38:53.150Z",
+    "updated": "2023-11-05T15:39:38.288Z",
+    "id": 8463,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 1
+    }
+  },
+  {
+    "title": "Testing4sho1",
+    "body": "",
+    "tags": [""],
+    "media": "",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-04T15:10:23.787Z",
+    "updated": "2023-11-04T15:10:23.787Z",
+    "id": 8462,
+    "author": {
+      "name": "pinky1",
+      "email": "pinky1@noroff.no",
+      "avatar": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg",
+      "banner": "https://images.unsplash.com/photo-1618498390344-445c804f2ac5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "a new post",
+    "body": "this post is new and entered via the UI",
+    "tags": [],
+    "media": null,
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-04T13:00:29.386Z",
+    "updated": "2023-11-04T13:00:29.386Z",
+    "id": 8459,
+    "author": {
+      "name": "Emel_Hassen",
+      "email": "emeHas54817@stud.noroff.no",
+      "avatar": "https://picsum.photos/id/606/300/300",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  },
+  {
+    "title": "Saturday fever",
+    "body": "Have a great day *pok* *pok*",
+    "tags": ["saturday"],
+    "media": "https://images.freeimages.com/image/previews/4ad/thankful-turkey-cartoon-png-5692018.png",
+    "reactions": [],
+    "comments": [],
+    "created": "2023-11-04T10:30:08.972Z",
+    "updated": "2023-11-04T10:30:08.972Z",
+    "id": 8457,
+    "author": {
+      "name": "WednesdayStudent",
+      "email": "WednesdayStudent@noroff.no",
+      "avatar": "https://www.freeimages.com/clipart/chinese-dragon-zodiac-png-5690513",
+      "banner": null
+    },
+    "_count": {
+      "comments": 0,
+      "reactions": 0
+    }
+  }
+]
