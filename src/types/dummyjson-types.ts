@@ -5,6 +5,7 @@ export interface ResourceResponse {
 }
 
 export interface PostsResponse extends ResourceResponse {
+  data: boolean;
   posts: Post[];
 }
 
@@ -50,7 +51,7 @@ export interface User {
   maidenName: string;
   password: string;
   phone: string;
-  role: string | "admin" | "moderator" | "user";
+  role: string | 'admin' | 'moderator' | 'user';
   ssn: string;
   university: string;
   userAgent: string;
@@ -96,7 +97,7 @@ export interface Crypto {
 
 export interface Hair {
   color: string;
-  type: string | "Curly" | "Kinky" | "Straight" | "Wavy";
+  type: string | 'Curly' | 'Kinky' | 'Straight' | 'Wavy';
 }
 
 export interface CommentsResponse extends ResourceResponse {

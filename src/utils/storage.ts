@@ -1,20 +1,34 @@
 /**
- * Stores a value in the local storage with the specified key.
+ * Stores a value in localStorage.
+ * Automatically stringifies non-string values (objects, arrays).
  *
- * @param {string} key - The key under which the value will be stored.
- * @param {*} value - The value to be stored in local storage.
+ * @param key - The localStorage key.
+ * @param value - The value to store (string or object).
  */
-export function setLocalItem(key = "", value: string) {
-  window.localStorage.setItem(key, JSON.stringify(value));
+export function setLocalItem(key: string, value: any): void {
+  if (!key) return;
+
+  const storedValue = typeof value === 'string' ? value : JSON.stringify(value);
+  window.localStorage.setItem(key, storedValue);
 }
 
 /**
- * Retrieves an item from the local storage and parses it as JSON.
+ * Retrieves and parses an item from localStorage.
+ * Returns plain strings as-is, and parses JSON for objects.
  *
- * @param {string} [key=""] - The key of the item to retrieve from local storage.
- * @returns {any} The parsed JSON object from local storage, or null if the key does not exist.
+ * @param key - The localStorage key.
+ * @returns The stored value, or null if not found or failed.
  */
-export function getLocalItem(key = "") {
-  const item = window.localStorage.getItem(key);
-  return item !== null ? JSON.parse(item) : null;
+export function getLocalItem<T = string | object>(key: string): T | null {
+  if (!key) return null;
+
+  const rawValue = window.localStorage.getItem(key);
+  if (rawValue === null) return null;
+
+  try {
+    // Try to parse JSON (objects/arrays), fallback to string
+    return JSON.parse(rawValue);
+  } catch {
+    return rawValue as T;
+  }
 }

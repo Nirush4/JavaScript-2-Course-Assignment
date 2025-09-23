@@ -5,7 +5,7 @@ This repository is a modern boilerplate starter pack for building front-end web 
 ## Project Assets
 
 - [Production deploy]()
-- [Production Deployment Dashboard](https://app.netlify.com/projects/vanilla-ts-spa-boilerplate/deploys)
+- [Production Deployment Dashboard]()
 - [Staging deploy]()
 - [staging Deployment Dashboard]()
 - [Design Doc]()
@@ -51,8 +51,8 @@ This repository is a modern boilerplate starter pack for building front-end web 
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/S3ak/vanilla-ts-spa-web-app-boilerplate.git
-   cd vanilla-ts-spa-web-app-boilerplate
+   git clone https://github.com/Nirush4/JavaScript-2-Course-Assignment
+   cd javaScript-2-course-assignment
    ```
 
 2. **Install dependencies:**
@@ -100,35 +100,14 @@ This repository is a modern boilerplate starter pack for building front-end web 
 └── .env                    # Environment variables (not committed)
 ```
 
-## API
-
-I use an external API for demonstration purposes: [https://dummyjson.com/docs](https://dummyjson.com/docs) managed by Google.
-
-## Key Concepts Demonstrated
-
-- **Routing Pattern**: Uses the [URLPattern API](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern) for client-side routing.
-- **Dynamic Module Importing**: Loads modules on demand with `import()` for code splitting and performance.
-- **Service Workers**: Registers a service worker for offline support and caching strategies.
-- **Authenticated API Consumption**: Shows how to attach tokens/keys to API requests securely.
-- **CRUD Operations**: Example functions for interacting with RESTful endpoints.
-- **Manifest**: Enable installing the app as a PWA.
-- **Vite Configuration**: Optimized build and development setup with Vite.
-- **Environment Variables**: Securely manage configuration for different environments.
-- **TypeScript Best Practices**: Strong typing, interfaces, and modular code structure.
-
-## Educational Purpose
-
-This boilerplate is intended for:
-
-- Learning modern TypeScript and JavaScript (ES2025+) features
-- Understanding SPA architecture without heavy frameworks
-- Experimenting with Vite, service workers, and dynamic imports
-- Building a foundation for more complex front-end projects
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
+
+## Author 👨‍💻​
+
+• Nirushan Rajamanoharan (@Nirush4)
 
 **Happy coding!**
