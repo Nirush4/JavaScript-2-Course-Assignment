@@ -3,7 +3,7 @@ import { getLocalItem } from '../../utils/storage';
 import { ApiError } from '../error/error';
 
 // In browser console
-localStorage.setItem('accessToken', ' oyiwkqlywyojehkghfjefhklehfeifhkjkieyio');
+localStorage.setItem('accessToken', ' 1234565476787');
 
 interface ApiClientOptions extends RequestInit {
   body?: BodyInit | null | undefined | string;
@@ -65,7 +65,11 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
       return null;
     }
 
-    const responseData = await response.json();
+    let responseData = await response.json();
+
+    if (Array.isArray(responseData)) {
+      responseData = responseData.filter((media) => media.url !== '');
+    }
 
     if (!response.ok) {
       const message =

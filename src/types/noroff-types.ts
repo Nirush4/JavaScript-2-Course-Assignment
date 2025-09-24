@@ -1,9 +1,10 @@
-export type Post = {
-  id: number;
-  title: string;
+export interface Post {
+  media: { url: string; alt: string }; // Ensure media is defined with url and alt properties
   body: string;
-  tags: string[];
+  id: number;
   reactions: { likes: number; dislikes: number }; // Added reactions
-  userId: number; // Added userId
-  views: number; // Added views
-};
+  tags: string[];
+  title: string;
+  userId: number;
+  views: number;
+}

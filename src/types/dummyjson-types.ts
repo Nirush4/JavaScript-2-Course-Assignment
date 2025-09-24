@@ -7,9 +7,11 @@ export interface ResourceResponse {
 export interface PostsResponse extends ResourceResponse {
   data: boolean;
   posts: Post[];
+  totalCount: number;
 }
 
 export interface Post {
+  media: any;
   body: string;
   id: number;
   reactions: Reactions;
