@@ -11,13 +11,10 @@
     content="This social media app to connect with friends, share updates, and explore exciting content. Your go-to platform for online interaction and social discovery." />
 
   <meta name="robots" content="index, follow">
-  <link href="/src/style.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.css"
-    integrity="sha512-GmZYQ9SKTnOea030Tbiat0Y+jhnYLIpsGAe6QTnToi8hI2nNbVMETHeK4wm4MuYMQdrc38x+sX77+kVD01eNsQ=="
-    crossorigin="anonymous" />
-  <script defer type="module" src="/src/main.ts"></script>
 
   <title>Social Media App</title>
+  <script type="module" crossorigin src="/assets/index-C-QGJQmO.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Df9w7zZe.css">
 </head>
 
 <body class="">
@@ -29,9 +26,9 @@
     <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-bg-light">
 
       <div
-        class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light ... lg:hidden">
+        class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 border-gray-300 bg-bg-light ... lg:hidden">
         <a href="/profile/index.html" class="flex items-center w-12 h-12 pl-2">
-          <img src="/public/logo.png" alt="Logo"> </a>
+          <img src="/images/logo-mobile.png" alt="Logo"> </a>
         <a href="/feed/index.html" class="flex items-center hover:text-darkOrange">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user"></i>
           <span class="text-xl cursor-pointer ps-4"></span>
@@ -58,9 +55,9 @@
 
 
       <div
-        class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white ...">
+        class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh text-white ...">
         <a href="/profile/index.html" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white">
-          <img src="/public/logo.png" alt="Logo" class="shadow-white"> </a>
+          <img src="/images/logo-desktop.png" alt="Logo" class="shadow-white"> </a>
 
         <a href="/feed/index.html" class="flex items-center hover:text-darkOrange">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user ps-12"></i>
@@ -97,12 +94,12 @@
             <div class="text-center">
               <div
                 class="mx-auto overflow-hidden border-2 border-blue-300 rounded-full w-25 h-25 hover:border-text-blue-500 s:border-4 s:w-30 s:h-30 md:w-40 md:h-40">
-                <img id="profile-img" src="/public/profile.avif" alt="Profile Picture"
+                <img id="profile-img" src="/images/profile.jpg" alt="Profile Picture"
                   class="object-cover w-full h-full" />
               </div>
 
 
-              <label for="file-input" class="block mt-4 text-blue-200 cursor-pointer">
+              <label for="file-input" class="block mt-4 text-blue-300 cursor-pointer">
                 Change Profile Picture
               </label>
               <input type="file" id="file-input" class="hidden" accept="image/*" />
@@ -111,7 +108,7 @@
             <div class="text-div">
               <div class="flex items-center mb-4 space-x-4 justify-self-start s:mt-5 ">
                 <div class="text-xl font-medium text-gray-200 md:text-2xl">
-                  <span id="profile-name">Tom Cruise</span>
+                  <span id="profile-name">Nirush</span>
                 </div>
 
                 <button id="edit-btn" class="text-blue-100 cursor-pointer hover:text-blue-300">
@@ -140,7 +137,7 @@
 
               <div class="flex items-center mt-10 mb-4 space-x-4 justify-self-start">
                 <div class="text-gray-200 text-s font-small s:text-m md:text-lg">
-                  <span id="bio-text">American actor and film producer</span>
+                  <span id="bio-text">Front-end Developer 🚀</span>
                 </div>
 
                 <button id="edit-bio-btn" class="text-blue-100 cursor-pointer hover:text-blue-300">
@@ -186,8 +183,8 @@
         <!-- imp! posts -->
 
         <div id="js-grid"
-          class="flex h-full w-full max-w-6xl grid-cols-3 gap-1 mt-40 text-white place-items-start body-content row-span-3 pl-10 sm:mt-20 md:mt-72 md:pl-10">
-          <div id="js-app" class="cld-gallery l-app-container"></div>
+          class="grid h-full w-full max-w-6xl grid-cols-3 gap-1 mt-40 text-white place-items-center body-content row-span-4 pl-10 sm:mt-20 md:mt-72 md:pl-10">
+          <div id="js-app" class="cld-gallery l-app-container flex"></div>
         </div>
 
       </div>
