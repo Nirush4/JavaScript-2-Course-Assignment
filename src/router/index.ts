@@ -1,4 +1,5 @@
 import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
 import FeedPage from '../pages/FeedPage';
 import AboutPage from '../pages/AboutPage';
 import NotFoundPage from '../pages/NotFoundPage';
@@ -8,8 +9,14 @@ import { APP_CONTAINER_CLASSNAME } from '../constants';
 
 const PATHS = {
   login: {
-    url: '/',
+    url: '/login',
     component: LoginPage,
+    protected: false,
+  },
+  register: {
+    url: '/register',
+    component: RegisterPage,
+    protected: false,
   },
   feed: {
     url: '/feed',
@@ -19,10 +26,12 @@ const PATHS = {
   about: {
     url: '/about',
     component: AboutPage,
+    protected: true,
   },
   postDetails: {
-    url: /^\/posts\/(\d+)$/, // regex to match /posts/123 and capture id
+    url: /^\/posts\/(\d+)$/,
     component: PostDetailsPage,
+    protected: true,
   },
 } as const;
 
@@ -37,20 +46,32 @@ export default async function router(
   currentPath = '',
   routes = PATHS
 ): Promise<string> {
-  const currentRoute = Object.values(routes).find(
-    (route) => route.url === currentPath
-  );
+  // Treat '/' as '/login' internally
+  if (currentPath === '/') {
+    currentPath = '/login';
+  }
+
+  // Find matching route — add special handling for regex routes
+  const currentRoute = Object.values(routes).find((route) => {
+    if (route.url instanceof RegExp) {
+      return route.url.test(currentPath);
+    }
+    return route.url === currentPath;
+  });
 
   let html = await NotFoundPage();
 
   if (currentRoute) {
-    if ((currentRoute as any).protected && !isLoggedIn()) {
+    if (currentRoute.protected && !isLoggedIn()) {
       // Redirect unauthenticated users to login page
-      history.pushState({ path: '/' }, '', '/');
+      history.replaceState({ path: '/login' }, '', '/login');
       html = await LoginPage();
-    } else if (currentPath === '/' && isLoggedIn()) {
-      // Redirect logged in users from login page to feed
-      history.pushState({ path: '/feed' }, '', '/feed');
+    } else if (
+      (currentPath === '/login' || currentPath === '/') &&
+      isLoggedIn()
+    ) {
+      // Redirect logged in users from login to feed
+      history.replaceState({ path: '/feed' }, '', '/feed');
       html = await FeedPage();
     } else {
       html = await currentRoute.component();
@@ -65,7 +86,27 @@ export async function renderRoute(path?: string) {
   const contentContainer = document.getElementById(APP_CONTAINER_CLASSNAME);
   if (!path || !contentContainer) return;
 
+  const loadingScreen = (window as any).loadingScreen;
+
+  // Show loading screen for login and register pages with message
+  if (loadingScreen && (path === '/' || path === '/register')) {
+    loadingScreen.showWithMessage(
+      path === '/' ? 'Loading Sign In...' : 'Loading Registration...'
+    );
+
+    // Small delay to improve UX
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+
+  // Render the route content
   contentContainer.innerHTML = await router(path);
+
+  // Hide loading screen after render for login and register
+  if (loadingScreen && (path === '/login' || path === '/register')) {
+    setTimeout(() => {
+      loadingScreen.hideLoadingScreen();
+    }, 500);
+  }
 
   // After render, lazy load images if needed
   lazyLoadImgs();

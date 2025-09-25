@@ -37,7 +37,6 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
   const apiKey = getLocalItem<string>('apiKey');
   const accessToken = getLocalItem<string>('accessToken');
 
-  debugger;
   if (apiKey) {
     (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
   }
@@ -52,7 +51,6 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
     const response = await fetch(API_URL + endpoint, config);
     const contentType = response.headers.get('content-type');
 
-    debugger;
     if (
       response.status === 204 ||
       !contentType ||
@@ -122,9 +120,23 @@ export const getPosts = <T = unknown>(
   const endpoint = `/posts${query ? `?${query}` : ''}`;
   return get<T>(endpoint);
 };
+// Existing imports...
 
 export async function loginUser(data: { email: string; password: string }) {
   const response = await fetch('https://v2.api.noroff.dev/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+export async function registerUser(data: {
+  name: string;
+  email: string;
+  password: string;
+}) {
+  const response = await fetch('https://v2.api.noroff.dev/auth/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
