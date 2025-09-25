@@ -1,4 +1,4 @@
-import type { Post } from '../../types/dummyjson-types';
+import type { Post } from '../../types/noroff-types';
 import { DateTime } from 'luxon';
 
 /**
@@ -23,13 +23,14 @@ export default function postCard(
   const likes = reactions.likes;
   const relativeTime =
     DateTime.fromISO(createdAt).toRelative({ locale: 'en' }) || 'just now';
-  const paramsString = `id=${id}&author=${author}`;
-  const searchParams = new URLSearchParams(paramsString);
-  const detailsUrl = `/post-details.html?${searchParams.toString()}`;
+  // const paramsString = `id=${id}&author=${author}`;
+  // const searchParams = new URLSearchParams(paramsString);
+  // const detailsUrl = `/post-details.html?${searchParams.toString()}`;
+  const detailsUrl = `/post/${id}`;
 
   return `
-    <article 
-  class="max-w-md h-full bg-white rounded-xl shadow-md overflow-hidden mb-6 animate__animated animate__fadeInUp animate__delay-${animationDelay}s" 
+  <article 
+  class="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden mb-6 flex flex-col h-[400px] animate__animated animate__fadeInUp animate__delay-${animationDelay}s" 
   data-postid="${id}" 
   data-component="postCard"
 >
@@ -49,13 +50,13 @@ export default function postCard(
   </div>
 
   <!-- Body: Title, Image, Body, Tags -->
-  <div class="px-4 py-2">
-    <h2 class="text-lg font-bold text-gray-800 mb-1">${title}</h2>
+  <div class="px-4 py-2 flex-grow overflow-hidden">
+    <h2 class="text-lg font-bold text-gray-800 mb-2">${title}</h2>
 
     ${
       media?.url
         ? `
-        <div class="mb-2">
+        <div class="mb-3">
           <img 
             src="${media.url}" 
             alt="${media.alt || 'Post image'}" 
@@ -66,12 +67,12 @@ export default function postCard(
         : ''
     }
 
-    <p class="text-gray-900 text-base mb-2">${body}</p>
+    <p class="text-gray-900 text-base mb-3 line-clamp-4">${body}</p>
 
     ${
       tags?.length
         ? `
-      <div class="flex flex-wrap gap-2 mb-2">
+      <div class="flex flex-wrap gap-2 mb-3">
         ${tags
           .map(
             (tag) =>
@@ -101,13 +102,11 @@ export default function postCard(
       <span class="font-semibold">${likes}</span>
     </button>
 
-    <a 
-      href="${detailsUrl}" 
-      class="text-blue-500 text-s hover:underline"
-    >
-      View details
-    </a>
+    <a href="/post/5" ${detailsUrl} data-link class="text-red-500 text-sm hover:underline">View details</a>
+
   </div>
 </article>
+
+
   `;
 }

@@ -1,4 +1,4 @@
-import type { Post } from "./dummyjson-types";
+import type { Post } from './dummyjson-types';
 
 export interface User {
   id: number;
@@ -48,20 +48,65 @@ export class ValidationError extends Error {
     // Call the parent constructor
     super(message);
     // Set the error name to the class name
-    this.name = "ValidationError";
+    this.name = 'ValidationError';
   }
 }
 
 export class NotFoundError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "NotFoundError";
+    this.name = 'NotFoundError';
   }
 }
 
 export class NetworkError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "NetworkError";
+    this.name = 'NetworkError';
   }
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterData {
+  name: string;
+  email: string;
+  password: string;
+  bio?: string;
+}
+
+// ## API Response interfaces
+
+export interface ApiResponse<T> {
+  data?: T;
+  errors?: Array<{
+    message: string;
+    code?: string;
+  }>;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  name: string;
+  email: string;
+}
+
+export interface RegisterResponse {
+  name: string;
+  email: string;
+  id: number;
+}
+
+// ## Form handling interfaces
+
+export interface FormElements {
+  [key: string]: HTMLInputElement | HTMLTextAreaElement;
+}
+
+export interface FormValidationResult {
+  isValid: boolean;
+  errors: string[];
 }
