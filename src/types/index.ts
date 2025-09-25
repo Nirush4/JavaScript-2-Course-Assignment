@@ -95,6 +95,7 @@ export interface LoginResponse {
 }
 
 export interface RegisterResponse {
+  accessToken: any;
   name: string;
   email: string;
   id: number;

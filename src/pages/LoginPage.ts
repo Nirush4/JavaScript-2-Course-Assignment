@@ -96,7 +96,6 @@ export default async function LoginPage() {
         const loginData: LoginCredentials = { email, password };
 
         try {
-          console.log('Attempting login with:', { email });
           const result: ApiResponse<LoginResponse> = await loginUser(loginData);
 
           if (result.errors && result.errors.length > 0) {
@@ -152,7 +151,7 @@ export default async function LoginPage() {
 
             // Show success message
             if (formError) {
-              formError.style.color = 'green';
+              formError.style.color = 'white';
               formError.textContent =
                 '✅ Login successful! Redirecting to your dashboard...';
             }
