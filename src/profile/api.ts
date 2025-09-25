@@ -20,7 +20,6 @@ function readLS(key: string): string | null {
 	try {
 		const raw = localStorage.getItem(key);
 		if (!raw) return null;
-		
 		return raw.trim().startsWith('"') ? JSON.parse(raw) : raw.trim();
 	} catch {
 		return null;
@@ -37,7 +36,6 @@ function normalizeBearer(t: string | null | undefined): string | null {
 function getApiKey(): string | null {
 	const fromEnv = (import.meta as any)?.env?.VITE_API_KEY as string | undefined;
 	if (fromEnv && fromEnv.trim()) return fromEnv.trim();
-
 	const fromLS = readLS('apiKey');
 	return fromLS && fromLS.trim() ? fromLS.trim() : null;
 }
@@ -45,7 +43,6 @@ function getApiKey(): string | null {
 function getAccessToken(): string | null {
 	const fromEnv = normalizeBearer((import.meta as any)?.env?.VITE_ACCESS_TOKEN as string | undefined);
 	if (fromEnv) return fromEnv;
-
 	const fromLS = readLS('accessToken');
 	return normalizeBearer(fromLS);
 }
@@ -85,15 +82,14 @@ function buildHeaders(): Record<string, string> {
 	else console.warn('[api] Brak tokenu → Authorization nie zostanie wysłany');
 
 	if ((import.meta as any)?.env?.DEV) {
-	
 		const authPreview = headers.Authorization ? headers.Authorization.slice(0, 20) + '…' : null;
 		const keyPreview = headers[API_KEY_HEADER] ? '…' + headers[API_KEY_HEADER].slice(-6) : null;
 		console.debug('[api] headers', { auth: authPreview, apiKey: keyPreview });
 	}
-
 	return headers;
 }
 
+// GET
 async function httpGet<T>(endpoint: string): Promise<T> {
 	const url = join(API_BASE, endpoint);
 	const res = await fetch(url, { method: 'GET', headers: buildHeaders() });
@@ -115,6 +111,7 @@ async function httpGet<T>(endpoint: string): Promise<T> {
 	return data as T;
 }
 
+// POST/PUT/DELETE
 async function httpSend<T>(endpoint: string, method: 'POST' | 'PUT' | 'DELETE', body?: unknown): Promise<T> {
 	const url = join(API_BASE, endpoint);
 	const headers = buildHeaders();
@@ -128,7 +125,7 @@ async function httpSend<T>(endpoint: string, method: 'POST' | 'PUT' | 'DELETE', 
 	const res = await fetch(url, init);
 
 	if (res.status === 204) {
-		// @ts-expect-error:
+		// @ts-expect-error 
 		return null;
 	}
 
@@ -144,10 +141,11 @@ async function httpSend<T>(endpoint: string, method: 'POST' | 'PUT' | 'DELETE', 
 	return data as T;
 }
 
+
 export const apiGetProfileByName = (name: string) =>
 	httpGet<ApiEnvelope<ProfileData>>(`/social/profiles/${encodeURIComponent(name)}`);
 
-
+// Demo (lokalne)
 export function apiGetDemoProfile(): ApiEnvelope<ProfileData> {
 	return {
 		data: {
@@ -171,9 +169,23 @@ export function apiGetDemoProfile(): ApiEnvelope<ProfileData> {
 export const apiGetPostsByAuthor = (name: string, limit = 12) =>
 	httpGet<PostsEnvelope>(`/social/profiles/${encodeURIComponent(name)}/posts?limit=${limit}`);
 
+
 export const apiCreatePost = (payload: CreatePostPayload) => httpSend<PostEnvelope>('/social/posts', 'POST', payload);
 
 export const apiUpdatePost = (id: string | number, payload: UpdatePostPayload) =>
 	httpSend<PostEnvelope>(`/social/posts/${id}`, 'PUT', payload);
 
 export const apiDeletePost = (id: string | number) => httpSend<null>(`/social/posts/${id}`, 'DELETE');
+
+
+export async function getMe(): Promise<ProfileData> {
+	const env = await httpGet<ApiEnvelope<ProfileData>>('/social/profiles/me');
+	return env.data;
+}
+
+
+export async function getMyPosts(limit = 12): Promise<PostsEnvelope['data']> {
+	const me = await getMe();
+	const postsEnv = await apiGetPostsByAuthor(me.name, limit);
+	return postsEnv.data;
+}

@@ -1,5 +1,5 @@
-export const BASE_URL =
-  import.meta.env.BASE_URL || 'https://v2.api.noroff.dev/social';
+// export const BASE_URL =
+//   import.meta.env.BASE_URL || 'https://v2.api.noroff.dev/social';
 export const API_URL =
   import.meta.env.API_URL || 'https://v2.api.noroff.dev/social';
 export const ANALYTICS_ENDPOINT =
@@ -8,6 +8,7 @@ export const FUNC_ERROR_TEXT = 'Expected a function';
 export const LAZY_LOAD_CLASSNAME = 'js-lazy-load';
 export const PLACEHOLDER_URL = '/10.svg';
 export const APP_CONTAINER_CLASSNAME = 'js-app';
+
 
 /**
  * An object containing media query breakpoints.
