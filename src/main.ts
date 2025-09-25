@@ -5,40 +5,29 @@ import {
   catchUnhandledRejection,
 } from './services/error/error';
 
-// Render initial content based on the current path
+// Render initial route content
 renderRoute(window.location.pathname);
 
 window.onerror = handleGlobalError;
 
 window.addEventListener('unhandledrejection', catchUnhandledRejection);
 
-// We need to listen to the browser changes
 window.addEventListener('popstate', (event) => {
-  const path = event.state ? event.state.path : window.location.pathname;
-  console.log(`Navigating to ${path} via popstate`);
+  const path = event.state?.path || window.location.pathname;
   renderRoute(path);
 });
 
-const linkEls: NodeListOf<HTMLAnchorElement> =
-  document.querySelectorAll('#js-primary-nav a');
+document.body.addEventListener('click', (event) => {
+  const target = event.target as HTMLElement;
 
-if (linkEls) {
-  linkEls.forEach((link) => link.addEventListener('click', navigate));
-}
-
-function navigate(event: MouseEvent) {
-  event.preventDefault();
-  let path: string | null;
-
-  const el = event?.target as HTMLAnchorElement;
-
-  path = el.getAttribute('href');
-
-  if (typeof path === 'string') {
-    // Change the URL in the address bar
-    history.pushState({ path: path }, '', path);
-
-    // Update the content based on the path
-    renderRoute(path);
+  // Check if the clicked element (or its ancestor) is an <a> with href starting with '/'
+  const anchor = target.closest('a[href^="/"]') as HTMLAnchorElement | null;
+  if (anchor) {
+    event.preventDefault();
+    const path = anchor.getAttribute('href');
+    if (path) {
+      history.pushState({ path }, '', path);
+      renderRoute(path);
+    }
   }
-}
+});

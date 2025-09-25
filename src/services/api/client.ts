@@ -2,9 +2,6 @@ import { API_URL } from '../../constants';
 import { getLocalItem } from '../../utils/storage';
 import { ApiError } from '../error/error';
 
-// In browser console
-localStorage.setItem('accessToken', ' 1234565476787');
-
 interface ApiClientOptions extends RequestInit {
   body?: BodyInit | null | undefined | string;
 }
@@ -37,9 +34,10 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
     }
   }
 
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = getLocalItem<string>('apiKey');
   const accessToken = getLocalItem<string>('accessToken');
 
+  debugger;
   if (apiKey) {
     (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
   }
@@ -47,13 +45,14 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
   if (accessToken) {
     (config.headers as Record<string, string>)[
       'Authorization'
-    ] = `Bearer${accessToken}`;
+    ] = `Bearer ${accessToken}`;
   }
 
   try {
     const response = await fetch(API_URL + endpoint, config);
     const contentType = response.headers.get('content-type');
 
+    debugger;
     if (
       response.status === 204 ||
       !contentType ||
@@ -85,6 +84,17 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
   }
 }
 
+// Helper to build query string from params
+function buildQuery(params: Record<string, any>) {
+  return Object.entries(params)
+    .filter(([, value]) => value !== undefined && value !== null)
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+    )
+    .join('&');
+}
+
 // Exported helpers
 export const get = <T = unknown>(endpoint: Endpoint): Promise<T> =>
   apiClient(endpoint);
@@ -97,3 +107,51 @@ export const put = <T>(endpoint: Endpoint, body: T) =>
 
 export const del = (endpoint: Endpoint) =>
   apiClient(endpoint, { method: 'DELETE' });
+
+// New: Pagination support for getting posts
+interface PaginationParams {
+  page?: number;
+  limit?: number;
+  [key: string]: any; // extra filters if needed
+}
+
+export const getPosts = <T = unknown>(
+  paginationParams: PaginationParams = {}
+): Promise<T> => {
+  const query = buildQuery(paginationParams);
+  const endpoint = `/posts${query ? `?${query}` : ''}`;
+  return get<T>(endpoint);
+};
+
+export async function loginUser(data: { email: string; password: string }) {
+  const response = await fetch('https://v2.api.noroff.dev/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+export async function fetchApiKey(
+  accessToken: string
+): Promise<string | undefined> {
+  const response = await fetch(
+    'https://v2.api.noroff.dev/auth/create-api-key',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch API key: ${response.status} ${response.statusText}`
+    );
+  }
+
+  const data = await response.json();
+
+  return data?.data?.key;
+}

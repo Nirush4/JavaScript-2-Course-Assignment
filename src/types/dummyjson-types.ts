@@ -5,6 +5,7 @@ export interface ResourceResponse {
 }
 
 export interface PostsResponse extends ResourceResponse {
+  find(arg0: (p: any) => boolean): unknown;
   data: boolean;
   posts: Post[];
   totalCount: number;
