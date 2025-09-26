@@ -165,13 +165,13 @@ export default async function LoginPage() {
             setTimeout(() => {
               history.pushState({ path: '/feed' }, '', '/feed');
               renderRoute('/feed');
-            }, 1500);
+            }, 1000);
 
             // Redirect to home page
             setTimeout(() => {
               history.pushState({ path: '/' }, '', '/');
               renderRoute('/');
-            }, 1500);
+            }, 1000);
           } else {
             // Unexpected response format
             if (formError) {
@@ -217,7 +217,7 @@ export default async function LoginPage() {
   }, 0);
 
   return `
-   <div class="page active flex items-center justify-center min-h-screen bg-gradient-to-br bg-blue-900" id="loginPage">
+   <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br bg-blue-900" id="loginPage">
   <div class="auth-container w-full max-w-md px-6 py-8 bg-blue-500 rounded-xl shadow-lg">
     <div class="auth-card">
       <h1 class="text-3xl font-extrabold text-center text-indigo-700 mb-6">Welcome Back</h1>

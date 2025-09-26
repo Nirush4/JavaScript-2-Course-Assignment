@@ -31,3 +31,21 @@ document.body.addEventListener('click', (event) => {
     }
   }
 });
+window.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  // find if any parent anchor
+  const anchor = target.closest('a[data-link]');
+  if (anchor) {
+    e.preventDefault();
+    const url = anchor.getAttribute('href');
+    if (url) {
+      history.pushState({}, '', url);
+      renderRoute(url);
+    }
+  }
+});
+
+// Also handle back/forward
+window.addEventListener('popstate', () => {
+  renderRoute();
+});
