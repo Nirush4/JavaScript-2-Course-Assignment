@@ -1,89 +1,99 @@
 import postCard from '../components/posts/postCard';
 import { getAllPosts } from '../services/posts/posts';
-import type { Post } from '../types/noroff-types'; // Ensure Post type is defined
+import type { Post } from '../types/noroff-types';
 
-export default async function HomePage(): Promise<string> {
-  let posts: Post[] = [];
+export default async function FeedPage(): Promise<string> {
+	let posts: Post[] = [];
 
-  try {
-    const result = await getAllPosts();
+	try {
+		const result = await getAllPosts();
 
-    if (Array.isArray(result)) {
-      posts = result;
-    } else if (result?.data && Array.isArray(result.data)) {
-      posts = result.data;
-    } else {
-      console.warn('Unexpected result from getAllPosts:', result);
-    }
-  } catch (error) {
-    console.error('Error loading posts:', error);
-  }
+		if (Array.isArray(result)) {
+			posts = result;
+		} else if (result?.data && Array.isArray(result.data)) {
+			posts = result.data;
+		} else {
+			console.warn('Unexpected result from getAllPosts:', result);
+		}
+	} catch (error) {
+		console.error('Error loading posts:', error);
+	}
 
-  return `
+	return `
    <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
+      <!-- MOBILE NAV (bottom) -->
       <div
-        class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light ... lg:hidden">
-        <a href="" class="flex items-center w-12 h-12 pl-2">
-          <img src="/public/logo.png" alt="Logo"> </a>
-        <a href="" class="flex items-center hover:text-darkOrange">
+        class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light lg:hidden">
+        
+        <a href="/feed" class="flex items-center w-12 h-12 pl-2" title="Home / Feed">
+          <img src="/public/logo.png" alt="Logo">
+        </a>
+
+        <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user"></i>
           <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <a href="" class="flex items-center hover:text-darkOrange">
+
+        <a href="/profile" class="flex items-center hover:text-darkOrange" title="Profile">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-user"></i>
           <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <a href="" class="flex items-center hover:text-darkOrange">
+
+        <a href="/create" class="flex items-center hover:text-darkOrange" title="Create">
           <i class="text-xl text-gray-200 cursor-pointer fa fa-camera"></i>
           <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <div class="flex items-center hover:text-darkOrange">
+
+        <a href="/more" class="flex items-center hover:text-darkOrange" title="More">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-bars"></i>
           <span class="text-xl cursor-pointer ps-4"></span>
-        </div>
+        </a>
       </div>
 
-
-
+      <!-- DESKTOP NAV (left) -->
       <div
-        class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white ...">
-        <a href="" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white">
-          <img src="/public/logo.png" alt="Logo" class="shadow-white"> </a>
+        class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white">
+        
+        <a href="/feed" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white" title="Home / Feed">
+          <img src="/public/logo.png" alt="Logo" class="shadow-white">
+        </a>
 
-        <a href="" class="flex items-center hover:text-darkOrange">
+        <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user ps-12"></i>
           <span class="text-xl text-gray-200 cursor-pointer ps-4">Feed</span>
         </a>
-        <div class="flex items-center hover:text-darkOrange">
+
+        <!-- UWAGA: zmienione z <div> na <a> -->
+        <a href="/profile" class="flex items-center hover:text-darkOrange" title="Profile">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-user ps-12"></i>
           <span class="text-xl text-gray-200 cursor-pointer ps-4">Profile</span>
-        </div>
-        <a href="" class="flex items-center hover:text-darkOrange">
+        </a>
+
+        <a href="/create" class="flex items-center hover:text-darkOrange" title="Create">
           <i class="text-xl text-gray-200 cursor-pointer fa fa-camera ps-12"></i>
           <span class="text-xl text-gray-200 cursor-pointer ps-4">Create</span>
         </a>
 
-        <div class="flex items-center hover:text-darkOrange">
+        <a href="/more" class="flex items-center hover:text-darkOrange" title="More">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-bars ps-12"></i>
           <span class="text-xl text-gray-200 cursor-pointer ps-4">More</span>
-        </div>
+        </a>
       </div>
 
-      <!-- imp! Right side container -->
-
+      <!-- RIGHT / MAIN CONTENT -->
       <div
-        class="aside grid grid-rows-4 col-span-5 h-dvh w-full pt-20 px-5 place-items-center overflow-y-scroll ... bg-bg s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
+        class="aside grid grid-rows-4 col-span-5 h-dvh w-full pt-20 px-5 place-items-center overflow-y-scroll bg-bg s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
+        
         <div class="flex flex-col items-center mt-10 top-container s:mt-10 md:mt-30 lg:mt-30">
 
-          <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b-1 border-gray-600 ... s:gap-10 md:pb-12">
+          <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b-1 border-gray-600 s:gap-10 md:pb-12">
             <div class="text-center">
               <div
                 class="mx-auto overflow-hidden border-2 border-blue-300 rounded-full w-25 h-25 hover:border-text-blue-500 s:border-4 s:w-30 s:h-30 md:w-40 md:h-40">
                 <img id="profile-img" src="/public/profile.avif" alt="Profile Picture"
                   class="object-cover w-full h-full" />
               </div>
-
 
               <label for="file-input" class="block mt-4 text-blue-200 cursor-pointer">
                 Change Profile Picture
@@ -97,7 +107,7 @@ export default async function HomePage(): Promise<string> {
                   <span id="profile-name">Tom Cruise</span>
                 </div>
 
-                <button id="edit-btn" class="text-blue-100 cursor-pointer hover:text-blue-300">
+                <button id="edit-btn" class="text-blue-100 cursor-pointer hover:text-blue-300" aria-label="Edit name">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,7 +136,7 @@ export default async function HomePage(): Promise<string> {
                   <span id="bio-text">American actor and film producer</span>
                 </div>
 
-                <button id="edit-bio-btn" class="text-blue-100 cursor-pointer hover:text-blue-300">
+                <button id="edit-bio-btn" class="text-blue-100 cursor-pointer hover:text-blue-300" aria-label="Edit bio">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -145,11 +155,9 @@ export default async function HomePage(): Promise<string> {
                   <button id="cancel-bio-btn" class="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400">
                     Cancel
                   </button>
-
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="flex justify-center posts-tagged gap-15">
@@ -166,11 +174,11 @@ export default async function HomePage(): Promise<string> {
           </div>
         </div>
 
-<div class="w-full mt-20 h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4  pr-10 pl-10 md:mt-60 place-items-start">
-  ${posts.map((post, index) => postCard(post, index)).join('')}
-</div>
+        <div class="w-full mt-20 h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 pr-10 pl-10 md:mt-60 place-items-start">
+          ${posts.map((post, index) => postCard(post, index)).join('')}
+        </div>
 
       </div>
     </div>
-`;
+  `;
 }

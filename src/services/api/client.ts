@@ -1,170 +1,175 @@
 import { API_URL } from '../../constants';
-import { getLocalItem } from '../../utils/storage';
+import { getLocalItem, setLocalItem } from '../../utils/storage';
 import { ApiError } from '../error/error';
 
-interface ApiClientOptions extends RequestInit {
-  body?: BodyInit | null | undefined | string;
-}
+
+type ApiClientOptions = Omit<RequestInit, 'body'> & {
+	body?: BodyInit | Record<string, any> | null | undefined;
+};
 
 type Endpoint = string;
 
 const API_KEY_HEADER = 'X-Noroff-API-Key';
 
-async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
-  const { body, ...customOptions } = options;
+export function getToken(): string | null {
+	const raw = getLocalItem<string>('accessToken') ?? getLocalItem<string>('token') ?? null;
 
-  const headers: Record<string, string> = {};
+	if (!raw) return null;
+	if (typeof raw === 'string') return raw;
 
-  const config: RequestInit = {
-    method: body ? 'POST' : 'GET',
-    ...customOptions,
-    headers: {
-      ...headers,
-      ...(customOptions.headers as Record<string, string>),
-    },
-  };
-
-  if (body) {
-    if (body instanceof FormData) {
-      config.body = body;
-    } else {
-      config.body = JSON.stringify(body);
-      (config.headers as Record<string, string>)['Content-Type'] =
-        'application/json';
-    }
-  }
-
-  const apiKey = getLocalItem<string>('apiKey');
-  const accessToken = getLocalItem<string>('accessToken');
-
-  if (apiKey) {
-    (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
-  }
-
-  if (accessToken) {
-    (config.headers as Record<string, string>)[
-      'Authorization'
-    ] = `Bearer ${accessToken}`;
-  }
-
-  try {
-    const response = await fetch(API_URL + endpoint, config);
-    const contentType = response.headers.get('content-type');
-
-    if (
-      response.status === 204 ||
-      !contentType ||
-      !contentType.includes('application/json')
-    ) {
-      if (!response.ok) {
-        throw new ApiError(`HTTP Error: ${response.status}`, response.status);
-      }
-      return null;
-    }
-
-    let responseData = await response.json();
-
-    if (Array.isArray(responseData)) {
-      responseData = responseData.filter((media) => media.url !== '');
-    }
-
-    if (!response.ok) {
-      const message =
-        responseData.errors?.[0]?.message || `HTTP Error: ${response.status}`;
-      throw new ApiError(message, response.status);
-    }
-    return responseData;
-    debugger;
-  } catch (error) {
-    if (error instanceof ApiError) {
-      throw error;
-    }
-    throw new Error('A network or client error occurred.');
-  }
+	try {
+		const asObj = typeof raw === 'object' ? raw : JSON.parse(String(raw ?? 'null'));
+		if (asObj && typeof asObj === 'object') {
+			if (typeof (asObj as any).accessToken === 'string') return (asObj as any).accessToken;
+			if (typeof (asObj as any).token === 'string') return (asObj as any).token;
+		}
+	} catch {}
+	return null;
 }
 
-// Helper to build query string from params
+export function setToken(token: string) {
+	setLocalItem('accessToken', token);
+}
+
+async function apiClient<T = unknown>(endpoint: string, options: ApiClientOptions = {}): Promise<T> {
+	const { body, ...customOptions } = options;
+
+	const config: RequestInit = {
+		method: body ? customOptions.method ?? 'POST' : customOptions.method ?? 'GET',
+		...customOptions,
+		headers: {
+			...(customOptions.headers || {}),
+		},
+	};
+
+	const apiKey = getLocalItem<string>('apiKey');
+	const accessToken = getToken();
+	if (apiKey) (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
+	if (accessToken) (config.headers as Record<string, string>)['Authorization'] = `Bearer ${accessToken}`;
+
+	if (body !== undefined && body !== null) {
+		if (body instanceof FormData) {
+			config.body = body;
+		} else if (typeof body === 'string' || body instanceof Blob) {
+			config.body = body as BodyInit;
+			if (typeof body === 'string') {
+				(config.headers as Record<string, string>)['Content-Type'] =
+					(config.headers as Record<string, string>)['Content-Type'] ?? 'application/json';
+			}
+		} else {
+			(config.headers as Record<string, string>)['Content-Type'] =
+				(config.headers as Record<string, string>)['Content-Type'] ?? 'application/json';
+			config.body = JSON.stringify(body);
+		}
+	}
+
+	
+	const baseRaw = API_URL.replace(/\/+$/, ''); 
+	let path = endpoint.replace(/^\/+/, ''); 
+
+	
+	if (baseRaw.endsWith('/social') && /^social\/?/i.test(path)) {
+		path = path.replace(/^social\/?/i, ''); 
+	}
+
+	const url = `${baseRaw}/${path}`;
+	try {
+		const response = await fetch(url, config);
+		const contentType = response.headers.get('content-type') ?? '';
+
+		if (response.status === 204 || !contentType.includes('application/json')) {
+			if (!response.ok) throw new ApiError(`HTTP Error: ${response.status}`, response.status);
+			return null as T;
+		}
+
+		const data = await response.json();
+
+		if (!response.ok) {
+			const message = data?.errors?.[0]?.message || `HTTP Error: ${response.status}`;
+			throw new ApiError(message, response.status);
+		}
+
+		if (Array.isArray(data)) {
+			return data.filter(item => item?.media?.url !== '' && item?.url !== '') as T;
+		}
+
+		return data as T;
+	} catch (err) {
+		if (err instanceof ApiError) throw err;
+		throw new Error('A network or client error occurred.');
+	}
+}
+
+export function api<T = unknown>(endpoint: string, options?: ApiClientOptions) {
+	return apiClient<T>(endpoint, options);
+}
+
 function buildQuery(params: Record<string, any>) {
-  return Object.entries(params)
-    .filter(([, value]) => value !== undefined && value !== null)
-    .map(
-      ([key, value]) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-    )
-    .join('&');
+	return Object.entries(params)
+		.filter(([, value]) => value !== undefined && value !== null)
+		.map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+		.join('&');
 }
 
-// Exported helpers
-export const get = <T = unknown>(endpoint: Endpoint): Promise<T> =>
-  apiClient(endpoint);
+export const get = <T = unknown>(endpoint: Endpoint): Promise<T> => apiClient<T>(endpoint, { method: 'GET' });
 
-export const post = <T>(endpoint: Endpoint, body: T) =>
-  apiClient(endpoint, { body: JSON.stringify(body) });
+export const post = <TBody extends Record<string, any>, TResp = unknown>(
+	endpoint: Endpoint,
+	body: TBody
+): Promise<TResp> => apiClient<TResp>(endpoint, { method: 'POST', body });
 
-export const put = <T>(endpoint: Endpoint, body: T) =>
-  apiClient(endpoint, { method: 'PUT', body: JSON.stringify(body) });
+export const put = <TBody extends Record<string, any>, TResp = unknown>(
+	endpoint: Endpoint,
+	body: TBody
+): Promise<TResp> => apiClient<TResp>(endpoint, { method: 'PUT', body });
 
-export const del = (endpoint: Endpoint) =>
-  apiClient(endpoint, { method: 'DELETE' });
+export const del = <TResp = unknown>(endpoint: Endpoint): Promise<TResp> =>
+	apiClient<TResp>(endpoint, { method: 'DELETE' });
 
-// New: Pagination support for getting posts
 interface PaginationParams {
-  page?: number;
-  limit?: number;
-  [key: string]: any; // extra filters if needed
+	page?: number;
+	limit?: number;
+	[key: string]: any;
 }
-
-export const getPosts = <T = unknown>(
-  paginationParams: PaginationParams = {}
-): Promise<T> => {
-  const query = buildQuery(paginationParams);
-  const endpoint = `/posts${query ? `?${query}` : ''}`;
-  return get<T>(endpoint);
+export const getPosts = <T = unknown>(paginationParams: PaginationParams = {}): Promise<T> => {
+	const query = buildQuery(paginationParams);
+	const endpoint = `/posts${query ? `?${query}` : ''}`;
+	return get<T>(endpoint);
 };
-// Existing imports...
 
 export async function loginUser(data: { email: string; password: string }) {
-  const response = await fetch('https://v2.api.noroff.dev/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  return response.json();
+	const response = await fetch('https://v2.api.noroff.dev/auth/login', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(data),
+	});
+	const json = await response.json();
+	const token = json?.data?.accessToken || json?.accessToken;
+	if (typeof token === 'string') setToken(token);
+	return json;
 }
 
-export async function registerUser(data: {
-  name: string;
-  email: string;
-  password: string;
-}) {
-  const response = await fetch('https://v2.api.noroff.dev/auth/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  return response.json();
+export async function registerUser(data: { name: string; email: string; password: string }) {
+	const response = await fetch('https://v2.api.noroff.dev/auth/register', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(data),
+	});
+	return response.json();
 }
 
-export async function fetchApiKey(
-  accessToken: string
-): Promise<string | undefined> {
-  const response = await fetch(
-    'https://v2.api.noroff.dev/auth/create-api-key',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch API key: ${response.status} ${response.statusText}`
-    );
-  }
-
-  const data = await response.json();
-
-  return data?.data?.key;
+export async function fetchApiKey(accessToken: string): Promise<string | undefined> {
+	const response = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
+		method: 'POST',
+		headers: { Authorization: `Bearer ${accessToken}` },
+	});
+	if (!response.ok) {
+		throw new Error(`Failed to fetch API key: ${response.status} ${response.statusText}`);
+	}
+	const data = await response.json();
+	const key = data?.data?.key;
+	if (typeof key === 'string') {
+		setLocalItem('apiKey', key);
+	}
+	return key;
 }
