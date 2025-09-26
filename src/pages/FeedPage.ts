@@ -7,6 +7,7 @@ export default async function HomePage(): Promise<string> {
 
   try {
     const result = await getAllPosts();
+
     if (Array.isArray(result)) {
       posts = result;
     } else if (result?.data && Array.isArray(result.data)) {
@@ -19,7 +20,7 @@ export default async function HomePage(): Promise<string> {
   }
 
   return `
-   <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-bg-light">
+   <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
       <div
         class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light ... lg:hidden">
@@ -109,7 +110,7 @@ export default async function HomePage(): Promise<string> {
                 <input type="text" id="name-input" class="w-full p-2 text-gray-200 border border-gray-300 rounded-md"
                   placeholder="Enter your name" />
                 <div class="flex justify-between mt-4">
-                  <button id="save-btn" class="px-4 py-2 text-gray-200 bg-blue-500 rounded-md hover:bg-blue-700">
+                  <button id="save-btn" class="px-4 py-2 text-gray-200 bg-gray-900 rounded-md hover:bg-blue-700">
                     Save
                   </button>
                   <button id="cancel-btn" class="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400">
@@ -138,7 +139,7 @@ export default async function HomePage(): Promise<string> {
                 <input type="text" id="bio-input" class="w-full p-2 text-gray-200 border border-gray-300 rounded-md"
                   placeholder="Enter your bio"></input>
                 <div class="flex justify-between mt-4">
-                  <button id="save-bio-btn" class="px-4 py-2 text-gray-200 bg-blue-500 rounded-md hover:bg-blue-700">
+                  <button id="save-bio-btn" class="px-4 py-2 text-gray-200 bg-gray-900 rounded-md hover:bg-blue-700">
                     Save
                   </button>
                   <button id="cancel-bio-btn" class="px-4 py-2 text-gray-700 bg-gray-300 rounded-md hover:bg-gray-400">

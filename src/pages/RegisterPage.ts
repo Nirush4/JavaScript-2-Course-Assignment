@@ -173,7 +173,7 @@ export default async function RegisterPage() {
   }, 0);
 
   return `
-  <div class="page active flex items-center justify-center min-h-screen bg-gradient-to-br bg-green-900" id="registerPage">
+  <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br bg-green-900" id="registerPage">
     <div class="auth-container w-full max-w-md px-6 py-8 bg-green-500 rounded-xl shadow-lg">
       <div class="auth-card">
         <h1 class="text-3xl font-extrabold text-center text-green-700 mb-6">Create Account</h1>
