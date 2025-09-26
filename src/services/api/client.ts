@@ -7,6 +7,7 @@ type ApiClientOptions = Omit<RequestInit, 'body'> & {
 };
 
 type Endpoint = string;
+
 const API_KEY_HEADER = 'X-Noroff-API-Key';
 
 export function getToken(): string | null {
@@ -50,7 +51,6 @@ async function apiClient<T = unknown>(
     },
   };
 
-  // Add API key and token headers
   const apiKey = getLocalItem<string>('apiKey');
   const accessToken = getToken();
   if (apiKey)
@@ -60,7 +60,6 @@ async function apiClient<T = unknown>(
       'Authorization'
     ] = `Bearer ${accessToken}`;
 
-  // Handle request body
   if (body !== undefined && body !== null) {
     if (body instanceof FormData) {
       config.body = body;
@@ -79,14 +78,14 @@ async function apiClient<T = unknown>(
     }
   }
 
-  // Normalize URL
   const baseRaw = API_URL.replace(/\/+$/, '');
   let path = endpoint.replace(/^\/+/, '');
+
   if (baseRaw.endsWith('/social') && /^social\/?/i.test(path)) {
     path = path.replace(/^social\/?/i, '');
   }
-  const url = `${baseRaw}/${path}`;
 
+  const url = `${baseRaw}/${path}`;
   try {
     const response = await fetch(url, config);
     const contentType = response.headers.get('content-type') ?? '';
@@ -105,7 +104,6 @@ async function apiClient<T = unknown>(
       throw new ApiError(message, response.status);
     }
 
-    // Optional filtering
     if (Array.isArray(data)) {
       return data.filter(
         (item) => item?.media?.url !== '' && item?.url !== ''
@@ -119,7 +117,6 @@ async function apiClient<T = unknown>(
   }
 }
 
-// ✅ Fixed: api() function was not closed before
 export function api<T = unknown>(endpoint: string, options?: ApiClientOptions) {
   return apiClient<T>(endpoint, options);
 }
@@ -134,7 +131,6 @@ function buildQuery(params: Record<string, any>) {
     .join('&');
 }
 
-// Shortcuts
 export const get = <T = unknown>(endpoint: Endpoint): Promise<T> =>
   apiClient<T>(endpoint, { method: 'GET' });
 
@@ -156,7 +152,6 @@ interface PaginationParams {
   limit?: number;
   [key: string]: any;
 }
-
 export const getPosts = <T = unknown>(
   paginationParams: PaginationParams = {}
 ): Promise<T> => {
@@ -165,7 +160,6 @@ export const getPosts = <T = unknown>(
   return get<T>(endpoint);
 };
 
-// Auth
 export async function loginUser(data: { email: string; password: string }) {
   const response = await fetch('https://v2.api.noroff.dev/auth/login', {
     method: 'POST',
