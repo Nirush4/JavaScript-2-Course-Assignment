@@ -11,6 +11,7 @@ type Endpoint = string;
 
 const API_KEY_HEADER = 'X-Noroff-API-Key';
 
+
 export function getToken(): string | null {
 	const raw = getLocalItem<string>('accessToken') ?? getLocalItem<string>('token') ?? null;
 
@@ -102,6 +103,78 @@ async function apiClient<T = unknown>(endpoint: string, options: ApiClientOption
 
 export function api<T = unknown>(endpoint: string, options?: ApiClientOptions) {
 	return apiClient<T>(endpoint, options);
+=======
+async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
+  const { body, ...customOptions } = options;
+
+  const headers: Record<string, string> = {};
+
+  const config: RequestInit = {
+    method: body ? 'POST' : 'GET',
+    ...customOptions,
+    headers: {
+      ...headers,
+      ...(customOptions.headers as Record<string, string>),
+    },
+  };
+
+  if (body) {
+    if (body instanceof FormData) {
+      config.body = body;
+    } else {
+      config.body = JSON.stringify(body);
+      (config.headers as Record<string, string>)['Content-Type'] =
+        'application/json';
+    }
+  }
+
+  const apiKey = getLocalItem<string>('apiKey');
+  const accessToken = getLocalItem<string>('accessToken');
+
+  if (apiKey) {
+    (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
+  }
+
+  if (accessToken) {
+    (config.headers as Record<string, string>)[
+      'Authorization'
+    ] = `Bearer ${accessToken}`;
+  }
+
+  try {
+    const response = await fetch(API_URL + endpoint, config);
+    const contentType = response.headers.get('content-type');
+
+    if (
+      response.status === 204 ||
+      !contentType ||
+      !contentType.includes('application/json')
+    ) {
+      if (!response.ok) {
+        throw new ApiError(`HTTP Error: ${response.status}`, response.status);
+      }
+      return null;
+    }
+
+    let responseData = await response.json();
+
+    if (Array.isArray(responseData)) {
+      responseData = responseData.filter((media) => media.url !== '');
+    }
+
+    if (!response.ok) {
+      const message =
+        responseData.errors?.[0]?.message || `HTTP Error: ${response.status}`;
+      throw new ApiError(message, response.status);
+    }
+    return responseData;
+  } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
+    throw new Error('A network or client error occurred.');
+  }
+
 }
 
 function buildQuery(params: Record<string, any>) {
