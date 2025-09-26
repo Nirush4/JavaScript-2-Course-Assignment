@@ -1,7 +1,6 @@
 import './style.css';
 import { renderRoute } from './router';
 import { handleGlobalError, catchUnhandledRejection } from './services/error/error';
-import { getAuthInfo } from './profile/api';
 
 
 renderRoute(window.location.pathname);
@@ -58,16 +57,7 @@ function highlightActive(currentPath: string) {
 }
 
 
-(function wireProfileLinks() {
-	const me = getAuthInfo();
-	if (!me?.name) return;
-	const target = `/u/${encodeURIComponent(me.name)}`;
-	
-	document.querySelectorAll('a[data-profile-link]').forEach(el => {
-		const a = el as HTMLAnchorElement;
-		a.href = target;
-	});
-})();
+
 
 document.addEventListener('click', e => {
 	const a = (e.target as HTMLElement)?.closest('a[data-link]') as HTMLAnchorElement | null;
