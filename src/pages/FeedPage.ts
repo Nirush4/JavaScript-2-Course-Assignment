@@ -3,23 +3,23 @@ import { getAllPosts } from '../services/posts/posts';
 import type { Post } from '../types/noroff-types';
 
 export default async function FeedPage(): Promise<string> {
-	let posts: Post[] = [];
+  let posts: Post[] = [];
 
-	try {
-		const result = await getAllPosts();
+  try {
+    const result = await getAllPosts();
 
-		if (Array.isArray(result)) {
-			posts = result;
-		} else if (result?.data && Array.isArray(result.data)) {
-			posts = result.data;
-		} else {
-			console.warn('Unexpected result from getAllPosts:', result);
-		}
-	} catch (error) {
-		console.error('Error loading posts:', error);
-	}
+    if (Array.isArray(result)) {
+      posts = result;
+    } else if (result?.data && Array.isArray(result.data)) {
+      posts = result.data;
+    } else {
+      console.warn('Unexpected result from getAllPosts:', result);
+    }
+  } catch (error) {
+    console.error('Error loading posts:', error);
+  }
 
-	return `
+  return `
    <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
       <!-- MOBILE NAV (bottom) -->
