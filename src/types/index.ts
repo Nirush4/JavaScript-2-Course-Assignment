@@ -1,4 +1,4 @@
-import type { Post } from './dummyjson-types';
+import type { Post } from './noroff-types';
 
 export interface User {
   id: number;
@@ -95,6 +95,7 @@ export interface LoginResponse {
 }
 
 export interface RegisterResponse {
+  accessToken: any;
   name: string;
   email: string;
   id: number;

@@ -1,6 +1,8 @@
 import { renderRoute } from '../router';
 import { loginUser, fetchApiKey } from '../services/api/client.js';
 import { setLocalItem } from '../utils/storage.js';
+import { login } from '../router'; // adjust path as needed
+
 import type {
   LoginCredentials,
   ApiResponse,
@@ -96,7 +98,6 @@ export default async function LoginPage() {
         const loginData: LoginCredentials = { email, password };
 
         try {
-          console.log('Attempting login with:', { email });
           const result: ApiResponse<LoginResponse> = await loginUser(loginData);
 
           if (result.errors && result.errors.length > 0) {
@@ -152,7 +153,7 @@ export default async function LoginPage() {
 
             // Show success message
             if (formError) {
-              formError.style.color = 'green';
+              formError.style.color = 'white';
               formError.textContent =
                 '✅ Login successful! Redirecting to your dashboard...';
             }
@@ -166,13 +167,13 @@ export default async function LoginPage() {
             setTimeout(() => {
               history.pushState({ path: '/feed' }, '', '/feed');
               renderRoute('/feed');
-            }, 1500);
+            }, 1000);
 
             // Redirect to home page
             setTimeout(() => {
               history.pushState({ path: '/' }, '', '/');
               renderRoute('/');
-            }, 1500);
+            }, 1000);
           } else {
             // Unexpected response format
             if (formError) {
@@ -218,7 +219,7 @@ export default async function LoginPage() {
   }, 0);
 
   return `
-   <div class="page active flex items-center justify-center min-h-screen bg-gradient-to-br bg-blue-900" id="loginPage">
+   <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br bg-blue-900" id="loginPage">
   <div class="auth-container w-full max-w-md px-6 py-8 bg-blue-500 rounded-xl shadow-lg">
     <div class="auth-card">
       <h1 class="text-3xl font-extrabold text-center text-indigo-700 mb-6">Welcome Back</h1>
@@ -266,3 +267,38 @@ export default async function LoginPage() {
 
   `;
 }
+
+async function handleLoginSubmit(event: Event) {
+  event.preventDefault();
+
+  const email = (document.getElementById('email-input') as HTMLInputElement)
+    .value;
+  const password = (
+    document.getElementById('password-input') as HTMLInputElement
+  ).value;
+
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.accessToken) {
+      // Save token and redirect using router login helper
+      await login(data.accessToken);
+    } else {
+      // Handle login error, show message, etc.
+      alert('Login failed: ' + data.message);
+    }
+  } catch (err) {
+    console.error('Login error:', err);
+  }
+}
+
+// Add event listener to your login form submit
+document
+  .getElementById('login-form')
+  ?.addEventListener('submit', handleLoginSubmit);

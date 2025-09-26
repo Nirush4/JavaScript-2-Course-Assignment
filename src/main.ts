@@ -4,30 +4,50 @@ import {
   handleGlobalError,
   catchUnhandledRejection,
 } from './services/error/error';
+import initFeedPageScripts from '../src/pages/initFeedPageScript';
 
-// Render initial route content
-renderRoute(window.location.pathname);
+// Utility: Check if path is "/feed" and run page-specific script
+function handlePageSpecificScripts(path: string) {
+  if (path === '/feed') {
+    initFeedPageScripts();
+  }
+}
 
+// Main render function
+function navigateTo(path: string) {
+  history.pushState({ path }, '', path);
+  renderRoute(path);
+  handlePageSpecificScripts(path);
+}
+
+// Initial load
+const initialPath = window.location.pathname;
+renderRoute(initialPath);
+handlePageSpecificScripts(initialPath);
+
+// Global error handlers
 window.onerror = handleGlobalError;
-
 window.addEventListener('unhandledrejection', catchUnhandledRejection);
 
+// Single popstate handler
 window.addEventListener('popstate', (event) => {
   const path = event.state?.path || window.location.pathname;
   renderRoute(path);
+  handlePageSpecificScripts(path);
 });
 
+// Anchor link handling (internal routing)
 document.body.addEventListener('click', (event) => {
   const target = event.target as HTMLElement;
+  const anchor = target.closest(
+    'a[href^="/"], a[data-link]'
+  ) as HTMLAnchorElement | null;
 
-  // Check if the clicked element (or its ancestor) is an <a> with href starting with '/'
-  const anchor = target.closest('a[href^="/"]') as HTMLAnchorElement | null;
   if (anchor) {
-    event.preventDefault();
-    const path = anchor.getAttribute('href');
-    if (path) {
-      history.pushState({ path }, '', path);
-      renderRoute(path);
+    const href = anchor.getAttribute('href');
+    if (href && href.startsWith('/')) {
+      event.preventDefault();
+      navigateTo(href);
     }
   }
 });

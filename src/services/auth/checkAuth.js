@@ -1,6 +1,6 @@
 // import { post } from "./apiClient.js";
 
-const ACCESS_TOKEN = "accessToken";
+const ACCESS_TOKEN = 'accessToken';
 // const LOGIN_ENDPOINT = "/auth/login";
 
 /**
