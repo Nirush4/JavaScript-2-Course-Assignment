@@ -1,4 +1,5 @@
 import { getAllPosts } from '../services/posts/posts';
+import { DateTime } from 'luxon';
 
 export default async function PostDetailsPage(
   params: string[] = []
@@ -26,6 +27,29 @@ export default async function PostDetailsPage(
     return `<p class="text-red-500 text-center p-10">Post not found</p>`;
   }
 
+  // Compute relativeTime using luxon (similar to postCard)
+  const relativeTime =
+    DateTime.fromISO(post.createdAt || new Date().toISOString()).toRelative({
+      locale: 'en',
+    }) || 'just now';
+
+  // Like button classes based on isLiked state (assume false if not provided)
+  const isLiked = post.isLiked ?? false;
+  const likeBtnClass = isLiked
+    ? 'text-pink-600 animate__animated animate__heartBeat'
+    : 'text-pink-500';
+
+  // Like count and comments count (from _count if available)
+  const likes = post._count?.reactions ?? 0;
+  const comments = post._count?.comments ?? 0;
+
+  // Follow button (if you want to add this feature)
+  const isFollowing = post.isFollowing ?? false;
+  const followBtnLabel = isFollowing ? 'Unfollow' : 'Follow';
+  const followBtnClass = isFollowing
+    ? 'bg-red-500 hover:bg-red-600'
+    : 'bg-blue-500 hover:bg-blue-600';
+
   return `
   <div class="min-h-screen flex flex-col bg-gray-900 text-white">
     <div class="flex-grow flex items-center justify-center p-4 overflow-auto">
@@ -33,25 +57,39 @@ export default async function PostDetailsPage(
                style="min-height: 100%; max-height: 100vh;">
 
         <!-- Header: Avatar & Author Info -->
-        <div class="flex items-center mb-6">
-          <div class="w-14 h-14 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-4">
-            <img
-              src="${
-                post.media?.url
-                  ? post.media.url
-                  : `https://i.pravatar.cc/100?u=${post.userId}`
-              }"
-              alt="${post.author || `user${post.userId}`}'s avatar"
-              class="w-full h-full object-cover"
-            />
+        <div class="flex items-center mb-6 justify-between">
+          <div class="flex items-center">
+            <div class="w-14 h-14 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-4">
+              <img
+                src="${
+                  post.media?.url
+                    ? post.media.url
+                    : `https://i.pravatar.cc/100?u=${post.userId}`
+                }"
+                alt="${post.author || `user${post.userId}`}'s avatar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold text-gray-800">${post.title}</h1>
+              <p class="text-sm text-gray-500">
+                ${relativeTime} • By 
+                <span class="font-semibold">${
+                  post.author || `@user${post.userId}`
+                }</span>
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 class="text-2xl font-bold text-gray-800">${post.title}</h1>
-            <p class="text-sm text-gray-500">
-              ${post.relativeTime} • By 
-              <span class="font-semibold">${post.author}</span>
-            </p>
-          </div>
+          <!-- Follow / Unfollow Button -->
+          <button
+            class="follow-btn text-white cursor-pointer px-3 py-1 rounded ${followBtnClass} text-sm font-semibold transition-colors"
+            data-authorid="${post.userId}"
+            aria-label="${followBtnLabel} ${
+    post.author || `user${post.userId}`
+  }"
+          >
+            ${followBtnLabel}
+          </button>
         </div>
 
         <!-- Post Image -->
@@ -86,11 +124,14 @@ export default async function PostDetailsPage(
             : ''
         }
 
-        <!-- Footer: Likes and Back Link -->
+        <!-- Footer: Likes, Comments & Back Link -->
         <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-200">
+
+          <!-- Like Button -->
           <button
-            class="like-btn flex items-center text-pink-500 hover:text-pink-600 transition-colors animate__animated animate__pulse"
+            class="like-btn flex items-center ${likeBtnClass} hover:text-pink-600 transition-colors"
             data-postid="${post.id}"
+            aria-pressed="${isLiked}"
             aria-label="Like post"
           >
             <svg
@@ -101,8 +142,23 @@ export default async function PostDetailsPage(
             >
               <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
             </svg>
-            <span class="font-semibold text-lg">${post.likes}</span>
+            <span class="font-semibold text-lg like-count">${likes}</span>
           </button>
+
+          <!-- Comments count -->
+          <div class="flex items-center text-gray-600 text-sm cursor-pointer" aria-label="View comments" role="button" tabindex="0">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              viewBox="0 0 24 24" 
+              class="w-5 h-5 mr-1"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8l-4 4v-4H7a2 2 0 01-2-2v-2"/>
+            </svg>
+            <span>${comments}</span>
+          </div>
 
           <!-- Back to Feed Button -->
           <button
@@ -114,6 +170,19 @@ export default async function PostDetailsPage(
             ← Back to Feed
           </button>
         </div>
+
+        <!-- Comment Form -->
+        <form id="comment-form" class="mt-6">
+          <textarea id="comment-text" placeholder="Write a comment..." required
+            class="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="4"></textarea>
+          <button type="submit"
+            class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Post Comment
+          </button>
+        </form>
+
       </article>
     </div>
   </div>

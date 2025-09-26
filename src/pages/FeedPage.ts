@@ -174,3 +174,62 @@ export default async function HomePage(): Promise<string> {
     </div>
 `;
 }
+
+type FollowedUsers = string[];
+
+// Setup follow buttons behavior
+function setupFollowButtons(): void {
+  // Load followed users from localStorage or initialize empty array
+  let followedUsers: FollowedUsers = JSON.parse(
+    localStorage.getItem('followedUsers') ?? '[]'
+  );
+
+  // Update buttons UI on page load
+  document
+    .querySelectorAll<HTMLButtonElement>('.follow-btn')
+    .forEach((button) => {
+      const authorId = button.dataset.authorid;
+      if (!authorId) return;
+
+      if (followedUsers.includes(authorId)) {
+        button.textContent = 'Followed';
+        button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+        button.classList.add('bg-green-500', 'hover:bg-green-600');
+        button.setAttribute('aria-label', `Unfollow @user${authorId}`);
+      }
+    });
+
+  // Event delegation for follow button clicks
+  document.addEventListener('click', (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    const btn = target.closest<HTMLButtonElement>('.follow-btn');
+    if (!btn) return;
+
+    const userId = btn.dataset.authorid;
+    if (!userId) return;
+
+    const isFollowed = followedUsers.includes(userId);
+
+    if (isFollowed) {
+      // Unfollow: remove from list
+      followedUsers = followedUsers.filter((id) => id !== userId);
+      btn.textContent = 'Follow';
+      btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+      btn.classList.add('bg-blue-500', 'hover:bg-blue-600');
+      btn.setAttribute('aria-label', `Follow @user${userId}`);
+    } else {
+      // Follow: add to list
+      followedUsers.push(userId);
+      btn.textContent = 'Followed';
+      btn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+      btn.classList.add('bg-green-500', 'hover:bg-green-600');
+      btn.setAttribute('aria-label', `Unfollow @user${userId}`);
+    }
+
+    // Save updated list to localStorage
+    localStorage.setItem('followedUsers', JSON.stringify(followedUsers));
+  });
+}
+
+// Run setup after DOM is loaded
+document.addEventListener('DOMContentLoaded', setupFollowButtons);

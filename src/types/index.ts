@@ -1,4 +1,4 @@
-import type { Post } from './dummyjson-types';
+import type { Post } from './noroff-types';
 
 export interface User {
   id: number;
