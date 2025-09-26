@@ -1,6 +1,8 @@
 import { renderRoute } from '../router';
 import { loginUser, fetchApiKey } from '../services/api/client.js';
 import { setLocalItem } from '../utils/storage.js';
+import { login } from '../router'; // adjust path as needed
+
 import type {
   LoginCredentials,
   ApiResponse,
@@ -265,3 +267,38 @@ export default async function LoginPage() {
 
   `;
 }
+
+async function handleLoginSubmit(event: Event) {
+  event.preventDefault();
+
+  const email = (document.getElementById('email-input') as HTMLInputElement)
+    .value;
+  const password = (
+    document.getElementById('password-input') as HTMLInputElement
+  ).value;
+
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.accessToken) {
+      // Save token and redirect using router login helper
+      await login(data.accessToken);
+    } else {
+      // Handle login error, show message, etc.
+      alert('Login failed: ' + data.message);
+    }
+  } catch (err) {
+    console.error('Login error:', err);
+  }
+}
+
+// Add event listener to your login form submit
+document
+  .getElementById('login-form')
+  ?.addEventListener('submit', handleLoginSubmit);
