@@ -74,7 +74,6 @@ async function apiClient(endpoint: string, options: ApiClientOptions = {}) {
       throw new ApiError(message, response.status);
     }
     return responseData;
-    debugger;
   } catch (error) {
     if (error instanceof ApiError) {
       throw error;
