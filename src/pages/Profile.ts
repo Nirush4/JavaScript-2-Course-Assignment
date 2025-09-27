@@ -112,7 +112,7 @@ export default async function ProfilePage(): Promise<string> {
   const avatar =
     (typeof profile?.avatar === 'string'
       ? profile.avatar
-      : profile?.avatar?.url) || '/public/profile.avif';
+      : profile?.avatar?.url) || '/profile.avif';
   const followers =
     profile?._count?.followers ?? profile?.followers?.length ?? 0;
   const following =
