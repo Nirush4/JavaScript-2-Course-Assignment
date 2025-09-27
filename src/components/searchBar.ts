@@ -2,7 +2,7 @@ import logoutBtn from '../components/logoutBtn';
 
 export default function searchBar() {
   return `
-    <div class="flex items-center justify-center w-full px-2 mb-2">
+    <div class="flex items-center justify-around w-full px-2 mb-2 -mt-5">
       <!-- Search input -->
       <input
         id="feed-search-input"
