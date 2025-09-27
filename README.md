@@ -4,16 +4,10 @@ This repository is a modern boilerplate starter pack for building front-end web 
 
 ## Project Assets
 
-- [Production deploy]()
-- [Production Deployment Dashboard]()
-- [Staging deploy]()
-- [staging Deployment Dashboard]()
-- [Design Doc]()
-- [Lo-Fi Design Spec]()
-- [Hi-Fi Design Spec]()
+- [Production deploy](https://javascript-2-assignment.netlify.app/)
+- [Production Deployment Dashboard](https://app.netlify.com/projects/javascript-2-assignment/overview)
+- [Lo-Fi Design Spec](https://www.figma.com/design/YeEfWVxR4FyKKovwljxphw/Javascript-2-CA?node-id=0-1&p=f)
 - [API URL](https://docs.noroff.dev/docs/v2/social/posts)
-- [Analytics dashboard]()
-- [TODOS]()
 
 ## Features
 
