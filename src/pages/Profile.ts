@@ -265,7 +265,7 @@ export default async function ProfilePage(): Promise<string> {
       <div class="max-w-6xl mx-auto"><a 
   href="/feed" 
   class="inline-block mt-10 underline text-gray-400 hover:text-gray-200 transition"> 
-  <a class="inline-block mt-10 underline hover:text-blue-800 text-lg"  href="/feed">← Back to Feed</a>
+  <a class="inline-block mt-10 underline hover:text-blue-500 text-lg"  href="/feed">← Back to Feed</a>
       </div>
     </main>
   `;

@@ -5,17 +5,18 @@ import type { Post } from '../types/noroff-types';
 import logoutBtn from '../components/logoutBtn';
 
 export default async function FeedPage(): Promise<string> {
-	let posts: Post[] = [];
-	try {
-		const result = await getAllPosts();
-		if (Array.isArray(result)) posts = result;
-		else if ((result as any)?.data && Array.isArray((result as any).data)) posts = (result as any).data;
-		else console.warn('Unexpected result from getAllPosts:', result);
-	} catch (error) {
-		console.error('Error loading posts:', error);
-	}
+  let posts: Post[] = [];
+  try {
+    const result = await getAllPosts();
+    if (Array.isArray(result)) posts = result;
+    else if ((result as any)?.data && Array.isArray((result as any).data))
+      posts = (result as any).data;
+    else console.warn('Unexpected result from getAllPosts:', result);
+  } catch (error) {
+    console.error('Error loading posts:', error);
+  }
 
-	return `
+  return `
    <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
       <!-- MOBILE NAV (bottom) -->
@@ -75,13 +76,13 @@ export default async function FeedPage(): Promise<string> {
       </div>
 
       <!-- RIGHT / MAIN CONTENT -->
-      <div class="aside grid grid-rows-4 col-span-5 h-dvh w-full pt-20 px-5 overflow-y-scroll bg-bg place-items-start s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
-        <div class="flex flex-col items-center mt-10 top-container s:mt-10 md:mt-30 lg:mt-30">
+      <div class="aside grid grid-rows-4 col-span-5 h-dvh w-full px-5 overflow-y-scroll bg-bg place-items-start s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
+        <div class="flex flex-col items-center mt-10 top-container md:mt-20">
 
           <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b-1 border-gray-600 s:gap-10 md:pb-12">
             <div class="text-center">
               <div class="mx-auto overflow-hidden border-2 border-blue-300 rounded-full w-25 h-25 hover:border-text-blue-500 s:border-4 s:w-30 s:h-30 md:w-40 md:h-40">
-                <img id="profile-img" src="/public/profile.avif" alt="Profile Picture" class="object-cover w-full h-full" />
+                <img id="profile-img" src="/profile.avif" alt="Profile Picture" class="object-cover w-full h-full" />
               </div>
               <label for="file-input" class="block mt-4 text-blue-200 cursor-pointer">Change Profile Picture</label>
               <input type="file" id="file-input" class="hidden" accept="image/*" />

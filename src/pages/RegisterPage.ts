@@ -228,7 +228,7 @@ export default async function RegisterPage() {
 
         <button
           type="submit"
-          class="w-full py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg cursor-pointer transition-transform duration-200 flex items-center justify-center cursor-pointer gap-2"
+          class="w-full py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg cursor-pointer transition-transform duration-200 flex items-center justify-center gap-2"
         >
           <span>🚀</span> Register
         </button>

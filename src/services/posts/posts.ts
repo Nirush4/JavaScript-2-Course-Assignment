@@ -2,9 +2,11 @@ import { get } from '../api/client';
 import type { Post } from '../../types/noroff-types';
 
 export async function getAllPosts(): Promise<Post[]> {
-	return get<Post[]>(`/posts?_author=true&_reactions=true&_comments=true&limit=50&offset=0`);
+  return get<Post[]>(
+    `/posts?_author=true&_reactions=true&_comments=true&limit=50&offset=0`
+  );
 }
 
 export async function getPostById(id: number): Promise<Post> {
-	return get<Post>(`/posts/${id}?_author=true&_reactions=true&_comments=true`);
+  return get<Post>(`/posts/${id}?_author=true&_reactions=true&_comments=true`);
 }
