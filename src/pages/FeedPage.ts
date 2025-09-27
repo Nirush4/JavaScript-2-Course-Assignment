@@ -27,7 +27,7 @@ export default async function FeedPage(): Promise<string> {
         class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light lg:hidden">
         
         <a href="/feed" class="flex items-center w-12 h-12 pl-2" title="Home / Feed">
-          <img src="/public/logo.png" alt="Logo">
+          <img src="/logo.png" alt="Logo">
         </a>
 
         <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
@@ -56,7 +56,7 @@ export default async function FeedPage(): Promise<string> {
         class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white">
         
         <a href="/feed" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white" title="Home / Feed">
-          <img src="/public/logo.png" alt="Logo" class="shadow-white">
+          <img src="/logo.png" alt="Logo" class="shadow-white">
         </a>
 
         <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
@@ -83,15 +83,15 @@ export default async function FeedPage(): Promise<string> {
 
       <!-- RIGHT / MAIN CONTENT -->
       <div
-        class="aside grid grid-rows-4 col-span-5 h-dvh w-full pt-20 px-5 place-items-center overflow-y-scroll bg-bg s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
+        class="aside grid grid-rows-4 col-span-5 h-dvh w-full x-5 place-items-center overflow-y-scroll bg-bg s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
         
-        <div class="flex flex-col items-center mt-10 top-container s:mt-10 md:mt-30 lg:mt-30">
+        <div class="flex flex-col items-center -mt-20 top-container md:mt-0">
 
           <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b-1 border-gray-600 s:gap-10 md:pb-12">
             <div class="text-center">
               <div
                 class="mx-auto overflow-hidden border-2 border-blue-300 rounded-full w-25 h-25 hover:border-text-blue-500 s:border-4 s:w-30 s:h-30 md:w-40 md:h-40">
-                <img id="profile-img" src="/public/profile.avif" alt="Profile Picture"
+                <img id="profile-img" src="/profile.avif" alt="Profile Picture"
                   class="object-cover w-full h-full" />
               </div>
 
@@ -174,7 +174,7 @@ export default async function FeedPage(): Promise<string> {
           </div>
         </div>
 
-        <div class="w-full mt-20 h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 pr-10 pl-10 md:mt-60 place-items-start">
+        <div class="w-full mt-20 h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 pr-10 pl-10  md:mt-30 place-items-start">
           ${posts.map((post, index) => postCard(post, index)).join('')}
         </div>
 

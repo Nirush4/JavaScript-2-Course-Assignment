@@ -54,7 +54,7 @@ export default async function PostDetailsPage(
   <div class="min-h-screen flex flex-col bg-gray-900 text-white">
     <div class="flex-grow flex items-center justify-center p-4 overflow-auto">
       <article class="max-w-2xl w-full bg-white rounded-xl shadow-md overflow-hidden p-6 text-gray-900 flex flex-col"
-               style="min-height: 100%; max-height: 100vh;">
+             style="max-height: 90vh; min-height: 700px;">
 
         <!-- Header: Avatar & Author Info -->
         <div class="flex items-center mb-6 justify-between">
@@ -82,7 +82,7 @@ export default async function PostDetailsPage(
           </div>
           <!-- Follow / Unfollow Button -->
           <button
-            class="follow-btn text-white cursor-pointer px-3 py-1 rounded ${followBtnClass} text-sm font-semibold transition-colors"
+            class="follow-btn text-white cursor-pointer px-3 py-1 rounded ${followBtnClass} text-lg font-semibold transition-colors"
             data-authorid="${post.userId}"
             aria-label="${followBtnLabel} ${
     post.author || `user${post.userId}`
@@ -99,7 +99,7 @@ export default async function PostDetailsPage(
                 <img
                   src="${post.media.url}"
                   alt="${post.media.alt || 'Post image'}"
-                  class="w-full rounded-lg shadow-md max-h-[50vh] object-contain mx-auto"
+                  class="w-full rounded-lg object-cover shadow-md max-h-[42vh] mx-auto"
                 />
               </div>`
             : ''
@@ -113,11 +113,11 @@ export default async function PostDetailsPage(
         <!-- Tags -->
         ${
           post.tags?.length
-            ? `<div class="flex flex-wrap gap-3 mb-6">
+            ? `<div class="flex flex-wrap gap-3 mb-2">
                 ${post.tags
                   .map(
                     (tag: any) =>
-                      `<span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full cursor-default">#${tag}</span>`
+                      `<span class="bg-gray-100 text-gray-600 text-lg px-3 py-1 rounded-full cursor-default">#${tag}</span>`
                   )
                   .join('')}
               </div>`
@@ -163,7 +163,7 @@ export default async function PostDetailsPage(
           <!-- Back to Feed Button -->
           <button
             id="back-to-feed"
-            class="text-blue-600 hover:underline text-sm font-semibold cursor-pointer"
+            class="text-blue-600 hover:underline text-lg font-semibold cursor-pointer"
             type="button"
             aria-label="Back to feed"
           >
@@ -172,12 +172,12 @@ export default async function PostDetailsPage(
         </div>
 
         <!-- Comment Form -->
-        <form id="comment-form" class="mt-6">
+        <form id="comment-form" class="mt-4">
           <textarea id="comment-text" placeholder="Write a comment..." required
             class="w-full p-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows="4"></textarea>
+            rows="2"></textarea>
           <button type="submit"
-            class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer"
           >
             Post Comment
           </button>
