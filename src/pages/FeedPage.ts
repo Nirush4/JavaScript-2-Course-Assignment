@@ -21,7 +21,7 @@ export default async function FeedPage(): Promise<string> {
       <!-- MOBILE NAV (bottom) -->
       <div class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light lg:hidden">
         <a href="/feed" class="flex items-center w-12 h-12 pl-2" title="Home / Feed">
-          <img src="/public/logo.png" alt="Logo">
+          <img src="/logo.png" alt="Logo">
         </a>
         <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user"></i>
@@ -49,7 +49,7 @@ export default async function FeedPage(): Promise<string> {
       <!-- DESKTOP NAV (left) -->
       <div class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white">
         <a href="/feed" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white" title="Home / Feed">
-          <img src="/public/logo.png" alt="Logo" class="shadow-white">
+          <img src="/logo.png" alt="Logo" class="shadow-white">
         </a>
         <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user ps-12"></i>

@@ -173,50 +173,75 @@ export default async function RegisterPage() {
   }, 0);
 
   return `
-  <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br bg-green-900" id="registerPage">
-    <div class="auth-container w-full max-w-md px-6 py-8 bg-green-500 rounded-xl shadow-lg">
-      <div class="auth-card">
-        <h1 class="text-3xl font-extrabold text-center text-green-700 mb-6">Create Account</h1>
-        <div id="registerMessage" class="mb-4 text-center font-medium text-red-500"></div>
-        <form id="registerForm" class="space-y-5">
-          <div class="form-group">
-            <label for="registerName" class="block mb-2 text-sm font-semibold text-gray-700">Full Name</label>
-            <input type="text" id="registerName" required
-              placeholder="Enter your full name"
-              class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition" />
-          </div>
-          <div class="form-group">
-            <label for="registerEmail" class="block mb-2 text-sm font-semibold text-gray-700">Email Address</label>
-            <input type="email" id="registerEmail" required
-              placeholder="Enter your @stud.noroff.no email"
-              class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition" />
-          </div>
-          <div class="form-group">
-            <label for="registerPassword" class="block mb-2 text-sm font-semibold text-gray-700">Password</label>
-            <input type="password" id="registerPassword" required
-              placeholder="Enter your password"
-              class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition" />
-          </div>
-          <div class="form-group">
-            <label for="registerConfirmPassword" class="block mb-2 text-sm font-semibold text-gray-700">Confirm Password</label>
-            <input type="password" id="registerConfirmPassword" required
-              placeholder="Confirm your password"
-              class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition" />
-          </div>
-          <button type="submit"
-            class="w-full py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition flex items-center justify-center gap-2">
-            <span>🚀</span> Register
-          </button>
-        </form>
+  <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-teal-900" id="registerPage">
+  <div class="auth-container w-full max-w-md px-8 py-10 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20">
+    <div class="auth-card text-white">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-6 text-white drop-shadow-sm">
+  Create Account ✨
+</h1>
+      <div id="registerMessage" class="mb-4 text-center font-medium text-red-300"></div>
 
-        <div class="auth-links mt-6 text-center text-white text-sm">
-          <p>
-            Already have an account?
-            <a href="#" id="login-link" class="font-medium underline">Login here</a>
-          </p>
+      <form id="registerForm" class="space-y-6">
+        <div class="form-group">
+          <label for="registerName" class="block mb-2 text-lg font-semibold">Full Name</label>
+          <input
+            type="text"
+            id="registerName"
+            required
+            placeholder="Enter your full name"
+            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
+          />
         </div>
+
+        <div class="form-group">
+          <label for="registerEmail" class="block mb-2 text-lg font-semibold">Email Address</label>
+          <input
+            type="email"
+            id="registerEmail"
+            required
+            placeholder="Enter your @stud.noroff.no email"
+            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="registerPassword" class="block mb-2 text-lg font-semibold">Password</label>
+          <input
+            type="password"
+            id="registerPassword"
+            required
+            placeholder="Enter your password"
+            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="registerConfirmPassword" class="block mb-2 text-lg font-semibold">Confirm Password</label>
+          <input
+            type="password"
+            id="registerConfirmPassword"
+            required
+            placeholder="Confirm your password"
+            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg cursor-pointer transition-transform duration-200 flex items-center justify-center cursor-pointer gap-2"
+        >
+          <span>🚀</span> Register
+        </button>
+      </form>
+
+      <div class="auth-links mt-8 text-center text-white text-base">
+        <p>
+          Already have an account?
+          <a href="#" id="login-link" class="underline hover:text-green-300 font-semibold transition">Login here</a>
+        </p>
       </div>
     </div>
   </div>
+</div>
   `;
 }
