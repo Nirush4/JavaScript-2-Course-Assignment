@@ -1,153 +1,164 @@
+// src/components/posts/postCard.ts
 import type { Post } from '../../types/noroff-types';
-import { DateTime } from 'luxon';
+import { getToken } from '../../services/api/client';
 
-export default function postCard(
-  {
-    id,
-    body = 'The post you are looking for does not exist',
-    tags = [],
-    title = 'No title available',
-    userId = 0,
-    createdAt = new Date().toISOString(),
-    media = { url: '', alt: '' },
-    isFollowing = false, // Add this boolean to indicate following status for author
-    _count = { reactions: 0, comments: 0 }, // destructure counts here
-    isLiked = false, // New prop: whether current user liked this post
-  }: Post & {
-    createdAt?: string;
-    media?: { url: string; alt: string };
-    isFollowing?: boolean;
-    _count?: { reactions: number; comments: number };
-    isLiked?: boolean;
-  },
-  animationDelay = 0
-) {
-  const author = `@user${userId}`;
+const safe = (v?: string | null, fallback = '') =>
+  v && String(v).trim() ? String(v) : fallback;
+const AVATAR_48 = 'https://placehold.co/48x48?text=%20';
+const AVATAR_32 = 'https://placehold.co/32x32?text=%20';
 
-  // Use _count from API response for likes and comments
-  const likes = _count?.reactions ?? 0;
-  const comments = _count?.comments ?? 0;
+function media(post: Post): { url: string; alt: string } {
+  const m: any = post.media;
+  if (typeof m === 'string') return { url: m, alt: post.title || 'media' };
+  if (m && typeof m === 'object')
+    return { url: m.url || '', alt: m.alt || post.title || 'media' };
+  return { url: '', alt: post.title || 'media' };
+}
 
-  const relativeTime =
-    DateTime.fromISO(createdAt).toRelative({ locale: 'en' }) || 'just now';
+function likesCount(p: Post) {
+  const heart = p.reactions?.find((r) => r.symbol === '❤️');
+  return heart?.count ?? p._count?.reactions ?? 0;
+}
+function commentsCount(p: Post) {
+  return p._count?.comments ?? p.comments?.length ?? 0;
+}
 
-  const detailsUrl = `/post/${id}`;
+// decode current user's name from JWT
+function currentUserName(): string | null {
+  try {
+    const t = getToken();
+    if (!t) return null;
+    const mid = t.split('.')[1];
+    if (!mid) return null;
+    let b64 = mid.replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) b64 += '=';
+    const payload = JSON.parse(atob(b64));
+    const name =
+      payload?.name ?? payload?.username ?? payload?.user_name ?? payload?.sub;
+    return typeof name === 'string' ? name : null;
+  } catch {
+    return null;
+  }
+}
+const ME = currentUserName();
 
-  const followBtnLabel = isFollowing ? 'Unfollow' : 'Follow';
-  const followBtnClass = isFollowing
-    ? 'bg-red-500 hover:bg-red-600'
-    : 'bg-blue-500 hover:bg-blue-600';
-
-  const animationDelayClass =
-    animationDelay > 0 ? `animate__delay-${animationDelay}s` : '';
-
-  // Like button classes & aria-pressed based on isLiked state
-  const likeBtnClass = isLiked
-    ? 'text-pink-600 animate__animated animate__heartBeat'
-    : 'text-pink-500';
+export default function postCard(p: Post, _index?: number) {
+  const { url, alt } = media(p);
+  const likeCounter = likesCount(p);
+  const commentCounter = commentsCount(p);
 
   return `
-  <article 
-    class="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden mb-6 flex flex-col h-[400px] animate__animated animate__fadeInUp ${animationDelayClass}" 
-    data-postid="${id}" 
-    data-authorid="${userId}"
-    data-component="postCard"
-  >
-    <!-- Header: Avatar & Author Info -->
-    <div class="flex items-center px-4 pt-4 justify-between">
-      <div class="flex items-center">
-        <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center mr-3">
-          <img 
-            src="https://i.pravatar.cc/100?u=${userId}" 
-            alt="${author}'s avatar" 
-            class="w-full h-full object-cover" 
-          />
-        </div>
-        <div>
-          <span class="font-semibold text-gray-800">${author}</span>
-          <span class="block text-xs text-gray-400">${relativeTime}</span>
-        </div>
+  <article
+    class="post-card h-full flex flex-col rounded-xl bg-white/5 shadow p-4 ring-1 ring-white/10 backdrop-blur"
+    data-post data-post-id="${p.id}">
+
+    <header class="flex items-center gap-3 mb-3">
+      <img src="${safe(
+        p.author?.avatar,
+        AVATAR_48
+      )}" alt="" class="size-10 rounded-full object-cover" onerror="this.src='${AVATAR_48}'"/>
+      <div>
+        <div class="font-semibold clamp-1">${safe(
+          p.author?.name,
+          'Unknown'
+        )}</div>
+        <div class="text-xs opacity-70">${new Date(
+          p.created
+        ).toLocaleString()}</div>
+      </div>
+    </header>
+
+    ${
+      url
+        ? `
+      <div class="w-full rounded-lg overflow-hidden aspect-[16/9] mb-3 bg-white/10">
+        <img src="${url}" alt="${alt}" class="w-full h-full object-cover" onerror="this.style.display='none'"/>
+      </div>`
+        : ''
+    }
+
+    ${
+      p.title
+        ? `<h3 class="text-lg font-bold mb-1 clamp-1">${p.title}</h3>`
+        : ''
+    }
+    ${
+      p.body
+        ? `<p class="opacity-90 mb-3 whitespace-pre-wrap clamp-3">${p.body}</p>`
+        : ''
+    }
+
+    <div class="mt-auto">
+      <div class="flex items-center gap-6 text-sm mb-3">
+        <button
+          type="button"
+          class="like-btn inline-flex items-center gap-1 px-3 py-1 rounded-full hover:ring-1 hover:ring-white/30"
+          data-like-btn data-post-id="${p.id}" data-symbol="❤️" data-liked="0"
+          aria-pressed="false" aria-label="Like">
+          ❤️ <span data-like-count>${likeCounter}</span>
+        </button>
+
+        <button type="button" class="inline-flex items-center gap-1 opacity-80"
+                data-comments-toggle data-post-id="${p.id}">
+          💬 <span>${commentCounter}</span> <span class="underline ml-1">Show</span>
+        </button>
       </div>
 
-      <!-- Follow / Unfollow Button -->
-      <button
-        class="follow-btn text-white cursor-pointer px-3 py-1 rounded ${followBtnClass} text-sm font-semibold transition-colors"
-        data-authorid="${userId}"
-        aria-label="${followBtnLabel} ${author}"
-      >
-        ${followBtnLabel}
-      </button>
-    </div>
+      <!-- link do podglądu posta -->
+      <a href="/post/${p.id}" data-link
+         class="inline-block mb-3 px-3 py-1 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 transition">
+        View post →
+      </a>
 
-    <!-- Body: Title, Image, Body, Tags -->
-    <div class="px-4 py-2 flex-grow overflow-y-hidden">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">${title}</h2>
+      <form data-comment-form data-post-id="${
+        p.id
+      }" class="flex flex-wrap items-center gap-2">
+        <input name="comment" placeholder="Write a comment…" class="flex-1 px-3 py-2 rounded-lg bg-white/10 ring-1 ring-white/15 focus:outline-none" autocomplete="off" />
+        <button type="submit" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20">Send</button>
+      </form>
 
-      ${
-        media?.url
-          ? `
-          <div class="mb-3">
-            <img 
-              src="${media.url}" 
-              alt="${media.alt || 'Post image'}" 
-              class="w-full h-auto rounded" 
-            />
-          </div>
-        `
-          : ''
-      }
-
-      <p class="text-gray-900 text-base mb-3">${body}</p>
-
-      ${
-        tags?.length
-          ? `
-        <div class="flex flex-wrap gap-2 mb-3">
-          ${tags
-            .map(
-              (tag) =>
-                `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">#${tag}</span>`
-            )
-            .join('')}
-        </div>
-      `
-          : ''
-      }
-    </div>
-
-    <!-- Footer: Like Button & Comments count -->
-    <div class="px-4 pb-4 flex items-center justify-between">
-      <button 
-        class="like-btn flex items-center ${likeBtnClass} hover:text-pink-600 transition-colors" 
-        data-postid="${id}"
-        aria-pressed="${isLiked}"
-      >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="currentColor" 
-          viewBox="0 0 20 20" 
-          class="w-5 h-5 mr-1"
-        >
-          <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
-        </svg>
-        <span class="font-semibold like-count">${likes}</span>
-      </button>
-
-      <div class="flex items-center text-gray-600 text-sm">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="none" 
-          stroke="currentColor" 
-          stroke-width="2" 
-          viewBox="0 0 24 24" 
-          class="w-5 h-5 mr-1"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8l-4 4v-4H7a2 2 0 01-2-2v-2"/>
-        </svg>
-        <span>${comments}</span>
-      </div>
-
-      <a href="${detailsUrl}" data-link class="text-blue-500 text-m hover:underline pt-2 ml-4">View details</a>
+      <ul data-comment-list class="space-y-3 hidden mt-3">
+        ${(p.comments ?? [])
+          .slice()
+          .sort((a, b) => +new Date(b.created) - +new Date(a.created))
+          .map((c) => {
+            const canDelete = ME && c.owner === ME;
+            return `
+            <li class="comment rounded-lg bg-white/5 p-3" data-id="${
+              c.id
+            }" data-owner="${c.owner}">
+              <div class="flex items-start gap-3">
+                <img src="${safe(
+                  c.author?.avatar,
+                  AVATAR_32
+                )}" class="size-8 rounded-full" onerror="this.src='${AVATAR_32}'" alt="" />
+                <div class="flex-1">
+                  <div class="text-sm">
+                    <span class="font-semibold">@${c.owner}</span>
+                    <span class="opacity-70">• ${new Date(
+                      c.created
+                    ).toLocaleString()}</span>
+                  </div>
+                  <div class="comment-body whitespace-pre-wrap">${
+                    c.body ?? ''
+                  }</div>
+                  <div class="mt-2">
+                    ${
+                      canDelete
+                        ? `
+                      <button type="button" class="text-xs opacity-70 hover:opacity-100"
+                              data-delete-comment data-post-id="${p.id}" data-comment-id="${c.id}">
+                        Delete
+                      </button>`
+                        : ``
+                    }
+                  </div>
+                </div>
+              </div>
+            </li>`;
+          })
+          .join('')}
+      </ul>
     </div>
   </article>
   `;

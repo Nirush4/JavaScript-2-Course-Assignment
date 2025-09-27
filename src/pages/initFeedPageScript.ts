@@ -1,64 +1,79 @@
-import { debounce } from '../utils/debounce';
-import { initLogoutBtn } from '../components/logoutBtn';
-import searchBar from '../components/searchBar';
+// src/pages/initFeedPageScript.ts
+type Root = Document | HTMLElement | null;
 
-export default function initFeedPageScripts() {
-  console.log('initFeedPageScripts running...');
-
-  // Select the main feed container (where profile + posts live)
-  const mainContainer = document.querySelector(
-    '.aside.grid.grid-rows-4.col-span-5'
-  ) as HTMLElement | null;
-
-  // Inject search bar + logout button row at the very top
-  if (mainContainer && !document.getElementById('feed-search-input')) {
-    mainContainer.insertAdjacentHTML('afterbegin', searchBar());
-
-    // ✅ attach logout logic to the relocated button
-    initLogoutBtn();
-  }
-
-  const searchInput = document.getElementById(
-    'feed-search-input'
-  ) as HTMLInputElement | null;
-
-  const feedGrid = document.querySelector(
-    '.w-full.mt-20.h-full.grid'
-  ) as HTMLElement | null;
-
-  if (!searchInput || !feedGrid) {
-    console.warn('Search bar or feed grid not ready yet.');
-    return;
-  }
-
-  // 🔎 Debounced filtering logic
-  const filterPosts = debounce(() => {
-    const query = searchInput.value.toLowerCase();
-    const posts = feedGrid.querySelectorAll<HTMLElement>(
-      "article[data-component='postCard']"
-    );
-
-    let matches = 0;
-    posts.forEach((post) => {
-      const title = post.querySelector('h2')?.textContent?.toLowerCase() || '';
-      if (title.includes(query)) {
-        post.style.display = '';
-        matches++;
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    // Show/hide "no results" message
-    let noResults = document.getElementById('no-results-message');
-    if (!noResults) {
-      noResults = document.createElement('p');
-      noResults.id = 'no-results-message';
-      noResults.textContent = 'No posts found.';
-      feedGrid.parentElement?.appendChild(noResults);
-    }
-    noResults.style.display = matches === 0 ? '' : 'none';
-  }, 300);
-
-  searchInput.addEventListener('input', filterPosts);
+function debounce<T extends (...a: any[]) => void>(fn: T, delay = 200) {
+	let t: number | undefined;
+	return (...args: Parameters<T>) => {
+		if (t) window.clearTimeout(t);
+		t = window.setTimeout(() => fn(...args), delay);
+	};
 }
+
+function pick<T extends Element>(root: Root, sel: string): T | null {
+	return (root ?? document).querySelector<T>(sel);
+}
+function pickAll<T extends Element>(root: Root, sel: string): T[] {
+	return Array.from((root ?? document).querySelectorAll<T>(sel));
+}
+
+/** Inicjalizacja searcha na /feed (filtrowanie front-only + ?q= w URL) */
+export function initFeedPageScripts(root?: HTMLElement) {
+	const search = pick<HTMLInputElement>(root ?? document, '[data-feed-search]');
+	const grid = pick<HTMLElement>(root ?? document, '[data-feed-grid]');
+	if (!search || !grid) return;
+
+	const cards = pickAll<HTMLElement>(grid, ':scope > *');
+
+	let noResults = (root ?? document).querySelector<HTMLParagraphElement>('#no-results-hint');
+	if (!noResults) {
+		noResults = document.createElement('p');
+		noResults.id = 'no-results-hint';
+		noResults.className = 'mt-6 text-center text-gray-400 hidden';
+		noResults.textContent = 'No results for your query.';
+		grid.parentElement?.appendChild(noResults);
+	}
+
+	const applyFilter = (raw: string) => {
+		const q = raw.trim().toLowerCase();
+		let shown = 0;
+		for (const card of cards) {
+			const txt = (card.textContent || '').toLowerCase();
+			const match = !q || txt.includes(q);
+			card.style.display = match ? '' : 'none';
+			if (match) shown++;
+		}
+		noResults?.classList.toggle('hidden', shown !== 0);
+	};
+
+	// Start z ?q=
+	const url = new URL(window.location.href);
+	const initialQ = (url.searchParams.get('q') ?? '').trim();
+	if (initialQ && !search.value) search.value = initialQ;
+	applyFilter(search.value);
+
+	const onType = debounce(() => {
+		applyFilter(search.value);
+		const u = new URL(window.location.href);
+		const v = search.value.trim();
+		if (v) u.searchParams.set('q', v);
+		else u.searchParams.delete('q');
+		window.history.replaceState({}, '', u.toString());
+	}, 200);
+
+	search.addEventListener('input', onType);
+	search.addEventListener('keydown', e => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			applyFilter(search.value);
+		}
+		if (e.key === 'Escape') {
+			(e.target as HTMLInputElement).value = '';
+			applyFilter('');
+			const u = new URL(window.location.href);
+			u.searchParams.delete('q');
+			window.history.replaceState({}, '', u.toString());
+		}
+	});
+}
+
+export default initFeedPageScripts;

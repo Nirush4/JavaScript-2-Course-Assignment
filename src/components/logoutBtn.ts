@@ -1,31 +1,28 @@
-import { renderRoute } from '../router';
 
-// ✅ Reusable logout button component
-export default function logoutBtn(): string {
-  return `
+import { logout } from '../router';
+
+
+export default function logoutBtn(id = 'logout-btn', label = 'Logout'): string {
+	return `
     <button
-      id="logout-btn"
+      id="${id}"
       type="button"
       class="rounded-xl bg-blue-600 px-4 py-2 text-white text-sm font-medium shadow-sm hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-200 transition"
+      aria-label="${label}"
     >
-      Log out
+      ${label}
     </button>
   `;
 }
 
-// ✅ Init function to attach logout logic
-export function initLogoutBtn() {
-  const btn = document.getElementById('logout-btn');
-  if (!btn) return;
 
-  btn.addEventListener('click', () => {
-    // Clear only auth-related storage
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('apiKey');
-    localStorage.removeItem('user');
+export function initLogoutBtn(id = 'logout-btn', root?: HTMLElement) {
+	const scope = root ?? document;
+	const btn = scope.querySelector<HTMLButtonElement>('#' + id);
+	if (!btn) return;
 
-    // Redirect to login
-    history.pushState({ path: '/' }, '', '/');
-    renderRoute('/');
-  });
+	btn.addEventListener('click', e => {
+		e.preventDefault();
+		logout();
+	});
 }
