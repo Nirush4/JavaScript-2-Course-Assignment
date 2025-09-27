@@ -80,7 +80,7 @@ export default function postCard(
     </div>
 
     <!-- Body: Title, Image, Body, Tags -->
-    <div class="px-4 py-2 flex-grow overflow-y-auto">
+    <div class="px-4 py-2 flex-grow overflow-y-hidden">
       <h2 class="text-lg font-bold text-gray-800 mb-2">${title}</h2>
 
       ${
