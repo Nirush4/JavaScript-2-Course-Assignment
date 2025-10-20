@@ -1,38 +1,38 @@
-import { API_URL } from '../../constants';
-import { getLocalItem, setLocalItem } from '../../utils/storage';
-import { ApiError } from '../error/error';
+import { API_URL } from "../../constants";
+import { getLocalItem, setLocalItem } from "../../utils/storage";
+import { ApiError } from "../error/error";
 
-type ApiClientOptions = Omit<RequestInit, 'body'> & {
+type ApiClientOptions = Omit<RequestInit, "body"> & {
   body?: BodyInit | Record<string, any> | null | undefined;
 };
 
 type Endpoint = string;
 
-const API_KEY_HEADER = 'X-Noroff-API-Key';
+const API_KEY_HEADER = "X-Noroff-API-Key";
 
 export function getToken(): string | null {
   const raw =
-    getLocalItem<string>('accessToken') ??
-    getLocalItem<string>('token') ??
+    getLocalItem<string>("accessToken") ??
+    getLocalItem<string>("token") ??
     null;
 
   if (!raw) return null;
-  if (typeof raw === 'string') return raw;
+  if (typeof raw === "string") return raw;
 
   try {
     const asObj =
-      typeof raw === 'object' ? raw : JSON.parse(String(raw ?? 'null'));
-    if (asObj && typeof asObj === 'object') {
-      if (typeof (asObj as any).accessToken === 'string')
+      typeof raw === "object" ? raw : JSON.parse(String(raw ?? "null"));
+    if (asObj && typeof asObj === "object") {
+      if (typeof (asObj as any).accessToken === "string")
         return (asObj as any).accessToken;
-      if (typeof (asObj as any).token === 'string') return (asObj as any).token;
+      if (typeof (asObj as any).token === "string") return (asObj as any).token;
     }
   } catch {}
   return null;
 }
 
 export function setToken(token: string) {
-  setLocalItem('accessToken', token);
+  setLocalItem("accessToken", token);
 }
 
 async function apiClient<T = unknown>(
@@ -43,54 +43,54 @@ async function apiClient<T = unknown>(
 
   const config: RequestInit = {
     method: body
-      ? customOptions.method ?? 'POST'
-      : customOptions.method ?? 'GET',
+      ? customOptions.method ?? "POST"
+      : customOptions.method ?? "GET",
     ...customOptions,
     headers: {
       ...(customOptions.headers || {}),
     },
   };
 
-  const apiKey = getLocalItem<string>('apiKey');
+  const apiKey = getLocalItem<string>("apiKey");
   const accessToken = getToken();
   if (apiKey)
     (config.headers as Record<string, string>)[API_KEY_HEADER] = apiKey;
   if (accessToken)
     (config.headers as Record<string, string>)[
-      'Authorization'
+      "Authorization"
     ] = `Bearer ${accessToken}`;
 
   if (body !== undefined && body !== null) {
     if (body instanceof FormData) {
       config.body = body;
-    } else if (typeof body === 'string' || body instanceof Blob) {
+    } else if (typeof body === "string" || body instanceof Blob) {
       config.body = body as BodyInit;
-      if (typeof body === 'string') {
-        (config.headers as Record<string, string>)['Content-Type'] =
-          (config.headers as Record<string, string>)['Content-Type'] ??
-          'application/json';
+      if (typeof body === "string") {
+        (config.headers as Record<string, string>)["Content-Type"] =
+          (config.headers as Record<string, string>)["Content-Type"] ??
+          "application/json";
       }
     } else {
-      (config.headers as Record<string, string>)['Content-Type'] =
-        (config.headers as Record<string, string>)['Content-Type'] ??
-        'application/json';
+      (config.headers as Record<string, string>)["Content-Type"] =
+        (config.headers as Record<string, string>)["Content-Type"] ??
+        "application/json";
       config.body = JSON.stringify(body);
     }
   }
 
-  const baseRaw = API_URL.replace(/\/+$/, '');
-  let path = endpoint.replace(/^\/+/, '');
+  const baseRaw = API_URL.replace(/\/+$/, "");
+  let path = endpoint.replace(/^\/+/, "");
 
-  if (baseRaw.endsWith('/social') && /^social\/?/i.test(path)) {
-    path = path.replace(/^social\/?/i, '');
+  if (baseRaw.endsWith("/social") && /^social\/?/i.test(path)) {
+    path = path.replace(/^social\/?/i, "");
   }
 
   const url = `${baseRaw}/${path}`;
   try {
     const response = await fetch(url, config);
-    const contentType = response.headers.get('content-type') ?? '';
+    const contentType = response.headers.get("content-type") ?? "";
 
-    if (response.status === 204 || !contentType.includes('application/json')) {
+    if (response.status === 204 || !contentType.includes("application/json")) {
       if (!response.ok)
         throw new ApiError(`HTTP Error: ${response.status}`, response.status);
       return null as T;
@@ -106,14 +106,14 @@ async function apiClient<T = unknown>(
 
     if (Array.isArray(data)) {
       return data.filter(
-        (item) => item?.media?.url !== '' && item?.url !== ''
+        (item) => item?.media?.url !== "" && item?.url !== ""
       ) as T;
     }
 
     return data as T;
   } catch (err) {
     if (err instanceof ApiError) throw err;
-    throw new Error('A network or client error occurred.');
+    throw new Error("A network or client error occurred.");
   }
 }
 
@@ -128,24 +128,24 @@ function buildQuery(params: Record<string, any>) {
       ([key, value]) =>
         `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
     )
-    .join('&');
+    .join("&");
 }
 
 export const get = <T = unknown>(endpoint: Endpoint): Promise<T> =>
-  apiClient<T>(endpoint, { method: 'GET' });
+  apiClient<T>(endpoint, { method: "GET" });
 
 export const post = <TBody extends Record<string, any>, TResp = unknown>(
   endpoint: Endpoint,
   body: TBody
-): Promise<TResp> => apiClient<TResp>(endpoint, { method: 'POST', body });
+): Promise<TResp> => apiClient<TResp>(endpoint, { method: "POST", body });
 
 export const put = <TBody extends Record<string, any>, TResp = unknown>(
   endpoint: Endpoint,
   body: TBody
-): Promise<TResp> => apiClient<TResp>(endpoint, { method: 'PUT', body });
+): Promise<TResp> => apiClient<TResp>(endpoint, { method: "PUT", body });
 
 export const del = <TResp = unknown>(endpoint: Endpoint): Promise<TResp> =>
-  apiClient<TResp>(endpoint, { method: 'DELETE' });
+  apiClient<TResp>(endpoint, { method: "DELETE" });
 
 interface PaginationParams {
   page?: number;
@@ -156,19 +156,20 @@ export const getPosts = <T = unknown>(
   paginationParams: PaginationParams = {}
 ): Promise<T> => {
   const query = buildQuery(paginationParams);
-  const endpoint = `/posts${query ? `?${query}` : ''}`;
+  const endpoint = `/posts${query ? `?${query}` : ""}`;
   return get<T>(endpoint);
 };
 
 export async function loginUser(data: { email: string; password: string }) {
-  const response = await fetch('https://v2.api.noroff.dev/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  // TODO: Use constant
+  const response = await fetch("https://v2.api.noroff.dev/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
   const json = await response.json();
   const token = json?.data?.accessToken || json?.accessToken;
-  if (typeof token === 'string') setToken(token);
+  if (typeof token === "string") setToken(token);
   return json;
 }
 
@@ -177,9 +178,9 @@ export async function registerUser(data: {
   email: string;
   password: string;
 }) {
-  const response = await fetch('https://v2.api.noroff.dev/auth/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
   return response.json();
@@ -189,9 +190,9 @@ export async function fetchApiKey(
   accessToken: string
 ): Promise<string | undefined> {
   const response = await fetch(
-    'https://v2.api.noroff.dev/auth/create-api-key',
+    "https://v2.api.noroff.dev/auth/create-api-key",
     {
-      method: 'POST',
+      method: "POST",
       headers: { Authorization: `Bearer ${accessToken}` },
     }
   );
@@ -202,11 +203,8 @@ export async function fetchApiKey(
   }
   const data = await response.json();
   const key = data?.data?.key;
-  if (typeof key === 'string') {
-    setLocalItem('apiKey', key);
+  if (typeof key === "string") {
+    setLocalItem("apiKey", key);
   }
   return key;
 }
-
-
-
