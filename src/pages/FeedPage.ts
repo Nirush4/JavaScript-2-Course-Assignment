@@ -1,54 +1,121 @@
-// src/pages/FeedPage.ts
+
 import postCard from '../components/posts/postCard';
 import { getAllPosts } from '../services/posts/posts';
 import type { Post } from '../types/noroff-types';
 import logoutBtn from '../components/logoutBtn';
 
-export default async function FeedPage(): Promise<string> {
-  let posts: Post[] = [];
-  try {
-    const result = await getAllPosts();
-    if (Array.isArray(result)) posts = result;
-    else if ((result as any)?.data && Array.isArray((result as any).data))
-      posts = (result as any).data;
-    else console.warn('Unexpected result from getAllPosts:', result);
-  } catch (error) {
-    console.error('Error loading posts:', error);
-  }
+const BATCH = 9; 
 
-  return `
+export default async function FeedPage(): Promise<string> {
+	let posts: Post[] = [];
+	try {
+		const result = await getAllPosts();
+		if (Array.isArray(result)) posts = result;
+		else if ((result as any)?.data && Array.isArray((result as any).data)) posts = (result as any).data;
+		else console.warn('Unexpected result from getAllPosts:', result);
+	} catch (error) {
+		console.error('Error loading posts:', error);
+	}
+
+
+	let original = posts; 
+	let active = [...original]; 
+	let visible = Math.min(BATCH, active.length);
+
+
+	const firstBatch = active.slice(0, visible);
+
+
+	setTimeout(() => {
+		const grid = document.getElementById('feedGrid');
+		const loadBtn = document.getElementById('loadMoreBtn') as HTMLButtonElement | null;
+		const shown = document.getElementById('shownCount');
+		const total = document.getElementById('totalCount');
+		const search = document.getElementById('feedSearch') as HTMLInputElement | null;
+
+		const updateCounter = () => {
+			if (shown) shown.textContent = String(Math.min(visible, active.length));
+			if (total) total.textContent = String(active.length);
+			if (loadBtn) {
+				if (visible >= active.length) loadBtn.classList.add('hidden');
+				else loadBtn.classList.remove('hidden');
+			}
+		};
+
+		const appendRange = (from: number, to: number) => {
+			if (!grid) return;
+			const frag = document.createDocumentFragment();
+			for (let i = from; i < to; i++) {
+				const wrap = document.createElement('div');
+				wrap.innerHTML = postCard(active[i], i);
+				const node = wrap.firstElementChild;
+				if (node) frag.appendChild(node);
+			}
+			grid.appendChild(frag);
+		};
+
+
+		if (loadBtn && grid) {
+			loadBtn.addEventListener('click', e => {
+				e.preventDefault();
+				const start = visible;
+				const end = Math.min(visible + BATCH, active.length);
+				appendRange(start, end);
+				visible = end;
+				updateCounter();
+			});
+		}
+
+
+		if (search && grid) {
+			search.addEventListener('input', () => {
+				const q = search.value.trim().toLowerCase();
+				active = q ? original.filter(p => JSON.stringify(p).toLowerCase().includes(q)) : [...original];
+
+				grid.innerHTML = active
+					.slice(0, BATCH)
+					.map((p, idx) => postCard(p, idx))
+					.join('');
+				visible = Math.min(BATCH, active.length);
+				updateCounter();
+			});
+		}
+
+
+		updateCounter();
+	}, 0);
+
+
+	return `
    <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
       <!-- MOBILE NAV (bottom) -->
-      <div class="aside fixed bottom-0 right-0 left-0 z-30 flex justify-evenly items-center gap-5 h-15 w-full border-r-1 bg-blue-950 border-gray-300 bg-bg-light lg:hidden">
-        <a href="/feed" class="flex items-center w-12 h-12 pl-2" title="Home / Feed">
-          <img src="/logo.png" alt="Logo">
+      <div class="aside fixed bottom-0 left-0 right-0 z-30 flex justify-evenly items-center gap-5
+                  h-16 w-full bg-blue-950 border-t border-gray-700 lg:hidden">
+        <a href="/feed" class="flex items-center justify-center h-16 w-12" title="Home / Feed">
+          <img src="/logo.png" alt="Logo" class="h-6 w-6">
         </a>
-        <a href="/feed" class="flex items-center hover:text-darkOrange" title="Feed">
+        <a href="/feed" class="flex items-center justify-center h-16 w-12 hover:text-darkOrange" title="Feed">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-house-user"></i>
-          <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <a href="/profile" class="flex items-center hover:text-darkOrange" title="Profile">
+        <a href="/profile" class="flex items-center justify-center h-16 w-12 hover:text-darkOrange" title="Profile">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-user"></i>
-          <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <a href="/create" class="flex items-center hover:text-darkOrange" title="Create">
+        <a href="/create" class="flex items-center justify-center h-16 w-12 hover:text-darkOrange" title="Create">
           <i class="text-xl text-gray-200 cursor-pointer fa fa-camera"></i>
-          <span class="text-xl cursor-pointer ps-4"></span>
         </a>
-        <a href="/more" class="flex items-center hover:text-darkOrange" title="More">
+        <a href="/more" class="flex items-center justify-center h-16 w-12 hover:text-darkOrange" title="More">
           <i class="text-xl text-gray-200 cursor-pointer fa-solid fa-bars"></i>
-          <span class="text-xl cursor-pointer ps-4"></span>
         </a>
 
         <!-- MOBILE LOGOUT BTN -->
-        <div class="flex items-center">
+        <div class="flex items-center h-16">
           ${logoutBtn('logout-mobile', 'Logout')}
         </div>
       </div>
 
       <!-- DESKTOP NAV (left) -->
-      <div class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r-1 border-gray-300 min-h-dvh bg-blue-1000 text-white">
+      <div class="aside hidden lg:flex flex-col gap-15 h-full w-full border-r border-gray-300 min-h-dvh bg-blue-1000 text-white">
         <a href="/feed" class="flex items-center h-20 py-20 pl-10 w-55 shadow-white" title="Home / Feed">
           <img src="/logo.png" alt="Logo" class="shadow-white">
         </a>
@@ -79,7 +146,7 @@ export default async function FeedPage(): Promise<string> {
       <div class="aside grid grid-rows-4 col-span-5 h-dvh w-full px-5 overflow-y-scroll bg-bg place-items-start s:pt-10 s:px-10 lg:col-span-4 lg:px-0">
         <div class="flex flex-col items-center mt-10 top-container md:mt-20">
 
-          <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b-1 border-gray-600 s:gap-10 md:pb-12">
+          <div class="top flex justify-center gap-5 pb-5 max-w-3xl border-b border-gray-600 s:gap-10 md:pb-12">
             <div class="text-center">
               <div class="mx-auto overflow-hidden border-2 border-blue-300 rounded-full w-25 h-25 hover:border-text-blue-500 s:border-4 s:w-30 s:h-30 md:w-40 md:h-40">
                 <img id="profile-img" src="/profile.avif" alt="Profile Picture" class="object-cover w-full h-full" />
@@ -132,12 +199,28 @@ export default async function FeedPage(): Promise<string> {
               autocomplete="off" />
           </div>
 
-          <!-- GRID 1/2/3 columns -->
+          <!-- GRID -->
           <div
             data-feed-grid
             id="feedGrid"
             class="w-full mt-6 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 md:px-10 items-start justify-items-stretch">
-            ${posts.map((post, index) => postCard(post, index)).join('')}
+            ${firstBatch.map((post, index) => postCard(post, index)).join('')}
+          </div>
+
+          <!-- LOAD MORE + COUNTER -->
+          <div class="w-full px-5 md:px-10 m-20 ">
+            <div class="mt-8 md:mt-10 flex items-center justify-center">
+              <button id="loadMoreBtn"
+                class="px-5 py-2 rounded-lg bg-white/10 text-gray-200 hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed ${
+									active.length <= visible ? 'hidden' : ''
+								}">
+                Load more
+              </button>
+            </div>
+            <p class="mt-3 text-center text-sm text-gray-400">
+              Showing <span id="shownCount" class="text-gray-200">${visible}</span> of
+              <span id="totalCount" class="text-gray-200">${active.length}</span> posts
+            </p>
           </div>
 
         </div>
