@@ -10,6 +10,8 @@ type Endpoint = string;
 
 const API_KEY_HEADER = 'X-Noroff-API-Key';
 
+/* ------------------------- TOKEN HELPERS ------------------------- */
+
 export function getToken(): string | null {
   const raw =
     getLocalItem<string>('accessToken') ??
@@ -35,7 +37,9 @@ export function setToken(token: string) {
   setLocalItem('accessToken', token);
 }
 
-async function apiClient<T = unknown>(
+/* ------------------------- CORE CLIENT ------------------------- */
+
+export async function apiClient<T = unknown>(
   endpoint: string,
   options: ApiClientOptions = {}
 ): Promise<T> {
@@ -60,6 +64,7 @@ async function apiClient<T = unknown>(
       'Authorization'
     ] = `Bearer ${accessToken}`;
 
+  // Handle body payload
   if (body !== undefined && body !== null) {
     if (body instanceof FormData) {
       config.body = body;
@@ -78,14 +83,17 @@ async function apiClient<T = unknown>(
     }
   }
 
+  // Ensure clean URL
   const baseRaw = API_URL.replace(/\/+$/, '');
   let path = endpoint.replace(/^\/+/, '');
 
+  // remove double /social prefix if passed accidentally
   if (baseRaw.endsWith('/social') && /^social\/?/i.test(path)) {
     path = path.replace(/^social\/?/i, '');
   }
 
   const url = `${baseRaw}/${path}`;
+
   try {
     const response = await fetch(url, config);
     const contentType = response.headers.get('content-type') ?? '';
@@ -97,13 +105,13 @@ async function apiClient<T = unknown>(
     }
 
     const data = await response.json();
-
     if (!response.ok) {
       const message =
         data?.errors?.[0]?.message || `HTTP Error: ${response.status}`;
       throw new ApiError(message, response.status);
     }
 
+    // Filter out invalid media
     if (Array.isArray(data)) {
       return data.filter(
         (item) => item?.media?.url !== '' && item?.url !== ''
@@ -116,6 +124,8 @@ async function apiClient<T = unknown>(
     throw new Error('A network or client error occurred.');
   }
 }
+
+/* ------------------------- API HELPERS ------------------------- */
 
 export function api<T = unknown>(endpoint: string, options?: ApiClientOptions) {
   return apiClient<T>(endpoint, options);
@@ -147,11 +157,14 @@ export const put = <TBody extends Record<string, any>, TResp = unknown>(
 export const del = <TResp = unknown>(endpoint: Endpoint): Promise<TResp> =>
   apiClient<TResp>(endpoint, { method: 'DELETE' });
 
+/* ------------------------- POSTS ------------------------- */
+
 interface PaginationParams {
   page?: number;
   limit?: number;
   [key: string]: any;
 }
+
 export const getPosts = <T = unknown>(
   paginationParams: PaginationParams = {}
 ): Promise<T> => {
@@ -159,6 +172,31 @@ export const getPosts = <T = unknown>(
   const endpoint = `/posts${query ? `?${query}` : ''}`;
   return get<T>(endpoint);
 };
+
+// Create a new post
+export const createPost = <TResp = unknown>(
+  postData: Record<string, any>
+): Promise<TResp> => post('/posts', postData);
+
+// Update an existing post by ID
+export const updatePost = <TResp = unknown>(
+  id: string,
+  postData: Record<string, any>
+): Promise<TResp> => put(`/posts/${id}`, postData);
+
+// Delete a post by ID
+export const deletePost = <TResp = unknown>(id: string): Promise<TResp> =>
+  del(`/posts/${id}`);
+
+/* ------------------------- COMMENTS ------------------------- */
+
+// ✅ FIXED: correct endpoint for adding a comment
+export const addComment = <TResp = unknown>(
+  postId: string,
+  commentData: Record<string, any>
+): Promise<TResp> => post(`/posts/${postId}/comment`, commentData);
+
+/* ------------------------- AUTH ------------------------- */
 
 export async function loginUser(data: { email: string; password: string }) {
   const response = await fetch('https://v2.api.noroff.dev/auth/login', {
@@ -185,6 +223,8 @@ export async function registerUser(data: {
   return response.json();
 }
 
+/* ------------------------- API KEY ------------------------- */
+
 export async function fetchApiKey(
   accessToken: string
 ): Promise<string | undefined> {
@@ -207,6 +247,3 @@ export async function fetchApiKey(
   }
   return key;
 }
-
-
-

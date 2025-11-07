@@ -1,13 +1,12 @@
-
+// src/components/logoutBtn.ts
 import { logout } from '../router';
 
-
 export default function logoutBtn(id = 'logout-btn', label = 'Logout'): string {
-	return `
+  return `
     <button
       id="${id}"
       type="button"
-      class="rounded-xl bg-blue-600 px-4 py-2 text-white text-sm font-medium shadow-sm hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-200 transition"
+      class="px-4 py-1.5 rounded-md bg-red-600/90 hover:bg-red-500 text-white font-medium text-sm transition-colors duration-200 cursor-pointer md:text-lg"
       aria-label="${label}"
     >
       ${label}
@@ -15,14 +14,18 @@ export default function logoutBtn(id = 'logout-btn', label = 'Logout'): string {
   `;
 }
 
-
 export function initLogoutBtn(id = 'logout-btn', root?: HTMLElement) {
-	const scope = root ?? document;
-	const btn = scope.querySelector<HTMLButtonElement>('#' + id);
-	if (!btn) return;
+  const scope = root ?? document;
+  const btn = scope.querySelector<HTMLButtonElement>('#' + id);
+  if (!btn) return;
 
-	btn.addEventListener('click', e => {
-		e.preventDefault();
-		logout();
-	});
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    console.log('🚪 Logging out...');
+    await logout(); // ✅ make sure we wait until logout finishes
+
+    // Debug log — should print null
+    console.log('🔑 Token after logout:', localStorage.getItem('accessToken'));
+  });
 }

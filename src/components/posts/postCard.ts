@@ -1,4 +1,3 @@
-// src/components/posts/postCard.ts
 import type { Post } from '../../types/noroff-types';
 import { getToken } from '../../services/api/client';
 
@@ -49,23 +48,42 @@ export default function postCard(p: Post, _index?: number) {
 
   return `
   <article
-    class="post-card h-full flex flex-col rounded-xl bg-white/5 shadow p-4 ring-1 ring-white/10 backdrop-blur"
+class="post-card h-full flex flex-col rounded-xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur-md shadow-md hover:shadow-lg hover:shadow-blue-900/30 hover:ring-blue-600/50 transition-all duration-300"
     data-post data-post-id="${p.id}">
 
-    <header class="flex items-center gap-3 mb-3">
+    <header class="flex items-center justify-between gap-3 mb-3">
       <img src="${safe(
-        p.author?.avatar,
+        typeof p.author?.avatar === 'object' && p.author.avatar !== null
+          ? (p.author.avatar as { url?: string }).url
+          : null,
         AVATAR_48
-      )}" alt="" class="size-10 rounded-full object-cover" onerror="this.src='${AVATAR_48}'"/>
+      )}" alt="${safe(
+    p.author?.avatar?.alt,
+    'User avatar'
+  )}" class="size-10 rounded-full object-cover" onerror="this.src='${AVATAR_48}'" />
       <div>
         <div class="font-semibold clamp-1">${safe(
           p.author?.name,
           'Unknown'
         )}</div>
-        <div class="text-xs opacity-70">${new Date(
+        <div class=" text-xs md:text-s opacity-70">${new Date(
           p.created
         ).toLocaleString()}</div>
       </div>
+
+     ${
+       ME && p.author?.name !== ME && getToken()
+         ? `<button
+      type="button"
+      class="follow-btn px-3 py-1 rounded-lg bg-green-500/70 hover:bg-green-800 text-white text-md transition cursor-pointer"
+      data-follow-btn
+      data-username="${p.author?.name}"
+      data-followed="false"
+    >
+      Follow
+    </button>`
+         : ''
+     }
     </header>
 
     ${
@@ -89,24 +107,23 @@ export default function postCard(p: Post, _index?: number) {
     }
 
     <div class="mt-auto">
-      <div class="flex items-center gap-6 text-sm mb-3">
+      <div class="flex items-center justify-between gap-6 text-sm mb-3">
         <button
           type="button"
-          class="like-btn inline-flex items-center gap-1 px-3 py-1 rounded-full hover:ring-1 hover:ring-white/30"
+          class="like-btn inline-flex md:text-lg items-center gap-1 px-3 py-1 rounded-full hover:ring-1 hover:ring-white/30 cursor-pointer"
           data-like-btn data-post-id="${p.id}" data-symbol="❤️" data-liked="0"
           aria-pressed="false" aria-label="Like">
           ❤️ <span data-like-count>${likeCounter}</span>
         </button>
 
-        <button type="button" class="inline-flex items-center gap-1 opacity-80"
+        <button type="button" class="inline-flex items-center gap-1 opacity-80 cursor-pointer"
                 data-comments-toggle data-post-id="${p.id}">
           💬 <span>${commentCounter}</span> <span class="underline ml-1">Show</span>
         </button>
       </div>
 
-      <!-- link do podglądu posta -->
       <a href="/post/${p.id}" data-link
-         class="inline-block mb-3 px-3 py-1 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 transition">
+         class="inline-block mb-3 px-3 py-1 rounded-md bg-blue-600 text-white text-sm md:text-base hover:bg-blue-700 transition">
         View post →
       </a>
 
@@ -114,7 +131,7 @@ export default function postCard(p: Post, _index?: number) {
         p.id
       }" class="flex flex-wrap items-center gap-2">
         <input name="comment" placeholder="Write a comment…" class="flex-1 px-3 py-2 rounded-lg bg-white/10 ring-1 ring-white/15 focus:outline-none" autocomplete="off" />
-        <button type="submit" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20">Send</button>
+        <button type="submit" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 cursor-pointer">Send</button>
       </form>
 
       <ul data-comment-list class="space-y-3 hidden mt-3">
@@ -129,9 +146,12 @@ export default function postCard(p: Post, _index?: number) {
             }" data-owner="${c.owner}">
               <div class="flex items-start gap-3">
                 <img src="${safe(
-                  c.author?.avatar,
+                  c.author?.avatar?.url,
                   AVATAR_32
-                )}" class="size-8 rounded-full" onerror="this.src='${AVATAR_32}'" alt="" />
+                )}" alt="${safe(
+              c.author?.avatar?.alt,
+              'User avatar'
+            )}" class="size-8 rounded-full object-cover" onerror="this.src='${AVATAR_32}'" />
                 <div class="flex-1">
                   <div class="text-sm">
                     <span class="font-semibold">@${c.owner}</span>

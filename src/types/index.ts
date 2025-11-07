@@ -101,6 +101,39 @@ export interface RegisterResponse {
   id: number;
 }
 
+export type ProfileResponse = {
+  name: string;
+  avatar?: { url?: string; alt?: string } | string;
+  bio?: string;
+  _count?: { followers?: number; following?: number; posts?: number };
+  followers?: any[];
+  following?: any[];
+};
+
+export type PostItem = {
+  id: number;
+  title: string;
+  body?: string;
+  tags?: string[];
+  media?:
+    | { url?: string; alt?: string }
+    | Array<{ url?: string; alt?: string }>;
+  author?: { name?: string };
+  created?: string;
+  updated?: string;
+};
+
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+  bio?: string;
+  avatar?: {
+    url: string;
+    alt?: string;
+  };
+}
+
 // ## Form handling interfaces
 
 export interface FormElements {
