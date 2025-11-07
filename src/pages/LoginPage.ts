@@ -1,7 +1,6 @@
 import { renderRoute } from '../router';
 import { loginUser, fetchApiKey } from '../services/api/client.js';
 import { setLocalItem } from '../utils/storage.js';
-import { login } from '../router'; // adjust path as needed
 
 import type {
   LoginCredentials,

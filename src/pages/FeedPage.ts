@@ -92,7 +92,7 @@ async function safeGetProfile(username: string) {
 }
 
 /* ---------------------- FEED PAGE ---------------------- */
-export default async function FeedPage(p0: string | number): Promise<string> {
+export default async function FeedPage(): Promise<string> {
   let posts: Post[] = [];
   let profile: any = {};
 
