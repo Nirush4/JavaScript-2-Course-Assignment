@@ -3,9 +3,27 @@ import { getToken } from './client';
 const API_URL = 'https://v2.api.noroff.dev/social';
 
 /**
- * Fetch a profile including the list of followed users.
+ * Fetch a profile including the list of followed users, with caching.
  */
 export async function getProfileWithFollowing(username: string) {
+  const cacheKey = `profile_${username}`;
+  const cached = localStorage.getItem(cacheKey);
+
+  // ✅ Use cached profile if it's not older than 5 minutes
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      const cacheAge = Date.now() - parsed.timestamp;
+      if (cacheAge < 5 * 60 * 1000) {
+        // 5 minutes
+        console.log(`🟢 Using cached profile for ${username}`);
+        return parsed.data;
+      }
+    } catch {
+      console.warn('⚠️ Invalid cache data, refetching...');
+    }
+  }
+
   const token = localStorage.getItem('accessToken') || getToken();
   const key = localStorage.getItem('apiKey');
   if (!token) {
@@ -14,6 +32,7 @@ export async function getProfileWithFollowing(username: string) {
   }
 
   try {
+    console.log(`🌐 Fetching fresh profile for ${username}...`);
     const res = await fetch(`${API_URL}/profiles/${username}?_following=true`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,6 +47,16 @@ export async function getProfileWithFollowing(username: string) {
     }
 
     const json = await res.json();
+
+    // ✅ Save to cache
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        data: json.data,
+        timestamp: Date.now(),
+      })
+    );
+
     return json.data;
   } catch (err) {
     console.error('Error fetching profile with following:', err);
@@ -63,6 +92,8 @@ export async function followUser(username: string): Promise<boolean> {
     }
 
     console.log(`✅ Successfully followed ${username}`);
+    // Clear cached profile after follow to refresh next time
+    localStorage.removeItem(`profile_${username}`);
     return true;
   } catch (err) {
     console.error('Follow request failed:', err);
@@ -70,6 +101,9 @@ export async function followUser(username: string): Promise<boolean> {
   }
 }
 
+/**
+ * Unfollow a user (PUT /unfollow)
+ */
 export async function unfollowUser(username: string): Promise<boolean> {
   const token = localStorage.getItem('accessToken') || getToken();
   const key = localStorage.getItem('apiKey');
@@ -78,8 +112,10 @@ export async function unfollowUser(username: string): Promise<boolean> {
     console.warn('⚠️ No token found — cannot unfollow user');
     return false;
   }
+
   try {
-    const res = await fetch(`${API_URL}/profiles/${username}/Unfollow`, {
+    // ✅ Ensure correct lowercase endpoint
+    const res = await fetch(`${API_URL}/profiles/${username}/unfollow`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -94,6 +130,8 @@ export async function unfollowUser(username: string): Promise<boolean> {
     }
 
     console.log(`✅ Successfully unfollowed ${username}`);
+    // Clear cached profile after unfollow to refresh next time
+    localStorage.removeItem(`profile_${username}`);
     return true;
   } catch (err) {
     console.error('Unfollow request failed:', err);
