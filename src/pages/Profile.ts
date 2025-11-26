@@ -28,7 +28,7 @@ function getUsername(): string | null {
   return null;
 }
 
-function escHtml(v: any) {
+export function escHtml(v: any) {
   return String(v ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -63,11 +63,11 @@ export default async function ProfilePage(): Promise<string> {
   const username = getUsername();
   if (!username) {
     return `
-      <main class="min-h-dvh bg-gray-900 text-gray-100 p-8">
+         <main class="min-h-dvh bg-gray-900 text-gray-100 p-8">
         <h1 class="text-3xl font-bold mb-6">Your Profile</h1>
         <p class="opacity-80">
-          Brak nazwy użytkownika. Zaloguj się ponownie lub zapisz:
-          <code>localStorage.setItem('name', JSON.stringify('TwojaNazwa'))</code>
+          No username found. Please log in again or set it manually:
+          <code>localStorage.setItem('name', JSON.stringify('YourName'))</code>
         </p>
         <a class="inline-block mt-6 underline" href="/login">→ Go to Login</a>
       </main>
@@ -82,7 +82,7 @@ export default async function ProfilePage(): Promise<string> {
     );
   } catch (err: any) {
     return `
-      <main class="min-h-dvh bg-gray-900 text-gray-100 p-8">
+    <main class="min-h-dvh bg-gray-900 text-gray-100 p-8">
         <h1 class="text-3xl font-bold mb-6">Your Profile</h1>
         <div class="p-4 rounded bg-red-900/30 border border-red-700">
           <div class="font-semibold mb-1">Error loading profile</div>
@@ -90,184 +90,244 @@ export default async function ProfilePage(): Promise<string> {
             err?.message ?? String(err)
           )}</code>
         </div>
-        <p class="mt-4 opacity-80">Sprawdź token / API key.</p>
+        <p class="mt-4 opacity-80">Check your token / API key.</p>
       </main>
     `;
   }
-
   // 2) Post
   let posts: PostItem[] = [];
   try {
     const res = await api<any>(
       `/profiles/${encodeURIComponent(
         username
-      )}/posts?limit=50&sort=created&sortOrder=desc`
+      )}/posts?sort=created&sortOrder=desc`
     );
     posts = Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : [];
   } catch {
     posts = [];
   }
 
-  const displayName = profile?.name ?? username;
+  const data = (profile as any)?.data ?? {};
+
   const avatar =
-    (typeof profile?.avatar === 'string'
-      ? profile.avatar
-      : profile?.avatar?.url) || '/profile.avif';
-  const followers =
-    profile?._count?.followers ?? profile?.followers?.length ?? 0;
-  const following =
-    profile?._count?.following ?? profile?.following?.length ?? 0;
-  const postsCount = posts.length;
-  const bio = profile?.bio || '';
+    (typeof data?.avatar === 'string' ? data.avatar : data?.avatar?.url) ||
+    './profile-avatar.png';
+
+  const displayName = data?.name || username || 'Anonymous';
+  const bio = data?.bio || 'Welcome to my page!';
+
+  const followers = data?._count?.followers ?? 0;
+  const following = data?._count?.following ?? 0;
+  const postsCount = data?._count?.posts ?? posts.length ?? 0;
 
   // 3) HTML
   const html = `
-    <main class="min-h-dvh bg-gray-900 text-gray-100 px-4 sm:px-6 py-6">
-      <!-- Top card (centered) -->
-      <header class="max-w-3xl mx-auto rounded-2xl border border-gray-800 bg-gray-850/60 p-6 shadow mb-8">
-        <div class="flex flex-col items-center text-center gap-4">
-          <img src="${escHtml(avatar)}" alt="Avatar"
-               class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border border-gray-700"/>
-          <div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">${escHtml(
-              displayName
-            )}</h1>
-            <p class="opacity-80 text-sm sm:text-base mt-2">${
-              bio ? escHtml(bio) : '—'
-            }</p>
-            <div class="mt-3 text-xs sm:text-sm opacity-80 flex items-center justify-center gap-3">
-              <span>Followers: <b>${followers}</b></span>
-              <span>Following: <b>${following}</b></span>
-              <span>Posts: <b>${postsCount}</b></span>
-            </div>
+   <main class="relative min-h-dvh bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-gray-100">
+  
+  <!-- 🔹 Sticky Header -->
+  <header class="sticky top-0 z-50 w-full bg-gray-900/70 backdrop-blur-md border-b border-gray-800 shadow-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Left: Nav -->
+      <nav class="flex items-center gap-6">
+        <a href="/feed" 
+           class="text-gray-300 hover:text-blue-400 md:text-lg font-medium transition-colors duration-200">
+          🏠 Feed
+        </a>
+        <a href="/profile"
+           class="text-gray-300 hover:text-blue-400 md:text-lg font-medium transition-colors duration-200">
+          👤 Profile
+        </a>
+      </nav>
 
-            <!-- New Post under stats -->
-            <div class="mt-4">
-              <button id="toggle-create"
-                      class="px-4 py-2 rounded-lg border border-blue-500/40 text-blue-100
-                             hover:bg-blue-600/20 hover:border-blue-500 transition">
-                New Post
-              </button>
-            </div>
+      <!-- Center: Profile Name -->
+      <h1 class="text-lg sm:text-xl font-semibold text-blue-300 tracking-tight">
+        ${escHtml(displayName)}
+      </h1>
+
+      <!-- Right: Logout -->
+      <button id="logout-btn"
+              class="px-4 py-1.5 rounded-md bg-red-600/90 hover:bg-red-500 text-white font-medium text-sm transition-colors duration-200 cursor-pointer md:text-lg">
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- 🔹 Profile Header Card -->
+
+  <section class="px-4 sm:px-6 py-10">
+    <header class="max-w-3xl mx-auto mt-6 rounded-2xl border border-gray-800 bg-gray-900/60 backdrop-blur-md p-8 sm:p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+      <div class="flex flex-col items-center text-center gap-5">
+        <div class="relative">
+          <img src="${escHtml(avatar)}" alt="${escHtml(
+    typeof profile?.avatar === 'string'
+      ? 'Avatar'
+      : profile?.avatar?.alt ?? 'Avatar'
+  )}"
+               class="w-25 h-25 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-gray-800 shadow-lg hover:scale-105 transition-transform duration-300"/>
+        </div>
+
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-300">
+            ${escHtml(displayName)}
+          </h2>
+          <p class="opacity-80 text-sm sm:text-base mt-3 max-w-md mx-auto leading-relaxed">
+            ${bio ? escHtml(bio) : '—'}
+          </p>
+
+          <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-300">
+            <span class="cursor-pointer text-md lg:text-lg bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-700/60 transition"><span class="text-blue-400 text-lg">👥</span> Followers: <b>${followers}</b></span>
+            <span class="cursor-pointer text-md lg:text-lg bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-700/60 transition"><span class="text-green-400 text-lg">⭐</span> Following: <b>${following}</b></span>
+            <span class="cursor-pointer text-md lg:text-lg bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-700/60 transition"><span class="text-yellow-400 text-lg">📝</span> Posts: <b>${postsCount}</b></span>
+          </div>
+
+          <div class="mt-6">
+            <button id="toggle-create"
+                    class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600
+                           text-white font-medium shadow hover:from-blue-500 hover:to-indigo-500 
+                           transition-all duration-200 cursor-pointer">
+              + New Post
+            </button>
           </div>
         </div>
-      </header>
-
-      <!-- Editor Card -->
-      <section id="editor" class="max-w-2xl mx-auto hidden">
-        <div class="rounded-xl border border-gray-800 bg-gray-850/60 backdrop-blur p-4 sm:p-5 shadow-lg">
-          <h2 id="editor-title" class="text-lg sm:text-xl font-semibold mb-3">Create a new post</h2>
-          <form id="post-form" class="space-y-4">
-            <input type="hidden" id="postId" value="">
-            <div>
-              <label class="block mb-1 text-sm">Title <span class="text-red-400">*</span></label>
-              <input id="title" required
-                     class="w-full p-2 rounded border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500" />
-            </div>
-            <div>
-              <label class="block mb-1 text-sm">Body</label>
-              <textarea id="body" rows="6"
-                        class="w-full p-2 rounded border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500"></textarea>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block mb-1 text-sm">Image URL</label>
-                <input id="imgUrl"
-                       class="w-full p-2 rounded border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500"
-                       placeholder="https://..." />
-              </div>
-              <div>
-                <label class="block mb-1 text-sm">Image ALT</label>
-                <input id="imgAlt"
-                       class="w-full p-2 rounded border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500" />
-              </div>
-            </div>
-            <div>
-              <label class="block mb-1 text-sm">Tags (comma separated)</label>
-              <input id="tags"
-                     class="w-full p-2 rounded border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500"
-                     placeholder="news, cats" />
-            </div>
-            <div class="flex items-center gap-3 pt-1">
-              <button type="submit" id="save-btn" class="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-500">Create</button>
-              <button type="button" id="cancel-edit" class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600">Cancel</button>
-              <button type="button" id="reset-edit" class="px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700">Reset</button>
-              <span id="msg" class="text-sm opacity-80 ml-1"></span>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <!-- Posts -->
-      <section class="max-w-6xl mx-auto mt-8">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-800 border border-gray-700">🗂️</span>
-          <h2 class="text-lg sm:text-xl font-semibold">Your posts</h2>
-        </div>
-        <div id="posts" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          ${
-            posts.length
-              ? posts
-                  .map((p) => {
-                    const media = Array.isArray(p.media)
-                      ? p.media?.[0]?.url
-                      : (p.media as any)?.url;
-                    const own = p.author?.name === profile.name;
-                    const created = p.created
-                      ? new Date(p.created).toLocaleString()
-                      : '';
-                    const tags =
-                      Array.isArray(p.tags) && p.tags.length
-                        ? `<div class="flex flex-wrap gap-1 mt-2">${p.tags
-                            .slice(0, 5)
-                            .map(
-                              (t) =>
-                                `<span class="text-xs px-2 py-0.5 rounded-full bg-gray-800 border border-gray-700">${escHtml(
-                                  t
-                                )}</span>`
-                            )
-                            .join('')}</div>`
-                        : '';
-                    return `
-                    <article class="rounded-xl bg-gray-850/60 border border-gray-800 p-4 hover:border-gray-700 transition shadow">
-                      ${
-                        media
-                          ? `<img class="w-full h-44 object-cover rounded-md mb-3 border border-gray-800" src="${escHtml(
-                              media
-                            )}" alt="">`
-                          : ''
-                      }
-                      <h3 class="font-semibold mb-1">${escHtml(p.title)}</h3>
-                      <div class="text-xs opacity-60 mb-2">${escHtml(
-                        created
-                      )}</div>
-                      <div class="text-sm opacity-90 line-clamp-3">${escHtml(
-                        p.body ?? ''
-                      )}</div>
-                      ${tags}
-                      ${
-                        own
-                          ? `<div class="flex gap-2 mt-3">
-                               <button class="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 js-edit" data-id="${p.id}">Edit</button>
-                               <button class="px-3 py-1 rounded bg-red-600 hover:bg-red-500 js-delete" data-id="${p.id}">Delete</button>
-                             </div>`
-                          : ''
-                      }
-                    </article>
-                  `;
-                  })
-                  .join('')
-              : `<p class="opacity-70">No posts yet.</p>`
-          }
-        </div>
-      </section>
-
-      <div class="max-w-6xl mx-auto"><a 
-  href="/feed" 
-  class="inline-block mt-10 underline text-gray-400 hover:text-gray-200 transition"> 
-  <a class="inline-block mt-10 underline hover:text-blue-500 text-lg"  href="/feed">← Back to Feed</a>
       </div>
-    </main>
+    </header>
+
+    <!-- 🔹 Post Editor -->
+    <section id="editor" class="max-w-2xl mx-auto mt-10 hidden">
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/70 backdrop-blur-md p-6 sm:p-8 shadow-2xl">
+        <h2 id="editor-title" class="text-xl font-semibold mb-4 text-blue-300">Create a new post</h2>
+        <form id="post-form" class="space-y-4">
+          <input type="hidden" id="postId" value="">
+
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-300">Title <span class="text-red-400">*</span></label>
+            <input id="title" required
+                   class="w-full p-2.5 rounded-lg border border-gray-700 bg-gray-800 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" />
+          </div>
+
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-300">Body</label>
+            <textarea id="body" rows="6"
+                      class="w-full p-2.5 rounded-lg border border-gray-700 bg-gray-800 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-300">Image URL</label>
+              <input id="imgUrl"
+                     class="w-full p-2.5 rounded-lg border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                     placeholder="https://..." />
+            </div>
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-300">Image ALT</label>
+              <input id="imgAlt"
+                     class="w-full p-2.5 rounded-lg border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-300">Tags (comma separated)</label>
+            <input id="tags"
+                   class="w-full p-2.5 rounded-lg border border-gray-700 bg-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                   placeholder="news, cats" />
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <button type="submit" id="save-btn"
+                    class="px-5 py-2 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium hover:from-green-500 hover:to-emerald-500 transition-all cursor-pointer">
+              Create
+            </button>
+            <button type="button" id="cancel-edit"
+                    class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all cursor-pointer">
+              Cancel
+            </button>
+            <button type="button" id="reset-edit"
+                    class="px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 hover:bg-gray-700 transition-all cursor-pointer">
+              Reset
+            </button>
+            <span id="msg" class="text-sm opacity-80 ml-2 text-yellow-400"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 🔹 Posts -->
+    <section class="max-w-6xl mx-auto mt-12">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-gray-800 border border-gray-700 text-blue-400">🗂️</span>
+        <h2 class="text-xl font-semibold text-gray-200">Your Posts</h2>
+      </div>
+
+      <div id="posts" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        ${
+          posts.length
+            ? posts
+                .map((p) => {
+                  const media = Array.isArray(p.media)
+                    ? p.media?.[0]?.url
+                    : (p.media as any)?.url;
+                  const own = p.author?.name === profile.name;
+                  const created = p.created
+                    ? new Date(p.created).toLocaleString()
+                    : '';
+                  const tags =
+                    Array.isArray(p.tags) && p.tags.length
+                      ? `<div class="flex flex-wrap gap-1 mt-2">${p.tags
+                          .slice(0, 5)
+                          .map(
+                            (t) =>
+                              `<span class="text-xs px-2 py-0.5 rounded-full bg-gray-800 border border-gray-700 text-gray-300">${escHtml(
+                                t
+                              )}</span>`
+                          )
+                          .join('')}</div>`
+                      : '';
+                  return `
+                  <article class="rounded-2xl bg-gray-900/60 border border-gray-800 p-5 shadow-lg hover:shadow-blue-900/30 hover:border-blue-600/50 transition-all duration-300">
+                    ${
+                      media
+                        ? `<img class="w-full h-48 object-cover rounded-lg mb-4 border border-gray-800" src="${escHtml(
+                            media
+                          )}" alt="">`
+                        : ''
+                    }
+                    <h3 class="font-semibold text-lg mb-1 text-gray-100">${escHtml(
+                      p.title
+                    )}</h3>
+                    <div class="text-xs text-gray-400 mb-2">${escHtml(
+                      created
+                    )}</div>
+                    <div class="text-sm text-gray-300 line-clamp-3">${escHtml(
+                      p.body ?? ''
+                    )}</div>
+                    ${tags}
+                    ${
+                      own
+                        ? `<div class="flex gap-2 mt-4">
+                             <button class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 transition-all js-edit cursor-pointer" data-id="${p.id}">Edit</button>
+                             <button class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 transition-all js-delete cursor-pointer" data-id="${p.id}">Delete</button>
+                           </div>`
+                        : ''
+                    }
+                  </article>
+                `;
+                })
+                .join('')
+            : `<p class="opacity-70 text-gray-400 italic">No posts yet. Create your first one!</p>`
+        }
+      </div>
+    </section>
+  </section>
+
+  <!-- 🔹 Bottom Back Link -->
+  <div class="max-w-6xl mx-auto text-center pb-10">
+    <a href="/feed"
+       class="inline-flex items-center gap-2 text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-200">
+      ← Back to Feed
+    </a>
+  </div>
+</main>
+
   `;
 
   // 4) Zachowanie – delegacja globalna
@@ -364,7 +424,31 @@ function wireProfileHandlersOnce() {
   document.addEventListener('click', async (e) => {
     const el = e.target as HTMLElement;
 
-    // Toggle editor
+    /* ---------------------- 🔹 NAVIGATION ---------------------- */
+
+    // Logout button
+    if (el.closest('#logout-btn')) {
+      e.preventDefault();
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+        renderRoute('/login');
+      } catch (err) {
+        console.error('Logout failed:', err);
+      }
+      return;
+    }
+
+    // Feed link (if we want SPA navigation)
+    if (el.closest('a[href="/feed"]')) {
+      e.preventDefault();
+      renderRoute('/feed');
+      return;
+    }
+
+    /* ---------------------- 🔹 EDITOR TOGGLE ---------------------- */
+
+    // Toggle create / close editor
     if (el.closest('#toggle-create')) {
       const editor = q<HTMLDivElement>('#editor');
       if (!editor) return;
@@ -373,34 +457,31 @@ function wireProfileHandlersOnce() {
       return;
     }
 
-    // Cancel
+    // Cancel editing
     if (el.closest('#cancel-edit')) {
       if (!q('#editor')) return;
       closeEditor();
       return;
     }
 
-    // Reset (przy edycji)
+    // Reset edit form
     if (el.closest('#reset-edit')) {
       const form = q<HTMLFormElement>('#post-form');
       if (!form?.dataset.original) return;
       const data = JSON.parse(form.dataset.original);
-      const titleEl = q<HTMLInputElement>('#title');
-      const bodyEl = q<HTMLTextAreaElement>('#body');
-      const imgUrlEl = q<HTMLInputElement>('#imgUrl');
-      const imgAltEl = q<HTMLInputElement>('#imgAlt');
-      const tagsEl = q<HTMLInputElement>('#tags');
-
-      if (titleEl) titleEl.value = data.title || '';
-      if (bodyEl) bodyEl.value = data.body || '';
-      if (imgUrlEl) imgUrlEl.value = data.imgUrl || '';
-      if (imgAltEl) imgAltEl.value = data.imgAlt || '';
-      if (tagsEl)
-        tagsEl.value = Array.isArray(data.tags) ? data.tags.join(', ') : '';
+      q<HTMLInputElement>('#title')!.value = data.title || '';
+      q<HTMLTextAreaElement>('#body')!.value = data.body || '';
+      q<HTMLInputElement>('#imgUrl')!.value = data.imgUrl || '';
+      q<HTMLInputElement>('#imgAlt')!.value = data.imgAlt || '';
+      q<HTMLInputElement>('#tags')!.value = Array.isArray(data.tags)
+        ? data.tags.join(', ')
+        : '';
       return;
     }
 
-    // Edit
+    /* ---------------------- 🔹 EDIT & DELETE ---------------------- */
+
+    // Edit post
     const editBtn = el.closest('.js-edit') as HTMLButtonElement | null;
     if (editBtn) {
       const id = editBtn.getAttribute('data-id');
@@ -422,7 +503,8 @@ function wireProfileHandlersOnce() {
       }
       return;
     }
-    // Delete
+
+    // Delete post
     const delBtn = el.closest('.js-delete') as HTMLButtonElement | null;
     if (delBtn) {
       const id = delBtn.getAttribute('data-id');
@@ -438,7 +520,8 @@ function wireProfileHandlersOnce() {
     }
   });
 
-  // Create / Update
+  /* ---------------------- 🔹 FORM SUBMIT (CREATE / UPDATE) ---------------------- */
+
   document.addEventListener('submit', async (e) => {
     const form = e.target as HTMLFormElement;
     if (form?.id !== 'post-form') return;

@@ -1,7 +1,11 @@
 import { renderRoute } from '../router';
-import { registerUser } from '../services/api/client.js'; // Assuming you have this
+import { registerUser } from '../services/api/client.js';
 import { setLocalItem } from '../utils/storage.js';
-import type { ApiResponse, RegisterResponse } from '../types/index.js';
+import type {
+  ApiResponse,
+  RegisterResponse,
+  RegisterRequest,
+} from '../types/index.js';
 
 export default async function RegisterPage() {
   setTimeout(() => {
@@ -14,6 +18,7 @@ export default async function RegisterPage() {
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
+        // Form inputs
         const nameInput = document.getElementById(
           'registerName'
         ) as HTMLInputElement;
@@ -25,6 +30,12 @@ export default async function RegisterPage() {
         ) as HTMLInputElement;
         const confirmPasswordInput = document.getElementById(
           'registerConfirmPassword'
+        ) as HTMLInputElement;
+        const bioInput = document.getElementById(
+          'registerBio'
+        ) as HTMLInputElement;
+        const avatarUrlInput = document.getElementById(
+          'registerAvatarUrl'
         ) as HTMLInputElement;
         const formError = document.getElementById('registerMessage');
 
@@ -42,17 +53,19 @@ export default async function RegisterPage() {
         const email = emailInput.value.trim();
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
+        const bio = bioInput?.value.trim() || '';
+        const avatarUrl = avatarUrlInput?.value.trim() || '';
 
-        // Reset previous messages
+        // Reset error message
         if (formError) {
           formError.textContent = '';
           formError.style.color = 'red';
         }
 
-        // Basic validation
+        // Validation
         if (!name || !email || !password || !confirmPassword) {
           if (formError)
-            formError.textContent = 'Please fill in all the fields.';
+            formError.textContent = 'Please fill in all required fields.';
           return;
         }
 
@@ -81,19 +94,25 @@ export default async function RegisterPage() {
           return;
         }
 
-        // Disable form during submission
+        // Disable submit
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = '🔄 Registering...';
         }
 
-        // Show loading screen during registration
         const loadingScreen = (window as any).loadingScreen;
-        if (loadingScreen) {
-          loadingScreen.showWithMessage('Registering...');
-        }
+        if (loadingScreen) loadingScreen.showWithMessage('Registering...');
 
-        const registerData = { name, email, password };
+        // ✅ Typed data object
+        const registerData: RegisterRequest = { name, email, password };
+
+        if (bio) registerData.bio = bio;
+        if (avatarUrl) {
+          registerData.avatar = {
+            url: avatarUrl,
+            alt: `${name}'s avatar`,
+          };
+        }
 
         try {
           const result: ApiResponse<RegisterResponse> = await registerUser(
@@ -104,7 +123,6 @@ export default async function RegisterPage() {
             const errorMessage =
               result.errors[0]?.message || 'Registration failed.';
             if (formError) {
-              // Customize error messages based on the API response
               if (errorMessage.toLowerCase().includes('email')) {
                 formError.textContent = '❌ Email address already in use.';
               } else {
@@ -113,46 +131,36 @@ export default async function RegisterPage() {
             }
           } else if (result.data) {
             if (formError) {
-              formError.style.color = 'green';
+              formError.style.color = 'white';
               formError.textContent =
                 '✅ Registration successful! Redirecting to login page...';
             }
 
-            // Optionally store user data or token if returned
-            if (result.data.accessToken) {
+            if (result.data.accessToken)
               setLocalItem('accessToken', result.data.accessToken);
-            }
-            if (result.data.name) {
-              setLocalItem('user', result.data.name);
-            }
+            if (result.data.name) setLocalItem('user', result.data.name);
 
-            // Redirect to login page after registration success
             setTimeout(() => {
               history.pushState({ path: '/login' }, '', '/login');
               renderRoute('/login');
             }, 1500);
           } else {
-            if (formError) {
+            if (formError)
               formError.textContent = 'Unexpected response from server.';
-            }
           }
         } catch (error) {
           console.error('Registration error:', error);
           if (formError) {
             if (error instanceof TypeError && error.message.includes('fetch')) {
               formError.textContent =
-                '🌐 Network error. Please check your internet connection and try again.';
+                '🌐 Network error. Please check your internet connection.';
             } else {
               formError.textContent =
-                '⚠️ Something went wrong. Please try again in a moment.';
+                '⚠️ Something went wrong. Please try again.';
             }
           }
         } finally {
-          // Hide loading screen
-          if (loadingScreen) {
-            loadingScreen.hideLoadingScreen();
-          }
-          // Re-enable form
+          if (loadingScreen) loadingScreen.hideLoadingScreen();
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.textContent = '🚀 Register';
@@ -161,7 +169,7 @@ export default async function RegisterPage() {
       });
     }
 
-    // Attach event listener for login link
+    // Login link
     const loginLink = document.getElementById('login-link');
     if (loginLink) {
       loginLink.addEventListener('click', (e) => {
@@ -174,74 +182,66 @@ export default async function RegisterPage() {
 
   return `
   <div class="page px-5 active flex items-center justify-center min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-teal-900" id="registerPage">
-  <div class="auth-container w-full max-w-md px-8 py-10 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20">
-    <div class="auth-card text-white">
-     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-6 text-white drop-shadow-sm">
-  Create Account ✨
-</h1>
-      <div id="registerMessage" class="mb-4 text-center font-medium text-red-300"></div>
+    <div class="auth-container w-full max-w-md px-8 py-10 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20">
+      <div class="auth-card text-white">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-center text-white drop-shadow-sm">
+          Create Account ✨
+        </h1>
 
-      <form id="registerForm" class="space-y-6">
-        <div class="form-group">
-          <label for="registerName" class="block mb-2 text-lg font-semibold">Full Name</label>
-          <input
-            type="text"
-            id="registerName"
-            required
-            placeholder="Enter your full name"
-            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
-          />
+        <div id="registerMessage" class="mb-4 text-center font-medium text-red-300"></div>
+
+        <form id="registerForm" class="space-y-6">
+          <div class="form-group mb-1">
+            <label for="registerName" class="block mb-2 text-lg font-semibold">Full Name</label>
+            <input type="text" id="registerName" required placeholder="Enter your full name"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <div class="form-group mb-1">
+            <label for="registerEmail" class="block mb-2 text-lg font-semibold">Email Address</label>
+            <input type="email" id="registerEmail" required placeholder="Enter your @stud.noroff.no email"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <div class="form-group mb-1">
+            <label for="registerPassword" class="block mb-2 text-lg font-semibold">Password</label>
+            <input type="password" id="registerPassword" required placeholder="Enter your password"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <div class="form-group mb-1">
+            <label for="registerConfirmPassword" class="block mb-2 text-lg font-semibold">Confirm Password</label>
+            <input type="password" id="registerConfirmPassword" required placeholder="Confirm your password"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <!-- Optional fields -->
+          <div class="form-group mb-1">
+            <label for="registerBio" class="block mb-2 text-lg font-semibold">Bio (Optional)</label>
+            <input type="text" id="registerBio" placeholder="Write a short bio"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="registerAvatarUrl" class="block mb-2 text-lg font-semibold">Avatar URL (Optional)</label>
+            <input type="url" id="registerAvatarUrl" placeholder="https://img.service.com/avatar.jpg"
+              class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition duration-200" />
+          </div>
+
+          <button type="submit mb-1"
+            class="w-full py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg cursor-pointer transition-transform duration-200 flex items-center justify-center gap-2">
+            <span>🚀</span> Register
+          </button>
+        </form>
+
+        <div class="auth-links mt-8 mb-1 text-center text-white text-base">
+          <p>
+            Already have an account?
+            <a href="#" id="login-link" class="underline hover:text-green-300 font-semibold transition">Login here</a>
+          </p>
         </div>
-
-        <div class="form-group">
-          <label for="registerEmail" class="block mb-2 text-lg font-semibold">Email Address</label>
-          <input
-            type="email"
-            id="registerEmail"
-            required
-            placeholder="Enter your @stud.noroff.no email"
-            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="registerPassword" class="block mb-2 text-lg font-semibold">Password</label>
-          <input
-            type="password"
-            id="registerPassword"
-            required
-            placeholder="Enter your password"
-            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="registerConfirmPassword" class="block mb-2 text-lg font-semibold">Confirm Password</label>
-          <input
-            type="password"
-            id="registerConfirmPassword"
-            required
-            placeholder="Confirm your password"
-            class="w-full text-white text-lg px-4 py-3 border border-white/30 bg-white/10 rounded-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition duration-200"
-          />
-        </div>
-
-        <button
-          type="submit"
-          class="w-full py-3 bg-gradient-to-r from-green-500 to-teal-400 text-white font-semibold rounded-lg hover:scale-[1.02] hover:shadow-lg cursor-pointer transition-transform duration-200 flex items-center justify-center gap-2"
-        >
-          <span>🚀</span> Register
-        </button>
-      </form>
-
-      <div class="auth-links mt-8 text-center text-white text-base">
-        <p>
-          Already have an account?
-          <a href="#" id="login-link" class="underline hover:text-green-300 font-semibold transition">Login here</a>
-        </p>
       </div>
     </div>
   </div>
-</div>
   `;
 }

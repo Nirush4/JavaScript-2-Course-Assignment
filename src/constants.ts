@@ -9,10 +9,7 @@ export const LAZY_LOAD_CLASSNAME = 'js-lazy-load';
 export const PLACEHOLDER_URL = '/10.svg';
 export const APP_CONTAINER_CLASSNAME = 'js-app';
 
-
-
 // Nazwa KLASY na elemencie-montażu (np. <div id="app" class="app"></div>)
-
 
 /**
  * An object containing media query breakpoints.

@@ -1,7 +1,12 @@
 export type ProfileMini = {
-  name: string;
-  email: string;
-  avatar?: string | null;
+  name?: string;
+  email?: string;
+  bio?: string | null;
+  banner?: { url?: string } | null;
+  avatar?: {
+    url?: string;
+    alt?: string;
+  } | null;
 };
 
 export type Reaction = { symbol: string; count: number };
