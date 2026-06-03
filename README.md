@@ -2,10 +2,21 @@
 
 This repository is a modern boilerplate starter pack for building front-end web applications using TypeScript, ES2025 features, and Vite. It is designed for educational purposes and demonstrates best practices for consuming authenticated APIs, performing CRUD operations, and leveraging the latest advancements in the JavaScript ecosystem.
 
+---
+
+## 📸 Preview
+
+<img width="1512" height="827" alt="image" src="https://github.com/user-attachments/assets/89453cab-47c7-484b-81ed-639c3500fd1d" />
+<img width="1498" height="825" alt="image" src="https://github.com/user-attachments/assets/670d665b-559f-43b9-a603-79e0bfa0ad49" />
+<img width="1494" height="828" alt="Screenshot 2026-06-03 at 4 13 24 PM" src="https://github.com/user-attachments/assets/4c2872b3-4ac6-4997-a4fa-52354473d4c9" />
+
+
+---
+
 ## Project Assets
 
-- [Production deploy](https://javascript-2-assignment.netlify.app/)
-- [Production Deployment Dashboard](https://app.netlify.com/projects/javascript-2-assignment/overview)
+- [Production deploy](https://javascript-2-assignment-socialmedia.netlify.app/)
+- [Production Deployment Dashboard](https://app.netlify.com/projects/hubble-share/overview)
 - [Lo-Fi Design Spec](https://www.figma.com/design/YeEfWVxR4FyKKovwljxphw/Javascript-2-CA?node-id=0-1&p=f)
 - [API URL](https://docs.noroff.dev/docs/v2/social/posts)
 
