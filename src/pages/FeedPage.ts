@@ -1,4 +1,3 @@
-// src/pages/FeedPage.ts
 import postCard from '../components/posts/postCard';
 import { getAllPosts } from '../services/posts/posts';
 import { api, getToken } from '../services/api/client';
@@ -8,12 +7,10 @@ import escHtml from '../utils/escHtml';
 
 const AVATAR_PLACEHOLDER = '/profile.avatar.png';
 
-// Cache posts for search and to prevent rate-limit errors
 let allPosts: Post[] = [];
 let lastFetchTime = 0;
-const CACHE_TTL = 1000 * 60 * 2; // 2 minutes
+const CACHE_TTL = 1000 * 60 * 2;
 
-/* ---------------------- UTILS ---------------------- */
 function getUsername(): string | null {
   const n1 = localStorage.getItem('name');
   if (n1) {
@@ -40,7 +37,6 @@ function getUsername(): string | null {
   return null;
 }
 
-/* ---------------------- SAFE FETCH WRAPPERS ---------------------- */
 async function safeGetAllPosts(): Promise<Post[]> {
   const now = Date.now();
   const cacheValid = allPosts.length > 0 && now - lastFetchTime < CACHE_TTL;
@@ -65,7 +61,7 @@ async function safeGetAllPosts(): Promise<Post[]> {
     if (error.response?.status === 429) {
       console.warn('Rate limited by Noroff API — retrying in 3 seconds...');
       await new Promise((res) => setTimeout(res, 3000));
-      return safeGetAllPosts(); // retry once
+      return safeGetAllPosts();
     }
     console.error('Error loading posts:', error);
     return [];
@@ -91,7 +87,6 @@ async function safeGetProfile(username: string) {
   }
 }
 
-/* ---------------------- FEED PAGE ---------------------- */
 export default async function FeedPage(): Promise<string> {
   let posts: Post[] = [];
   let profile: any = {};
@@ -100,7 +95,7 @@ export default async function FeedPage(): Promise<string> {
 
   const username = getUsername();
   if (username) {
-    await new Promise((res) => setTimeout(res, 500)); // small delay for rate-limit safety
+    await new Promise((res) => setTimeout(res, 500));
     profile = await safeGetProfile(username);
   }
 
@@ -127,7 +122,6 @@ export default async function FeedPage(): Promise<string> {
 
   const postsCount = Array.isArray(posts) ? posts.length : 0;
 
-  /* ---------------------- HTML ---------------------- */
   const html = `
     <div class="container fixed grid min-w-full grid-cols-5 min-h-dvh bg-gray-900">
 
@@ -228,7 +222,6 @@ export default async function FeedPage(): Promise<string> {
     </div>
   `;
 
-  // Attach event handlers after render
   setTimeout(async () => {
     wireSearch();
     wireFollowerLists();
@@ -239,7 +232,6 @@ export default async function FeedPage(): Promise<string> {
   return html;
 }
 
-/* ---------------------- SEARCH LOGIC ---------------------- */
 function wireSearch() {
   const input = document.querySelector<HTMLInputElement>('#feedSearch');
   const grid = document.querySelector<HTMLElement>('#feedGrid');
@@ -260,8 +252,6 @@ function wireSearch() {
   });
 }
 
-/* ---------------------- FOLLOWERS / FOLLOWING MODAL ---------------------- */
-
 function getStoredUsername(): string | null {
   const raw = localStorage.getItem('username') || localStorage.getItem('name');
   if (!raw) return null;
@@ -272,7 +262,6 @@ function getStoredUsername(): string | null {
   }
 }
 
-// Simple in-memory cache to avoid repeated API calls
 const followCache: Record<string, any[]> = {};
 
 function wireFollowerLists() {
@@ -294,7 +283,6 @@ async function showFollowList(
   username: string,
   type: 'followers' | 'following'
 ) {
-  // Check cache first
   const cacheKey = `${username}_${type}`;
   if (followCache[cacheKey]) {
     console.log(`[Cache hit] Using cached ${type} data`);
@@ -302,7 +290,6 @@ async function showFollowList(
     return;
   }
 
-  // Show modal immediately with "Loading..." while fetching
   renderFollowModal(null, type, true);
 
   try {
@@ -319,7 +306,6 @@ async function showFollowList(
     const data = await res.json();
     const list = Array.isArray(data) ? data : data.data || [];
 
-    // Save in cache (and sessionStorage if you want persistence)
     followCache[cacheKey] = list;
     sessionStorage.setItem(cacheKey, JSON.stringify(list));
 
@@ -336,7 +322,6 @@ function renderFollowModal(
   loading = false,
   error = false
 ) {
-  // Create or reuse modal container
   let modal = document.getElementById('followModal');
   if (!modal) {
     modal = document.createElement('div');
@@ -385,7 +370,6 @@ function renderFollowModal(
   });
 }
 
-/* ---------------------- OPTIONAL CSS ANIMATION ---------------------- */
 const style = document.createElement('style');
 style.textContent = `
 @keyframes fadeIn { from {opacity:0; transform:scale(0.98);} to {opacity:1; transform:scale(1);} }
